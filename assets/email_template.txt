@@ -36,4 +36,4 @@ Pipeline Configuration:
 
 --
 neissflow
-https://git.biotech.cdc.gov/xqc3/neissflow
+https://github.com/CDCgov/neissflow
