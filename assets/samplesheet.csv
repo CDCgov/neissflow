@@ -1,8 +1,8 @@
 sample,fastq_1,fastq_2
-GCWGS-4803-TX-M04922-190103-_S21_L001,test_samples/GCWGS-4803-TX-M04922-190103-_S21_L001_R1_001.fastq.gz,test_samples/GCWGS-4803-TX-M04922-190103-_S21_L001_R2_001.fastq.gz
-GCWGS-4800-TX-M04922-190103-_S18_L001,test_samples/GCWGS-4800-TX-M04922-190103-_S18_L001_R1_001.fastq.gz,test_samples/GCWGS-4800-TX-M04922-190103-_S18_L001_R2_001.fastq.gz
-GCWGS-4791-TX-M04922-190103-_S10_L001,test_samples/GCWGS-4791-TX-M04922-190103-_S10_L001_R1_001.fastq.gz,test_samples/GCWGS-4791-TX-M04922-190103-_S10_L001_R2_001.fastq.gz
-GCWGS-4488-TX-M05358-181214-_S3_L001,test_samples/GCWGS-4488-TX-M05358-181214-_S3_L001_R1_001.fastq.gz,test_samples/GCWGS-4488-TX-M05358-181214-_S3_L001_R2_001.fastq.gz
-GCWGS-4475-TX-M05358-181204-_S49_L001,test_samples/GCWGS-4475-TX-M05358-181204-_S49_L001_R1_001.fastq.gz,test_samples/GCWGS-4475-TX-M05358-181204-_S49_L001_R2_001.fastq.gz
-GCWGS-4428-TX-M05358-181204-_S38_L001,test_samples/GCWGS-4428-TX-M05358-181204-_S38_L001_R1_001.fastq.gz,test_samples/GCWGS-4428-TX-M05358-181204-_S38_L001_R2_001.fastq.gz
-GCWGS-4366-TX-M04955-181211-_S25_L001,test_samples/GCWGS-4366-TX-M04955-181211-_S25_L001_R1_001.fastq.gz,test_samples/GCWGS-4366-TX-M04955-181211-_S25_L001_R2_001.fastq.gz
+SRR11904202,assets/test_samples/SRR11904202_1.fastq.gz,assets/test_samples/SRR11904202_2.fastq.gz
+SRR11904206,assets/test_samples/SRR11904206_1.fastq.gz,assets/test_samples/SRR11904206_2.fastq.gz
+SRR11904216,assets/test_samples/SRR11904216_1.fastq.gz,assets/test_samples/SRR11904216_2.fastq.gz
+SRR9985899,assets/test_samples/SRR9985899_1.fastq.gz,assets/test_samples/SRR9985899_2.fastq.gz
+SRR9878333,assets/test_samples/SRR9878333_1.fastq.gz,assets/test_samples/SRR9878333_2.fastq.gz
+SRR11904361,assets/test_samples/SRR11904361_1.fastq.gz,assets/test_samples/SRR11904361_2.fastq.gz
+SRR9877719,assets/test_samples/SRR9877719_1.fastq.gz,assets/test_samples/SRR9877719_2.fastq.gz
