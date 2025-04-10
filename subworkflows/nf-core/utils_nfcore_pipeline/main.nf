@@ -77,7 +77,7 @@ def workflowCitation() {
         "* The nf-core framework\n" +
         "  https://doi.org/10.1038/s41587-020-0439-x\n\n" +
         "* Software dependencies\n" +
-        "  https://git.biotech.cdc.gov/xqc3/${workflow.manifest.name}/-/blob/main/CITATIONS.md"
+        "  https://github.com/CDCgov/${workflow.manifest.name}/-/blob/main/CITATIONS.md"
 }
 
 //
