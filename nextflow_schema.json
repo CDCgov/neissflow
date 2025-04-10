@@ -1,0 +1,503 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://git.biotech.cdc.gov/xqc3/neissflow/-/blob/main/nextflow_schema.json",
+    "title": "neissflow pipeline parameters",
+    "description": "GC pipeline",
+    "type": "object",
+    "definitions": {
+        "input_output_options": {
+            "title": "Input/output options",
+            "type": "object",
+            "fa_icon": "fas fa-terminal",
+            "description": "Define where the pipeline should find input data and save output data.",
+            "required": [
+                "input",
+                "outdir"
+            ],
+            "properties": {
+                "input": {
+                    "type": "string",
+                    "format": "file-path",
+                    "exists": true,
+                    "schema": "assets/schema_input.json",
+                    "mimetype": "text/csv",
+                    "pattern": "^\\S+\\.csv$",
+                    "description": "Path to comma-separated file containing information about the samples in the experiment.",
+                    "help_text": "You will need to create a design file with information about the samples in your experiment before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 3 columns, and a header row. See [usage docs](https://nf-co.re/neissflow/usage#samplesheet-input).",
+                    "fa_icon": "fas fa-file-csv"
+                },
+                "controls": {
+                    "type": "string",
+                    "format": "file-path",
+                    "exists": true,
+                    "schema": "assets/schema_controls.json",
+                    "mimetype": "text/csv",
+                    "pattern": "^\\S+\\.csv$",
+                    "description": "Path to comma-separated file containing information about the control samples.",
+                    "fa_icon": "fas fa-file-csv"
+                },
+                "outdir": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "description": "The output directory where the results will be saved. You have to use absolute paths to storage on Cloud infrastructure.",
+                    "fa_icon": "fas fa-folder-open"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the run"
+                }
+            }
+        },
+        "input_type": {
+            "title": "Input Type",
+            "type": "object",
+            "description": "Signify what filetypes are included in the samplesheet",
+            "default": "",
+            "properties": {
+                "only_fastq": {
+                    "type": "boolean",
+                    "description": "True if only FASTQ input is provided (entire pipeline can run with just FASTQ input)",
+                    "fa_icon": "fas fa-copy"
+                },
+                "only_fasta": {
+                    "type": "boolean",
+                    "description": "True if only FASTA contigs are provided (only snippy and the Phylogeny Subworkflow will run with this input)",
+                    "fa_icon": "fas fa-copy"
+                },
+                "fastq_w_fasta": {
+                    "type": "boolean",
+                    "description": "True if FASTQ and FASTA input are provided (entire pipeline can run with this input)",
+                    "fa_icon": "fas fa-copy"
+                },
+                "QC": {
+                    "type": "boolean",
+                    "description": "True if running control samples through as well",
+                    "fa_icon": "fas fa-copy",
+                    "hidden": true
+                }
+            }
+        },
+        "skip_steps": {
+            "title": "Skip steps",
+            "type": "object",
+            "description": "Specify which sections of neissflow you would like to skip",
+            "default": "",
+            "properties": {
+                "skip_fastq_check": {
+                    "type": "boolean",
+                    "description": "Skip FASTQ format check (only skip if your FASTQs have already been QCed)",
+                    "fa_icon": "fas fa-forward"
+                },
+                "skip_preprocess": {
+                    "type": "boolean",
+                    "description": "Skip Preprocessing Subworkflow (only do this if your reads have already been preprocessed and QCed)",
+                    "fa_icon": "fas fa-forward"
+                },
+                "skip_species_id": {
+                    "type": "boolean",
+                    "description": "Skip Species_ID Subworkflow (will skip Mash and FA19 coverage steps used to determine if a sample is NG)",
+                    "fa_icon": "fas fa-forward"
+                },
+                "skip_assembly": {
+                    "type": "boolean",
+                    "description": "Skip Assembly Subworkflow (if you do this and do not provide assemblies, the AMR_Profiler Subworkflow will not run)",
+                    "fa_icon": "fas fa-forward"
+                },
+                "skip_assembly_qc": {
+                    "type": "boolean",
+                    "description": "Skip Denovo Assembly QC script (do this if you are inputting non-shovill assemblies), QUAST will still run",
+                    "fa_icon": "fas fa-forward"
+                },
+                "skip_amr": {
+                    "type": "boolean",
+                    "description": "Skip AMR_Profiler Subworkflow",
+                    "fa_icon": "fas fa-forward"
+                },
+                "skip_phylogeny": {
+                    "type": "boolean",
+                    "description": "Skip Phylogeny Subworkflow",
+                    "fa_icon": "fas fa-forward"
+                }
+            }
+        },
+        "species_id_parameters": {
+            "title": "Species ID parameters",
+            "type": "object",
+            "description": "Parameters for Species ID subworkflow (Mash and stats)",
+            "default": "",
+            "properties": {
+                "mash_db": {
+                    "type": "string",
+                    "default":  "RefSeqSketchesDefaults.msh",
+                    "description": "Path to Mash sketch used",
+                    "fa_icon": "fas fa-database",
+                    "format": "file-path",
+                    "mimetype": "msh",
+                    "hidden": false
+                },
+                "FA19_ref": {
+                    "type": "string",
+                    "default":  "assets/FA19.gb",
+                    "description": "Path to Genbank FA19 reference",
+                    "hidden": true
+                }
+            }
+        },
+        "assembly_parameters": {
+            "title": "Assembly Parameters",
+            "type": "object",
+            "description": "Parameters for Assembly Subworkflow (shovill and QUAST)",
+            "default": "",
+            "properties": {
+                "downsample": {
+                    "type": "boolean",
+                    "description": "Downsample reads to depth specified by depth parameter with shovill for assembly",
+                    "fa_icon": "fas fa-forward"
+                },
+                "depth": {
+                    "type": "integer",
+                    "default": 150,
+                    "description": "Depth for downsampling reads for assembly with shovill"
+                },
+                "FA19cg": {
+                    "type": "string",
+                    "default":  "assets/FA19cg.fa",
+                    "description": "path to FA19 FASTA file for QUAST ref",
+                    "hidden": true
+                }
+            }
+        },
+        "amr_profiler_parameters": {
+            "title": "AMR Profiler parameters",
+            "type": "object",
+            "description": "Parameters for AMR Profiler Subworkflow (Snippy, depth, mlst, NGMASTER, BLAST)",
+            "default": "",
+            "properties": {
+                "amr_ref": {
+                    "type": "string",
+                    "default":  "assets/amr_genes.gbk",
+                    "description": "Path to Genbank reference for AMR genes not found in FA19",
+                    "hidden": true
+                },
+                "loci": {
+                    "type": "string",
+                    "default":  "assets/FA19_loci.tsv",
+                    "description": "Path to file containing loci of AMR genes in FA19",
+                    "hidden": true
+                },
+                "default_amr": {
+                    "type": "string",
+                    "default":  "assets/AMR_defaults.tsv",
+                    "description": "Path to list of AMR markers and their defaults",
+                    "hidden": true
+                },
+                "columns": {
+                    "type": "string",
+                    "default":  "assets/amr_columns.txt",
+                    "description": "Path to file containing the column order for the AMR report",
+                    "hidden": true
+                },
+                "mtrR_mosaic_ref": {
+                    "type": "string",
+                    "default":  "assets/gene_refs/mosaic-mtrR.fasta",
+                    "description": "Path to FASTA mtrR mosaic reference",
+                    "hidden": true
+                },
+                "penAdb": {
+                    "type": "string",
+                    "default":  "assets/blastdb/penAdb",
+                    "description": "Path to BLAST database for penA",
+                    "hidden": true
+                },
+                "porBdb": {
+                    "type": "string",
+                    "default":  "assets/blastdb/porBdb",
+                    "description": "Path to BLAST database for porB",
+                    "hidden": true
+                },
+                "pubmlst": {
+                    "type": "string",
+                    "default":  "mlst/pubmlst/",
+                    "description": "path to local pubmlst database for mlst",
+                    "hidden": false
+                },
+                "blastdb": {
+                    "type": "string",
+                    "default":  "mlst/blastdb/mlst.fa",
+                    "description": "path to local blast database for mlst",
+                    "hidden": false
+                },
+                "ngmasterdb": {
+                    "type": "string",
+                    "default":  "assets/alleledb/ngmaster/",
+                    "description": "path to NGMASTER database",
+                    "hidden": true
+                },
+                "ngstar": {
+                    "type": "string",
+                    "default":  "assets/alleledb/ngmaster/pubmlst/ngstar/ngstar.txt",
+                    "description": "path to file with ngstar schemes",
+                    "hidden": true
+                },
+                "ngmast": {
+                    "type": "string",
+                    "default": "assets/alleledb/ngmaster/pubmlst/ngmast/ngmast.txt",
+                    "description": "path to file with ngmast schemes",
+                    "hidden": true
+                },
+                "ngmasterdb_version": {
+                    "type": "string",
+                    "default": "01/2025",
+                    "description": "latest download of NGMASTER database used for run",
+                    "hidden": true
+                }
+            }
+        },
+        "phylogeny_parameters": {
+            "title": "Phylogeny Parameters",
+            "type": "object",
+            "description": "Parameters for Phylogeny Subworkflow (snippy-core, Gubbins, snp-dists, RAxML, GoTree)",
+            "default": "",
+            "properties": {
+                "reference_genome": {
+                    "type": "string",
+                    "description": "Path to alternate reference genome",
+                    "format": "file-path"
+                },
+                "remove_ref": {
+                    "type": "boolean",
+                    "description": "Remove reference from the core alignment produced by the Phylogeny Subworkflow (reference will not appear in generated tree)"
+                },
+                "snp_dist": {
+                    "type": "integer",
+                    "default": 20,
+                    "description": "SNP distance cutoff for direct connections used in outbreak detection algorithm"
+                },
+                "max_itr": {
+                    "type": "integer",
+                    "default": 25,
+                    "description": "Maximum Number of iterations for Gubbins to run with"
+                }
+            }
+        },
+        "institutional_config_options": {
+            "title": "Institutional config options",
+            "type": "object",
+            "fa_icon": "fas fa-university",
+            "description": "Parameters used to describe centralised config profiles. These should not be edited.",
+            "help_text": "The centralised nf-core configuration profiles use a handful of pipeline parameters to describe themselves. This information is then printed to the Nextflow log when you run a pipeline. You should not need to change these values when you run a pipeline.",
+            "properties": {
+                "config_profile_description": {
+                    "type": "string",
+                    "description": "Institutional config description.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog",
+                    "default": ""
+                },
+                "config_profile_contact": {
+                    "type": "string",
+                    "description": "Institutional config contact information.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog",
+                    "default": "xqc3@cdc.gov"
+                },
+                "config_profile_url": {
+                    "type": "string",
+                    "description": "Institutional config URL link.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog",
+                    "default": ""
+                },
+                "config_profile_name": {
+                    "type": "string",
+                    "description": "Institutional config name.",
+                    "fa_icon": "fas fa-users-cog"
+                }
+            }
+        },
+        "max_job_request_options": {
+            "title": "Max job request options",
+            "type": "object",
+            "fa_icon": "fab fa-acquisitions-incorporated",
+            "description": "Set the top limit for requested resources for any single job.",
+            "help_text": "If you are running on a smaller system, a pipeline step requesting more resources than are available may cause the Nextflow to stop the run with an error. These options allow you to cap the maximum resources requested by any single job so that the pipeline will run on your system.\n\nNote that you can not _increase_ the resources requested by any job using these options. For that you will need your own configuration file. See [the nf-core website](https://nf-co.re/usage/configuration) for details.",
+            "properties": {
+                "max_cpus": {
+                    "type": "integer",
+                    "description": "Maximum number of CPUs that can be requested for any single job.",
+                    "default": 16,
+                    "fa_icon": "fas fa-microchip",
+                    "hidden": true,
+                    "help_text": "Use to set an upper-limit for the CPU requirement for each process. Should be an integer e.g. `--max_cpus 1`"
+                },
+                "max_memory": {
+                    "type": "string",
+                    "description": "Maximum amount of memory that can be requested for any single job.",
+                    "default": "256.GB",
+                    "fa_icon": "fas fa-memory",
+                    "pattern": "^\\d+(\\.\\d+)?\\.?\\s*(K|M|G|T)?B$",
+                    "hidden": true,
+                    "help_text": "Use to set an upper-limit for the memory requirement for each process. Should be a string in the format integer-unit e.g. `--max_memory '8.GB'`"
+                },
+                "max_time": {
+                    "type": "string",
+                    "description": "Maximum amount of time that can be requested for any single job.",
+                    "default": "240.h",
+                    "fa_icon": "far fa-clock",
+                    "pattern": "^(\\d+\\.?\\s*(s|m|h|d|day)\\s*)+$",
+                    "hidden": true,
+                    "help_text": "Use to set an upper-limit for the time requirement for each process. Should be a string in the format integer-unit e.g. `--max_time '2.h'`"
+                }
+            }
+        },
+        "generic_options": {
+            "title": "Generic options",
+            "type": "object",
+            "fa_icon": "fas fa-file-import",
+            "description": "Less common options for the pipeline, typically set in a config file.",
+            "help_text": "These options are common to all nf-core pipelines and allow you to customise some of the core preferences for how the pipeline runs.\n\nTypically these options would be set in a Nextflow config file loaded for all pipeline runs, such as `~/.nextflow/config`.",
+            "properties": {
+                "help": {
+                    "type": "boolean",
+                    "description": "Display help text.",
+                    "fa_icon": "fas fa-question-circle",
+                    "hidden": true
+                },
+                "version": {
+                    "type": "number",
+                    "description": "Display version and exit.",
+                    "fa_icon": "fas fa-question-circle",
+                    "hidden": true,
+                    "default": 2
+                },
+                "publish_dir_mode": {
+                    "type": "string",
+                    "default": "copy",
+                    "description": "Method used to save pipeline results to output directory.",
+                    "help_text": "The Nextflow `publishDir` option specifies which intermediate files should be saved to the output directory. This option tells the pipeline what method should be used to move these files. See [Nextflow docs](https://www.nextflow.io/docs/latest/process.html#publishdir) for details.",
+                    "fa_icon": "fas fa-copy",
+                    "enum": [
+                        "symlink",
+                        "rellink",
+                        "link",
+                        "copy",
+                        "copyNoFollow",
+                        "move"
+                    ],
+                    "hidden": true
+                },
+                "monochrome_logs": {
+                    "type": "boolean",
+                    "description": "Do not use coloured log outputs.",
+                    "fa_icon": "fas fa-palette",
+                    "hidden": true
+                },
+                "validate_params": {
+                    "type": "boolean",
+                    "description": "Boolean whether to validate parameters against the schema at runtime",
+                    "fa_icon": "fas fa-check-square",
+                    "hidden": true
+                },
+                "validationSkipDuplicateCheck": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Check for dups",
+                    "hidden": true
+                },
+                "validationS3PathCheck": {
+                    "type": "boolean",
+                    "description": "validate path to S3 bucket",
+                    "hidden": true
+                },
+                "monochromeLogs": {
+                    "type": "boolean",
+                    "description": "Do not use coloured log outputs.",
+                    "hidden": true
+                },
+                "email": {
+                    "type": "string",
+                    "description": "Email address for completion summary."
+                },
+                "email_on_fail": {
+                    "type": "string",
+                    "description": "Email address for completion summary, only when pipeline fails."
+                },
+                "plaintext_email": {
+                    "type": "boolean",
+                    "description": "Send plain-text email instead of HTML."
+                },
+                "hook_url": {
+                    "type": "string",
+                    "description": "Incoming hook URL for messaging service",
+                    "hidden": true
+                }
+            }
+        },
+        "multiqc_options": {
+            "title": "MultiQC options",
+            "type": "object",
+            "description": "Parameters for MultiQC step",
+            "default": "",
+            "fa_icon": "fas fa-file-contract",
+            "hidden": true,
+            "properties": {
+                "multiqc_config": {
+                    "type": "string",
+                    "description": "Custom config file to supply to MultiQC."
+                },
+                "multiqc_title": {
+                    "type": "string",
+                    "description": "MultiQC report title. Printed as page header, used for filename if not otherwise specified."
+                },
+                "multiqc_logo": {
+                    "type": "string",
+                    "description": "Custom logo file to supply to MultiQC. File name must also be set in the MultiQC config file"
+                },
+                "max_multiqc_email_size": {
+                    "type": "string",
+                    "default": "25.MB",
+                    "description": "File size limit when attaching MultiQC reports to summary emails."
+                },
+                "multiqc_methods_description": {
+                    "type": "string",
+                    "description": "Custom MultiQC yaml file containing HTML including a methods description."
+                }
+            }
+        }
+    },
+    "allOf": [
+        {
+            "$ref": "#/definitions/input_output_options"
+        },
+        {
+            "$ref": "#/definitions/input_type"
+        },
+        {
+            "$ref": "#/definitions/skip_steps"
+        },
+        {
+            "$ref": "#/definitions/species_id_parameters"
+        },
+        {
+            "$ref": "#/definitions/assembly_parameters"
+        },
+        {
+            "$ref": "#/definitions/amr_profiler_parameters"
+        },
+        {
+            "$ref": "#/definitions/phylogeny_parameters"
+        },
+        {
+            "$ref": "#/definitions/institutional_config_options"
+        },
+        {
+            "$ref": "#/definitions/max_job_request_options"
+        },
+        {
+            "$ref": "#/definitions/generic_options"
+        },
+        {
+            "$ref": "#/definitions/multiqc_options"
+        }
+    ]
+}
