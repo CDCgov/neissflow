@@ -5,7 +5,7 @@
 [![Nextflow](https://img.shields.io/badge/nextflow%20DSL2-%E2%89%A523.10.0-23aa62.svg)](https://www.nextflow.io/)
 [![nf-core](https://img.shields.io/badge/nfcore-2.14.1-23aa62.svg)](https://nf-co.re/)
 [![run with singularity](https://img.shields.io/badge/run%20with-singularity-1d355c.svg?labelColor=000000)](https://sylabs.io/docs/)
-[![neissflow version](https://img.shields.io/badge/neissflow%20version-2.0-1E90FF)](https://git.biotech.cdc.gov/xqc3/neissflow/-/releases)
+[![neissflow version](https://img.shields.io/badge/neissflow%20version-2.0-1E90FF)](https://github.com/CDCgov/neissflow/-/releases)
 
 # neissflow
 neissflow is a Nextflow workflow for Neisseria gonorrhoeae (Ng) genome analysis. The mission of neissflow is to consolidate commonly used bioinformatics tools for Ng analysis into a parallel and scalable pipeline. Having all your tools in one place allows you to rapidly generate data and respond quickly to public health demands!
@@ -95,7 +95,7 @@ To successfully run the pipeline all FASTQ files must be gunzipped. Below is a l
  If you choose to use contigs that have already been generated for the samples you are running through neissflow ensure that these have already passed through quality control steps as neissflow does not QC pre assembled contigs.
 
 ## Options
-The majority of the neissflow components can be run a la carte depending on your analysis needs. Depending on which portions of the pipeline you would like to run, or skip, there is also the option to run with just FASTQ input, just FASTA contig input, or both. For more information on running neissflow, checkout [`docs/usage.md`](https://git.biotech.cdc.gov/xqc3/neissflow/-/blob/main/docs/usage.md). 
+The majority of the neissflow components can be run a la carte depending on your analysis needs. Depending on which portions of the pipeline you would like to run, or skip, there is also the option to run with just FASTQ input, just FASTA contig input, or both. For more information on running neissflow, checkout [`docs/usage.md`](docs/usage.md). 
 
 
 **Typical pipeline command:**
@@ -175,7 +175,7 @@ The following diagram illustrates what the workflow would look like when running
 <center><img src="docs/images/phylogeny.png" height=1046 width=779/></center> 
 
 ## Output
-For a detailed summary of the neissflow output, checkout [`docs/output.md`](https://git.biotech.cdc.gov/xqc3/neissflow/-/blob/main/docs/output.md)
+For a detailed summary of the neissflow output, checkout [`docs/output.md`](docs/output.md)
 
 ## Support
 Post an issue on our issue tracker for any needed clarification, bugs, or proposed enhancements.
