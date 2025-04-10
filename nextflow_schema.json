@@ -1,8 +1,8 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema",
-    "$id": "https://git.biotech.cdc.gov/xqc3/neissflow/-/blob/main/nextflow_schema.json",
+    "$id": "https://github.com/CDCgov/neissflow/-/blob/main/nextflow_schema.json",
     "title": "neissflow pipeline parameters",
-    "description": "GC pipeline",
+    "description": "Ng pipeline",
     "type": "object",
     "definitions": {
         "input_output_options": {
