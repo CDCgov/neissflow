@@ -1,0 +1,721 @@
+LOCUS       X67293                  2890 bp    DNA     linear   BCT 25-SEP-1992
+DEFINITION  N.gonorrhoeae gene for 23S rRNA.
+ACCESSION   X67293
+VERSION     X67293.1
+KEYWORDS    23S ribosomal RNA; ribosomal RNA.
+SOURCE      Neisseria gonorrhoeae
+  ORGANISM  Neisseria gonorrhoeae
+            Bacteria; Proteobacteria; Betaproteobacteria; Neisseriales;
+            Neisseriaceae; Neisseria.
+REFERENCE   1  (bases 1 to 2890)
+  AUTHORS   Wolff,K., Sperka,S. and Stern,A.
+  TITLE     Phylogeny and nucleotide sequence of a 23S rRNA gene from Neisseria
+            gonorrhoeae and Neisseria meningitidis
+  JOURNAL   Nucleic Acids Res. 20 (17), 4657 (1992)
+   PUBMED   1383930
+REFERENCE   2  (bases 1 to 2890)
+  AUTHORS   Wolff,K.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (15-JUL-1992) K. Wolff, Boehringer Mannheim GmbH,
+            Nonnenwald 2, 8122 Penzberg, FRG
+FEATURES             Location/Qualifiers
+     source          1..2890
+                     /organism="Neisseria gonorrhoeae"
+                     /mol_type="genomic DNA"
+                     /strain="MS11"
+                     /db_xref="taxon:485"
+                     /clone="23S-1,23S-8,23S-15,23S-22"
+     rRNA            1..2890
+                     /product="23S ribosomal RNA"
+ORIGIN      
+        1 ggtcaagtga ataagtgcat caggcggatg ccttggcgat gataggcgac gaaggacgtg
+       61 taagcctgcg aaaagcgcgg gggagctggc aataaagcta tgattccgcg atgtccgaat
+      121 ggggaaaccc actgcattct gtgcagtatc ctaagttgaa tacataggct tagagaagcg
+      181 aacccggaga actgaaccat ctaagtaccc ggaggaaaag aaatcaaccg agattccgca
+      241 agtagtggcg agcgaacgcg gaggagcctg tacgtaataa ctgtcgagat agaagaacaa
+      301 gctgggaagc ttgaccatag cgggtgacag tcccgtattc gaaatctcaa cagcggtact
+      361 aagcgtacga aaagtagggc gggacacgtg aaatcctgtc tgaatatggg gggaccatcc
+      421 tccaaggcta aatactcatc atcgaccgat agtgaaccag taccgtgagg gaaaggcgaa
+      481 aagaaccccg ggagggaagt gaaacagaac ctgaaacctg atgcatacaa acagtgggag
+      541 cgccctagtg gtgtgactgc gtaccttttg tataatgggt caacgactta cattcagtag
+      601 cgagcttaac cggatagggg aggcgtaggg aaaccgagtc ttaatagggc gatgagttgc
+      661 tgggtgtaga cccgaaaccg agtgatctat ccatggtcag gttgaaggtg ccgtaacagg
+      721 tactggagga ccgaacccac gcatgttgca aaatgcgggg atgagctgtg ggtaggggtg
+      781 aaaggctaaa caaactcgga gatagctggt tctccccgaa aactatttag gtagtgcctc
+      841 gagcaagaca ctgatggggg taaagcactg ttatggctag ggggttattg caacttacca
+      901 acccatggca aactcagaat accatcaagt ggttcctcgg gagacagaca gcgggtgcta
+      961 acgtccgttg tcaagaggga aacaacccag accgccggct aaggtcccaa atgatagatt
+     1021 aagtggtaaa cgaagtggga aggcacagac agccaggatg ttggcttaga agcagccatc
+     1081 atttaaagaa agcgtaatag ctcactggtc gagtcgtcct gcgcggaaga tgtaacgggg
+     1141 ctcaaatcta taaccgaagc tgcggatgcc ggtttaccgg catggtaggg gagcgttctg
+     1201 taggctgatg aaggtgcatt gtaaagtgtg ctggaggtat cagaagtgcg aatgttgaca
+     1261 tgagtagcga taaagcgggt gaaaagcccg ctcgccgaaa gcccaaggtt tcctacgcaa
+     1321 cgttcatcgg cgtagggtaa gtcggcccct aaggcgaggc agaaatgcgt agtcgatggg
+     1381 aaacaggtta atattcctgt acttgattca aatgcgatgt ggggacggag aaggttaggt
+     1441 tggcaagctg ttggaatagc ttgtttaagc cggtaggtgg aagacttagg caaatccggg
+     1501 ttttcttaac accgagaagt gatgacgagt gtctacggac acgaagcaac cgataccacg
+     1561 cttccaggaa aagccactaa gcttcagttt gaatcgaacc gtaccccaaa ccgacacagg
+     1621 tgggtaggat gagaattcta aggcgcttga gagaactcgg gagaaggaac tcggcaaatt
+     1681 gataccgtaa cttcgggaga aggtatgccc tctaaggtta aggacttgct ccgtaagccc
+     1741 cggagggtcg cagagaatag gtggctgcga ctgtttatta aaaacacagc actctgccaa
+     1801 cacgaaagtg gacgtatagg gtgtgacgcc tgcccggtgc cggaaggtta attgaagatg
+     1861 tgcaagcatc ggatcgaagc cccggtaaac ggcggccgta actataacgg tcctaaggta
+     1921 gcgaaattcc ttgtcgggta agttccgacc cgcacgaatg gcgtaacgat ggccacactg
+     1981 tctcctcccg agactcagcg aagttgaagt ggttgtgaag atgcaatcta cccgctgcta
+     2041 gacggaaaga ccccgtgaac ctttactgta gctttgcatt ggactttgaa gtcacttgtg
+     2101 taggataggt gggaggcttg gaagcagaga cgccagtctc tgtggagtcg tccttgaaat
+     2161 accaccctgg tgtctttgag gttctaaccc agacccgtca tccgggtcgg ggaccgtgca
+     2221 tggtaggcag tttgactggg gcggtctcct cccaaagcgt aacggaggag ttcgaaggtt
+     2281 acctaggtcc ggtcggaaat cggactgata gtgcaatggc aaaaggtagc ttaactgcga
+     2341 gaccgacaag tcgggcaggt gcgaaagcag gacatagtga tccggtggtt ctgtatggaa
+     2401 gggccatcgc tcaacggata aaaggtactc cggggataac aggctgattc cgcccaagag
+     2461 ttcatatcga cggcggagtt tggcacctcg atgtcggctc atcacatcct ggggctgtag
+     2521 tcggtcccaa gggtatggct gttcgccatt taaagtggta cgtgagctgg gtttaaaacg
+     2581 tcgtgagaca gtttggtccc tatctgcagt ggcgttggaa gtttgacggg gctgctccta
+     2641 gtacgagagg accggagtgg acgaacctct ggtgtaccgg ttgtaacgcc agttgcatag
+     2701 ccgggtagct aagttcggaa gagataagcg ctgaaagcat ctaagcgcga aactcgcctg
+     2761 aagatgagac ttcccttgcg gtttaaccgc actaaagggt cgttcgagac caggacgttg
+     2821 ataggtgggg tgtggaagcg cggtaacgcg tgaagctaac ccatactaat tgcccgtgag
+     2881 gcttgactct
+//
+
+LOCUS       AB551787                 861 bp    DNA     linear   BCT 03-JUL-2010
+DEFINITION  Neisseria gonorrhoeae bla gene for beta-lactamase, complete cds,
+            strain: NGON 04-025.
+TITLE       Neisseria gonorrhoeae bla gene for beta-lactamase, complete cds,
+ACCESSION   AB551787
+VERSION     AB551787.1
+KEYWORDS    .
+SOURCE      Neisseria gonorrhoeae
+  ORGANISM  Neisseria gonorrhoeae
+            Bacteria; Proteobacteria; Betaproteobacteria; Neisseriales;
+            Neisseriaceae; Neisseria.
+REFERENCE   1
+  AUTHORS   Ohnishi,M., Ono,E., Shimuta,K., Watanabe,H. and Okamura,N.
+  TITLE     Identification of TEM-135 beta-lactamase in penicillinase-producing
+            Neisseria gonorrhoeae strains in Japan
+  JOURNAL   Antimicrob. Agents Chemother. 54 (7), 3021-3023 (2010)
+            PUBMED   20421400
+REFERENCE   2  (bases 1 to 896)
+  AUTHORS   Ohnishi,M. and Shimuta,K.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (25-MAR-2010) Contact:Makoto Ohnishi National Institute
+            of Infectious Diseases, Department of Bacteriology I; Toyama
+            1-23-1, Shinjuku, Tokyo 162-8640, Japan
+FEATURES             Location/Qualifiers
+     source          1..861
+                     /organism="Neisseria gonorrhoeae"
+                     /mol_type="genomic DNA"
+                     /strain="NGON 04-025"
+                     /db_xref="taxon:485"
+     gene            1..861
+                     /gene="bla"
+     CDS             1..861
+                     /gene="bla"
+                     /function="resistance to beta-lactams"
+                     /codon_start=1
+                     /transl_table=11
+                     /product="beta-lactamase"
+                     /protein_id="BAJ10643.1"
+                     /translation="MSIQHFRVALIPFFAAFCLPVFAHPETLVKVKDAEDQLGARVGY
+                     IELDLNSGKILESFRPEERFPMMSTFKVLLCGAVLSRVDAGQEQLGRRIHYSQNDLVE
+                     YSPVTEKHLTDGMTVRELCSAAITMSDNTAANLLLTTIGGPKELTAFLHNMGDHVTRL
+                     DRWEPELNEAIPNDERDTTTPAAMATTLRKLLTGELLTLASRQQLIDWMEADKVAGPL
+                     LRSALPAGWFIADKSGAGERGSRGIIAALGPDGKPSRIVVIYTTGSQATMDERNRQIA
+                     EIGASLIKHW"
+ORIGIN
+
+        1 atgagtattc aacattttcg tgtcgccctt attccctttt ttgcggcatt ttgccttcct
+       61 gtttttgctc acccagaaac gctggtgaaa gtaaaagatg ctgaagatca gttgggtgca
+      121 cgagtgggtt acatcgaact ggatctcaac agcggtaaga tccttgagag ttttcgcccc
+      181 gaagaacgtt ttccaatgat gagcactttt aaagttctgc tatgtggtgc ggtattatcc
+      241 cgtgttgacg ccgggcaaga gcaactcggt cgccgcatac actattctca gaatgacttg
+      301 gttgagtact caccagtcac agaaaagcat cttacggatg gcatgacagt aagagaatta
+      361 tgcagtgctg ccataaccat gagtgataac actgctgcca acttacttct gacaacgatc
+      421 ggaggaccga aggagctaac cgcttttttg cacaacatgg gggatcatgt aactcgcctt
+      481 gatcgttggg aaccggagct gaatgaagcc ataccaaacg acgagcgtga caccacgacg
+      541 cctgcagcaa tggcaacaac gttgcgcaaa ctattaactg gcgaactact tactctagct
+      601 tcccggcaac aattaataga ctggatggag gcggataaag ttgcaggacc acttctgcgc
+      661 tcggcccttc cggctggctg gtttattgct gataaatctg gagccggtga gcgtgggtct
+      721 cgcggtatca ttgcagcact ggggccagat ggtaagccct cccgtatcgt agttatctac
+      781 acgacgggga gtcaggcaac tatggatgaa cgaaatagac agatcgctga gataggtgcc
+      841 tcactgatta agcattggta a
+//
+
+LOCUS       EU048317                 600 bp    DNA     linear   BCT 26-JUL-2016
+DEFINITION  Neisseria gonorrhoeae isolate 492 rRNA methylase leader peptide
+            (ermB-L) gene, complete cds; and rRNA methylase (ermB) gene,
+            partial cds.
+ACCESSION   EU048317
+VERSION     EU048317.1
+KEYWORDS    .
+SOURCE      Neisseria gonorrhoeae
+  ORGANISM  Neisseria gonorrhoeae
+            Bacteria; Proteobacteria; Betaproteobacteria; Neisseriales;
+            Neisseriaceae; Neisseria.
+REFERENCE   1  (bases 1 to 600)
+  AUTHORS   Roberts,M.C. and No,D.B.
+  TITLE     Acquired macrolide resistance genes in Neisseria gonorrhoeae
+  JOURNAL   Unpublished
+REFERENCE   2  (bases 1 to 600)
+  AUTHORS   Roberts,M.C. and No,D.B.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (23-JUL-2007) Pathobiology, University of Washington,
+            1959 NE Pacific Street, Seattle, WA 98125, USA
+FEATURES             Location/Qualifiers
+     source          1..600
+                     /organism="Neisseria gonorrhoeae"
+                     /mol_type="genomic DNA"
+                     /isolate="492"
+                     /db_xref="taxon:485"
+                     /note="similar to Neisseria gonorrhoeae isolate 668
+                     deposited in GenBank Accession Number EU048318"
+     regulatory      152..157
+                     /regulatory_class="minus_35_signal"
+     regulatory      179..184
+                     /regulatory_class="minus_10_signal"
+     gene            242..325
+                     /gene="ermB-L"
+     CDS             242..325
+                     /gene="ermB-L"
+                     /note="ErmB-L"
+                     /codon_start=1
+                     /transl_table=11
+                     /product="rRNA methylase leader peptide"
+                     /protein_id="ABW36936.1"
+                     /translation="MLVFQMRNVDKTSTVLKQTKNSDYVDK"
+     gene            450..>600
+                     /gene="ermB"
+     CDS             450..>600
+                     /gene="ermB"
+                     /note="ErmB"
+                     /codon_start=1
+                     /transl_table=11
+                     /product="rRNA methylase"
+                     /protein_id="ABW36937.1"
+                     /translation="MNKNIKYSQNFLTSEKVLNQIIKQLNLKETDTVYEIGTGKGHLT
+                     TKLAKI"
+ORIGIN      
+        1 ggtaacggtt attgcaggtg tatttcttat ctatgggttt aacatggatt ttatcattaa
+       61 aatcatgagt attgtccgag agtgattggt cttgcgtatg gttaacccta aagttatgga
+      121 aataagactt agaagcaaac ttaagagtgt gttgatagtg cattatctta aaattttgta
+      181 taataggaat tgaagttaaa ttagatgcta aaaatttgta attaagaagg agggattcgt
+      241 catgttggta ttccaaatgc gtaatgtaga taaaacatct actgttttga aacagactaa
+      301 aaacagtgat tacgtagata aataaatacg ttagattaat tcctaccagt gactaatctt
+      361 atgacttttt aaacagataa ctaaaattac aaacaaatcg tttaacttct gtatttattt
+      421 atagatgtaa tcacttcagg agtgattaca tgaacaaaaa tataaaatat tctcaaaact
+      481 ttttaacgag tgaaaaagta ctcaaccaaa taataaaaca attgaattta aaagaaaccg
+      541 ataccgttta cgaaattgga acaggtaaag ggcatttaac gacgaaactg gctaaaataa
+//
+
+LOCUS       AE002098                 735 bp    DNA     linear   BCT 31-JAN-2014
+DEFINITION  Neisseria meningitidis MC58, complete genome.
+ACCESSION   AE002098 REGION: 75694..76428
+VERSION     AE002098.2
+DBLINK      BioProject: PRJNA251
+            BioSample: SAMN02603997
+KEYWORDS    .
+SOURCE      Neisseria meningitidis MC58
+  ORGANISM  Neisseria meningitidis MC58
+            Bacteria; Proteobacteria; Betaproteobacteria; Neisseriales;
+            Neisseriaceae; Neisseria.
+REFERENCE   1  (bases 1 to 735)
+  AUTHORS   Tettelin,H., Saunders,N.J., Heidelberg,J., Jeffries,A.C.,
+            Nelson,K.E., Eisen,J.A., Ketchum,K.A., Hood,D.W., Peden,J.F.,
+            Dodson,R.J., Nelson,W.C., Gwinn,M.L., DeBoy,R., Peterson,J.D.,
+            Hickey,E.K., Haft,D.H., Salzberg,S.L., White,O., Fleischmann,R.D.,
+            Dougherty,B.A., Mason,T., Ciecko,A., Parksey,D.S., Blair,E.,
+            Cittone,H., Clark,E.B., Cotton,M.D., Utterback,T.R., Khouri,H.,
+            Qin,H., Vamathevan,J., Gill,J., Scarlato,V., Masignani,V.,
+            Pizza,M., Grandi,G., Sun,L., Smith,H.O., Fraser,C.M., Moxon,E.R.,
+            Rappuoli,R. and Venter,J.C.
+  TITLE     Complete genome sequence of Neisseria meningitidis serogroup B
+            strain MC58
+  JOURNAL   Science 287 (5459), 1809-1815 (2000)
+   PUBMED   10710307
+REFERENCE   2  (bases 1 to 735)
+  AUTHORS   Tettelin,H., Saunders,N.J., Heidelberg,J., Jeffries,A.C.,
+            Nelson,K.E., Eisen,J.A., Ketchum,K.A., Hood,D.W., Ciecko,A.,
+            Peden,J.F., Dodson,R.J., Nelson,W.C., Gwinn,M.L., Peterson,J.D.,
+            Hickey,E.K., Haft,D.H., Salzberg,S.L., White,O., Fleischmann,R.D.,
+            Dougherty,B.A., Mason,T.M., Parksey,D.S., Blair,E., Cittone,H.,
+            Clark,E.B., Cotton,M.D., Utterback,T.R., Khouri,H.M., Qin,H.,
+            Vamathevan,J., Gill,J., Scarlato,V., Masignani,V., DeBoy,R.T.,
+            Pizza,M., Grandi,G., Sun,L., Smith,H.O., Fraser,C.M., Moxon,E.R.,
+            Rappuoli,R. and Venter,J.C.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (17-MAR-2000) The Institute for Genomic Research, 9712
+            Medical Center Dr, Rockville, MD 20850, USA
+REFERENCE   3  (bases 1 to 735)
+  AUTHORS   Tettelin,H., Saunders,N.J., Heidelberg,J., Jeffries,A.C.,
+            Nelson,K.E., Eisen,J.A., Ketchum,K.A., Hood,D.W., Ciecko,A.,
+            Peden,J.F., Dodson,R.J., Nelson,W.C., Gwinn,M.L., Peterson,J.D.,
+            Hickey,E.K., Haft,D.H., Salzberg,S.L., White,O., Fleischmann,R.D.,
+            Dougherty,B.A., Mason,T.M., Parksey,D.S., Blair,E., Cittone,H.,
+            Clark,E.B., Cotton,M.D., Utterback,T.R., Khouri,H.M., Qin,H.,
+            Vamathevan,J., Gill,J., Scarlato,V., Masignani,V., DeBoy,R.T.,
+            Pizza,M., Grandi,G., Sun,L., Smith,H.O., Fraser,C.M., Moxon,E.R.,
+            Rappuoli,R. and Venter,J.C.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (18-MAY-2005) The Institute for Genomic Research, 9712
+            Medical Center Dr, Rockville, MD 20850, USA
+  REMARK    Sequence update by submitter
+COMMENT     On or before May 26, 2005 this sequence version replaced
+            gi:7225225, gi:7225241, gi:7225245, gi:7225252, gi:7225264,
+            gi:7225269, gi:7225277, gi:7413418, gi:7413419, gi:7225303,
+            gi:7225314, gi:7225327, gi:7225337, gi:7413420, gi:7413421,
+            gi:7413423, gi:7225394, gi:7225407, gi:7225416, gi:7225428,
+            gi:7225435, gi:7225442, gi:7225455, gi:7225470, gi:7225484,
+            gi:7225498, gi:7225506, gi:7225512, gi:7225523, gi:7225529,
+            gi:7225537, gi:7225550, gi:7225561, gi:7225573, gi:7225586,
+            gi:7225599, gi:7413428, gi:7413429, gi:7225631, gi:7225640,
+            gi:7225650, gi:7225659, gi:7225669, gi:7225683, gi:7225688,
+            gi:7225697, gi:7413430, gi:7413433, gi:7225726, gi:7225740,
+            gi:7225757, gi:7225766, gi:7225776, gi:7225783, gi:7225797,
+            gi:7225809, gi:7225816, gi:7225832, gi:7225845, gi:7225853,
+            gi:7225863, gi:7225876, gi:7225889, gi:7225898, gi:7225913,
+            gi:7225923, gi:7225930, gi:7225939, gi:7225948, gi:7225959,
+            gi:7225969, gi:7225986, gi:7225997, gi:7226012, gi:7226023,
+            gi:7226036, gi:7226049, gi:7226062, gi:7226072, gi:7226083,
+            gi:7226100, gi:7226112, gi:7226123, gi:7226133, gi:7226149,
+            gi:7226162, gi:7226173, gi:7226185, gi:7413445, gi:7413446,
+            gi:7226218, gi:7226229, gi:7226238, gi:7226246, gi:7226261,
+            gi:7226273, gi:7226282, gi:7226293, gi:7226304, gi:7226311,
+            gi:7226320, gi:7226335, gi:7226350, gi:7226363, gi:7413449,
+            gi:7413450, gi:7226401, gi:7413452, gi:7413453, gi:7226436,
+            gi:7226446, gi:7226457, gi:7226466, gi:7226475, gi:7413455,
+            gi:7413456, gi:7413457, gi:7413458, gi:7226521, gi:7226533,
+            gi:7226543, gi:7226555, gi:7226568, gi:7226577, gi:7226589,
+            gi:7226599, gi:7226609, gi:7413459, gi:7413466, gi:7226631,
+            gi:7226640, gi:7226651, gi:7226655, gi:7226665, gi:7226674,
+            gi:7226684, gi:7226690, gi:7226701, gi:7226712, gi:7226724,
+            gi:7226737, gi:7226744, gi:7226755, gi:7226767, gi:7226775,
+            gi:7226785, gi:7226794, gi:7226801, gi:7226811, gi:7226820,
+            gi:7226832, gi:7226844, gi:7226857, gi:7413469, gi:7413470,
+            gi:7226886, gi:7226894, gi:7226905, gi:7226912, gi:7226928,
+            gi:7226937, gi:7226947, gi:7226962, gi:7226972, gi:7226980,
+            gi:7226991, gi:7227004, gi:7413474, gi:7413475, gi:7227034,
+            gi:7227043, gi:7227054, gi:7227065, gi:7227078, gi:7227087,
+            gi:7227095, gi:7227103, gi:7227115, gi:7227125, gi:7227136,
+            gi:7227151, gi:7227159, gi:7227175, gi:7227188, gi:7227203,
+            gi:7227214, gi:7227229, gi:7227234, gi:7227244, gi:7227249,
+            gi:7227258, gi:7413476, gi:7413477, gi:7227279, gi:7227292,
+            gi:7227301, gi:7413479, gi:7413481, gi:7227332, gi:7227345,
+            gi:7413482, gi:7413484, gi:7227384, gi:7227392, gi:7227405,
+            gi:7227418, gi:12057208.
+FEATURES             Location/Qualifiers
+     source          1..735
+                     /organism="Neisseria meningitidis MC58"
+                     /mol_type="genomic DNA"
+                     /strain="MC58"
+                     /db_xref="taxon:122586"
+                     /note="serogroup: B"
+     gene            1..735
+                     /gene="ermC"
+                     /locus_tag="NMB0066"
+     CDS             1..735
+                     /gene="ermC"
+                     /locus_tag="NMB0066"
+                     /note="identified by similarity to EGAD:8424; match to
+                     protein family HMM PF00398"
+                     /codon_start=1
+                     /transl_table=11
+                     /product="rRNA adenine N-6-methyltransferase; foreign
+                     cassette inserted to disrupt SiaD (NMB0067) to reduce
+                     virulence"
+                     /protein_id="AAF40534.1"
+                     /translation="MNEKNIKHSQNFITSKHNIDKIMTNIRLNEHDNIFEIGSGKGHF
+                     TLELVQRCNFVTAIEIDHKLCKTTENKLVDHDNFQVLNKDILQFKFPKNQSYKIFGNI
+                     PYNISTDIIRKIVFDSIADEIYLIVEYGFAKRLLNTKRSLALFLMAEVDISILSMVPR
+                     EYFHPKPKVNSSLIRLNRKKSRISHKDKQKYNYFVMKWVNKEYKKIFTKNQFNNSLKH
+                     AGIDDLNNISFEQFLSLFNSYKLFNK"
+ORIGIN      
+        1 atgaacgaga aaaatataaa acacagtcaa aactttatta cttcaaaaca taatatagat
+       61 aaaataatga caaatataag attaaatgaa catgataata tctttgaaat cggctcagga
+      121 aaagggcatt ttacccttga attagtacag aggtgtaatt tcgtaactgc cattgaaata
+      181 gaccataaat tatgcaaaac tacagaaaat aaacttgttg atcacgataa tttccaagtt
+      241 ttaaacaagg atatattgca gtttaaattt cctaaaaacc aatcctataa aatatttggt
+      301 aatatacctt ataacataag tacggatata atacgcaaaa ttgtttttga tagtatagct
+      361 gatgagattt atttaatcgt ggaatacggg tttgctaaaa gattattaaa tacaaaacgc
+      421 tcattggcat tatttttaat ggcagaagtt gatatttcta tattaagtat ggttccaaga
+      481 gaatattttc atcctaaacc taaagtgaat agctcactta tcagattaaa tagaaaaaaa
+      541 tcaagaatat cacacaaaga taaacagaag tataattatt tcgttatgaa atgggttaac
+      601 aaagaataca agaaaatatt tacaaaaaat caatttaaca attccttaaa acatgcagga
+      661 attgacgatt taaacaatat tagctttgaa caattcttat ctcttttcaa tagctataaa
+      721 ttatttaata agtaa
+//
+
+LOCUS       NG_047825                977 bp    DNA     linear   CON 08-JUN-2016
+DEFINITION  Bacteroides fragilis BI136 erm(F) gene for 23S rRNA
+            (adenine(2058)-N(6))-methyltransferase Erm(F), complete CDS.
+ACCESSION   NG_047825
+VERSION     NG_047825.1
+DBLINK      BioProject: PRJNA313047
+KEYWORDS    RefSeq.
+SOURCE      Bacteroides fragilis
+  ORGANISM  Bacteroides fragilis
+            Bacteria; Bacteroidetes; Bacteroidia; Bacteroidales;
+            Bacteroidaceae; Bacteroides.
+REFERENCE   1  (bases 1 to 977)
+  AUTHORS   Smith,C.J.
+  TITLE     Nucleotide sequence analysis of Tn4551: use of ermFS operon fusions
+            to detect promoter activity in Bacteroides fragilis
+  JOURNAL   J. Bacteriol. 169 (10), 4589-4596 (1987)
+   PUBMED   2820936
+REFERENCE   2  (bases 1 to 977)
+  CONSRTM   NCBI Refseq Project
+  TITLE     Direct Submission
+  JOURNAL   Submitted (07-JUN-2016) National Center for Biotechnology
+            Information, NIH, Bethesda, MD 20894, USA
+COMMENT     REVIEWED REFSEQ: This record has been curated by NCBI staff. The
+            reference sequence was derived from M17808.1.
+            This record has been chosen as a reference for antimicrobial
+            resistance. For more general information:
+            http://www.ncbi.nlm.nih.gov/pathogens/
+            COMPLETENESS: not full length.
+FEATURES             Location/Qualifiers
+     source          1..977
+                     /organism="Bacteroides fragilis"
+                     /mol_type="genomic DNA"
+                     /db_xref="taxon:817"
+                     /plasmid="BI136"
+     gene            101..901
+                     /gene="erm(F)"
+                     /locus_tag="A7J11_01018"
+     CDS             101..901
+                     /gene="erm(F)"
+                     /locus_tag="A7J11_01018"
+                     /codon_start=1
+                     /transl_table=11
+                     /product="23S rRNA (adenine(2058)-N(6))-methyltransferase
+                     Erm(F)"
+                     /protein_id="WP_002682030.1"
+                     /translation="MTKKKLPVRFTGQHFTIDKVLIKDAIRQANISNQDTVLDIGAGK
+                     GFLTVHLLKIANNVVAIENDTALVEHLRKLFSDARNVQVVGCDFRNFAVPKFPFKVVS
+                     NIPYGITSDIFKILMFESLGNFLGGSIVLQLEPTQKLFSRKLYNPYTVFYHTFFDLKL
+                     VYEVGPESFLPPPTVKSALLNIKRKHLFFDFKFKAKYLAFISCLLEKPDLSVKTALKS
+                     IFRKSQVRSISEKFGLNLNAQIVCLSPSQWLNCFLEMLEVVPEKFHPS"
+ORIGIN      
+        1 aagacttgga tacctcacgc caaacgaaaa atttaaacaa attattaatc agaattctgt
+       61 tgcatttgca agttgaattc agccctgtaa gaagttacta atgacaaaaa agaaattgcc
+      121 cgttcgtttt acgggtcagc actttactat tgataaagtg ctaataaaag atgcaataag
+      181 acaagcaaat ataagtaatc aggatacggt tttagatatt ggggcaggca aggggtttct
+      241 tactgttcat ttattaaaaa tcgccaacaa tgttgttgct attgaaaacg acacagcttt
+      301 ggttgaacat ttacgaaaat tattttctga tgcccgaaat gttcaagttg tcggttgtga
+      361 ttttaggaat tttgcagttc cgaaatttcc tttcaaagtg gtgtcaaata ttccttatgg
+      421 cattacttcc gatattttca aaatcctgat gtttgagagt cttggaaatt ttctgggagg
+      481 ttccattgtc cttcaattag aacctacaca aaagttattt tcgaggaagc tttacaatcc
+      541 atataccgtt ttctatcata ctttttttga tttgaaactt gtctatgagg taggtcctga
+      601 aagtttcttg ccaccgccaa ctgtcaaatc agccctgtta aacattaaaa gaaaacactt
+      661 attttttgat tttaagttta aagccaaata cttagcattt atttcctgtc tgttagagaa
+      721 acctgattta tctgtaaaaa cagctttaaa gtcgattttc aggaaaagtc aggtcaggtc
+      781 aatttcggaa aaattcggtt taaaccttaa tgctcaaatt gtttgtttgt ctccaagtca
+      841 atggttaaac tgttttttgg aaatgctgga agttgtccct gaaaaatttc atccttcgta
+      901 gttcaaagtc gggtggttgt caagatgatt tttttggttt ggtgtcgtct ttttttaagc
+      961 tgccgcataa cggtttg
+//
+
+LOCUS       16S-CP012026                1536 bp    DNA     linear   BCT 23-SEP-2015
+DEFINITION  Neisseria gonorrhoeae strain FA19, complete genome.
+ACCESSION   CP012026 REGION: complement(902504..904039)
+VERSION     CP012026.1
+DBLINK      BioProject: PRJNA278367
+            BioSample: SAMN03459415
+KEYWORDS    .
+SOURCE      Neisseria gonorrhoeae
+  ORGANISM  Neisseria gonorrhoeae
+            Bacteria; Proteobacteria; Betaproteobacteria; Neisseriales;
+            Neisseriaceae; Neisseria.
+REFERENCE   1  (bases 1 to 1536)
+  AUTHORS   Abrams,A.J., Trees,D.L. and Nicholas,R.A.
+  TITLE     Complete Genome Sequences of Three Neisseria gonorrhoeae Laboratory
+            Reference Strains, Determined Using PacBio Single-Molecule
+            Real-Time Technology
+  JOURNAL   Genome Announc 3 (5), e01052-15 (2015)
+   PUBMED   26358608
+  REMARK    Publication Status: Online-Only
+REFERENCE   2  (bases 1 to 1536)
+  AUTHORS   Abrams,A.J., Trees,D. and Nicholas,R.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (02-JUL-2015) Centers for Disease Control and Prevention,
+            1600 Clifton Rd., Atlanta, GA 30333, USA
+COMMENT     Bacteria available from Robert Nicholas
+            (robert_nicholas@med.unc.edu).
+            
+            ##Genome-Assembly-Data-START##
+            Assembly Method       :: Prokka v. 1.11
+            Genome Coverage       :: 119
+            Sequencing Technology :: PacBio
+            ##Genome-Assembly-Data-END##
+FEATURES             Location/Qualifiers
+     source          1..1536
+                     /organism="Neisseria gonorrhoeae"
+                     /mol_type="genomic DNA"
+                     /strain="FA19"
+                     /db_xref="taxon:485"
+     gene            1..1536
+                     /locus_tag="VT05_00940"
+     rRNA            1..1536
+                     /locus_tag="VT05_00940"
+                     /product="16S ribosomal RNA"
+ORIGIN      
+        1 taagagtttg atcctggctc agattgaacg ctggcggcat gctttacaca tgcaagtcgg
+       61 acggcagcac agggaagctt gcttctcggg tggcgagtgg cgaacgggtg agtaacatat
+      121 cggaacgtac cgggtagcgg gggataactg atcgaaagat cagctaatac cgcatacgtc
+      181 ttgagaggga aagcagggga ccttcgggcc ttgcgctatc cgagcggccg atatctgatt
+      241 agctggttgg cggggtaaag gcccaccaag gcgacgatca gtagcgggtc tgagaggatg
+      301 atccgccaca ctgggactga gacacggccc agactcctac gggaggcagc agtggggaat
+      361 tttggacaat gggcgcaagc ctgatccagc catgccgcgt gtctgaagaa ggccttcggg
+      421 ttgtaaagga cttttgtcag ggaagaaaag gccgttgcca atatcggcgg ccgatgacgg
+      481 tacctgaaga ataagcaccg gctaactacg tgccagcagc cgcggtaata cgtagggtgc
+      541 gagcgttaat cggaattact gggcgtaaag cgggcgcaga cggttactta agcaggatgt
+      601 gaaatccccg ggctcaaccc gggaactgcg ttctgaactg ggtgactcga gtgtgtcaga
+      661 gggaggtgga attccacgtg tagcagtgaa atgcgtagag atgtggagga ataccgatgg
+      721 cgaaggcagc ctcctgggat aacactgacg ttcatgtccg aaagcgtggg tagcaaacag
+      781 gattagatac cctggtagtc cacgccctaa acgatgtcaa ttagctgttg ggcaacttga
+      841 ttgcttggta gcgtagctaa cgcgtgaaat tgaccgcctg gggagtacgg tcgcaagatt
+      901 aaaactcaaa ggaattgacg gggacccgca caagcggtgg atgatgtgga ttaattcgat
+      961 gcaacgcgaa gaaccttacc tggttttgac atgtgcggaa tcctccggag acggaggagt
+     1021 gccttcggga gccgtaacac aggtgctgca tggctgtcgt cagctcgtgt cgtgagatgt
+     1081 tgggttaagt cccgcaacga gcgcaaccct tgtcattagt tgccatcatt cggttgggca
+     1141 ctctaatgag actgccggtg acaagccgga ggaaggtggg gatgacgtca agtcctcatg
+     1201 gcccttataa ccagggcttc acacgtcata caatggtcgg tacagagggt agccaagccg
+     1261 cgaggcggag ccaatctcac aaaaccgatc gtagtccgga ttgcactctg caactcgagt
+     1321 gcatgaagtc ggaatcgcta gtaatcgcag gtcagcatac tgcggtgaat acgttcccgg
+     1381 gtcttgtaca caccgcccgt cacaccatgg gagtggggga taccagaagt aggtagggta
+     1441 accgcaagga gtccgcttac cacggtatgc ttcatgactg gggtgaagtc gtaacaaggt
+     1501 agccgtaggg gaacctgcgg ctggatcacc tccttt
+//
+
+LOCUS       AY319932                1406 bp    DNA     linear   BCT 25-NOV-2003
+DEFINITION  Neisseria gonorrhoeae macrolide-efflux protein A (mefA) gene,
+            complete cds.
+ACCESSION   AY319932
+VERSION     AY319932.1
+KEYWORDS    .
+SOURCE      Neisseria gonorrhoeae
+  ORGANISM  Neisseria gonorrhoeae
+            Bacteria; Proteobacteria; Betaproteobacteria; Neisseriales;
+            Neisseriaceae; Neisseria.
+REFERENCE   1  (bases 1 to 1406)
+  AUTHORS   Cousin,S. Jr., Whittington,W.L. and Roberts,M.C.
+  TITLE     Acquired macrolide resistance genes in pathogenic Neisseria spp.
+            isolated between 1940 and 1987
+  JOURNAL   Antimicrob. Agents Chemother. 47 (12), 3877-3880 (2003)
+   PUBMED   14638497
+REFERENCE   2  (bases 1 to 1406)
+  AUTHORS   Cousin,S.L. Jr. and Roberts,M.C.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (10-JUN-2003) Pathobiology, University of Washington,
+            1959 NE Pacific Street, Seattle, WA 98195, USA
+FEATURES             Location/Qualifiers
+     source          1..1406
+                     /organism="Neisseria gonorrhoeae"
+                     /mol_type="genomic DNA"
+                     /db_xref="taxon:485"
+     gene            93..1310
+                     /gene="mefA"
+     CDS             93..1310
+                     /gene="mefA"
+                     /note="effluxes erythromycin; 14 and 15-member; ABC
+                     transporter"
+                     /codon_start=1
+                     /transl_table=11
+                     /product="macrolide-efflux protein A"
+                     /protein_id="AAP83161.1"
+                     /translation="MEKYNNWKRKFYAIWAGQAVSLITSAILQMAIIFYLTEKTGSAM
+                     VLSMASLVGFLPYAILGPAIGVLVDRHDRKKIMIGADLIIAAAGAVLAIVAFCMELPV
+                     WMIMIVLFIRSIGTAFHTPALNAVTPLLVPEEQLTKCAGYSQSLQSISYIVSPAVAAL
+                     LYSVWDLNAIIAIDVLGAVIASITVAIVRIPKLGNQVQSLEPNFIREMKEGVVVLRQN
+                     KGLFALLLLGTLYTFVYMPINALFPLISMEHFNGTPVHISITEISFAFGMLAGGLLLG
+                     RLGGFEKHVLLITSSFFIMGTSLAVSGILPPNGFVIFVVCCAIMGLSVPFYSGVQTAL
+                     FQEKIKPEYLGRVFSLIGSIMSLAMPIGLILSVSFADKIGVNHWFLLSGILIIGIAIV
+                     CQMITEVRKLDLK"
+ORIGIN      
+        1 ttgtgnggtt atggcnctgc attttttatt gcntaggaat gctattcana ctagtagaat
+       61 tcaagaaaat aatantgcag gagataatat aaatggaaaa atacaacaat tggaaacgaa
+      121 aattttatgc aatatgggca gggcaagcag tatcattaat cactagtgcc atcctgcaaa
+      181 tggcgattat tttttacctt acagaaaaaa caggatctgc gatggtcttg tctatggctt
+      241 cattagtagg ttttttaccc tatgcgattt tgggacctgc cattggtgtg ctagtggatc
+      301 gtcatgatag gaagaagata atgattggtg ccgatttaat tatcgcagca gctggtgcag
+      361 tgcttgctat tgttgcattc tgtatggagc tacctgtctg gatgattatg atagtattgt
+      421 ttatccgtag cattggaaca gcttttcata ccccagcact caatgcggtt acaccacttt
+      481 tagtaccaga agaacagcta acgaaatgcg caggctatag tcagtctttg cagtctataa
+      541 gctatattgt tagtccggca gttgcagcac tcttatactc cgtttgggat ttaaatgcta
+      601 ttattgccat cgacgtattg ggtgctgtga ttgcatctat tacggtagca attgtacgta
+      661 tacctaagct gggtaatcaa gtgcaaagtt tagaaccaaa tttcataagg gagatgaaag
+      721 aaggagttgt ggttctgaga caaaacaaag gattgtttgc cttattactc ttaggaacac
+      781 tatatacttt tgtttatatg ccaatcaatg cactatttcc tttaataagc atggaacact
+      841 ttaatggaac gcctgtgcat atttctatta cggaaatttc ctttgcattt gggatgctag
+      901 caggaggctt attattagga agattagggg gcttcgaaaa gcatgtatta ctaataacaa
+      961 gttcattttt tataatgggg accagtttag ccgtttcggg aatacttcct ccaaatggat
+     1021 ttgtaatatt cgtagtttgc tgtgcaataa tggggctttc ggtgccattt tatagcggtg
+     1081 tgcaaacagc tctttttcag gagaaaatta agcctgaata tttaggacgt gtattttctt
+     1141 tgatcggaag tatcatgtca cttgctatgc caattgggtt aattctttct gtttcttttg
+     1201 ctgataaaat cggtgtaaat cattggtttt tactatcagg tattttaatt attggcattg
+     1261 ctatagtttg ccaaatgata actgaggtta gaaaattaga tttaaaataa acaatattgg
+     1321 aggaatattt atgtatctta ttttcatgta actcttcctg ctaaaatcgc agggttttcc
+     1381 ctgcatacaa gcaaatgaaa gcatgc
+//
+
+LOCUS       NC_003112                561 bp    DNA     linear   CON 03-AUG-2016
+DEFINITION  Neisseria meningitidis MC58 chromosome, complete genome.
+ACCESSION   NC_003112 REGION: 1427085..1427645
+VERSION     NC_003112.2
+DBLINK      BioProject: PRJNA57817
+            Assembly: GCF_000008805.1
+KEYWORDS    RefSeq.
+SOURCE      Neisseria meningitidis MC58
+  ORGANISM  Neisseria meningitidis MC58
+            Bacteria; Proteobacteria; Betaproteobacteria; Neisseriales;
+            Neisseriaceae; Neisseria.
+REFERENCE   1  (bases 1 to 561)
+  AUTHORS   Tettelin,H., Saunders,N.J., Heidelberg,J., Jeffries,A.C.,
+            Nelson,K.E., Eisen,J.A., Ketchum,K.A., Hood,D.W., Peden,J.F.,
+            Dodson,R.J., Nelson,W.C., Gwinn,M.L., DeBoy,R., Peterson,J.D.,
+            Hickey,E.K., Haft,D.H., Salzberg,S.L., White,O., Fleischmann,R.D.,
+            Dougherty,B.A., Mason,T., Ciecko,A., Parksey,D.S., Blair,E.,
+            Cittone,H., Clark,E.B., Cotton,M.D., Utterback,T.R., Khouri,H.,
+            Qin,H., Vamathevan,J., Gill,J., Scarlato,V., Masignani,V.,
+            Pizza,M., Grandi,G., Sun,L., Smith,H.O., Fraser,C.M., Moxon,E.R.,
+            Rappuoli,R. and Venter,J.C.
+  TITLE     Complete genome sequence of Neisseria meningitidis serogroup B
+            strain MC58
+  JOURNAL   Science 287 (5459), 1809-1815 (2000)
+   PUBMED   10710307
+REFERENCE   2  (bases 1 to 561)
+  AUTHORS   Tettelin,H., Saunders,N.J., Heidelberg,J., Jeffries,A.C.,
+            Nelson,K.E., Eisen,J.A., Ketchum,K.A., Hood,D.W., Ciecko,A.,
+            Peden,J.F., Dodson,R.J., Nelson,W.C., Gwinn,M.L., Peterson,J.D.,
+            Hickey,E.K., Haft,D.H., Salzberg,S.L., White,O., Fleischmann,R.D.,
+            Dougherty,B.A., Mason,T.M., Parksey,D.S., Blair,E., Cittone,H.,
+            Clark,E.B., Cotton,M.D., Utterback,T.R., Khouri,H.M., Qin,H.,
+            Vamathevan,J., Gill,J., Scarlato,V., Masignani,V., DeBoy,R.T.,
+            Pizza,M., Grandi,G., Sun,L., Smith,H.O., Fraser,C.M., Moxon,E.R.,
+            Rappuoli,R. and Venter,J.C.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (18-MAY-2005) The Institute for Genomic Research, 9712
+            Medical Center Dr, Rockville, MD 20850, USA
+  REMARK    Sequence update by submitter
+REFERENCE   3  (bases 1 to 561)
+  CONSRTM   NCBI Genome Project
+  TITLE     Direct Submission
+  JOURNAL   Submitted (19-SEP-2001) National Center for Biotechnology
+            Information, NIH, Bethesda, MD 20894, USA
+REFERENCE   4  (bases 1 to 561)
+  AUTHORS   Tettelin,H., Saunders,N.J., Heidelberg,J., Jeffries,A.C.,
+            Nelson,K.E., Eisen,J.A., Ketchum,K.A., Hood,D.W., Ciecko,A.,
+            Peden,J.F., Dodson,R.J., Nelson,W.C., Gwinn,M.L., Peterson,J.D.,
+            Hickey,E.K., Haft,D.H., Salzberg,S.L., White,O., Fleischmann,R.D.,
+            Dougherty,B.A., Mason,T.M., Parksey,D.S., Blair,E., Cittone,H.,
+            Clark,E.B., Cotton,M.D., Utterback,T.R., Khouri,H.M., Qin,H.,
+            Vamathevan,J., Gill,J., Scarlato,V., Masignani,V., DeBoy,R.T.,
+            Pizza,M., Grandi,G., Sun,L., Smith,H.O., Fraser,C.M., Moxon,E.R.,
+            Rappuoli,R. and Venter,J.C.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (17-MAR-2000) The Institute for Genomic Research, 9712
+            Medical Center Dr, Rockville, MD 20850, USA
+COMMENT     REVIEWED REFSEQ: This record has been curated by NCBI staff. The
+            reference sequence was derived from AE002098.
+            On Oct 6, 2005 this sequence version replaced NC_003112.1.
+            RefSeq Category: Reference Genome
+                        FGS: First Genome sequenced
+                        MOD: Model Organism
+                        UPR: UniProt Genome
+            COMPLETENESS: full length.
+FEATURES             Location/Qualifiers
+     source          1..561
+                     /organism="Neisseria meningitidis MC58"
+                     /mol_type="genomic DNA"
+                     /strain="MC58"
+                     /db_xref="taxon:122586"
+                     /serogroup="B"
+     gene            1..561
+                     /gene="sodC"
+                     /locus_tag="NMB1398"
+                     /db_xref="GeneID:903820"
+     CDS             1..561
+                     /gene="sodC"
+                     /locus_tag="NMB1398"
+                     /EC_number="1.15.1.1"
+                     /note="identified by similarity to GP:2661420; match to
+                     protein family HMM PF00080"
+                     /codon_start=1
+                     /transl_table=11
+                     /product="superoxide dismutase"
+                     /protein_id="NP_274412.1"
+                     /db_xref="GeneID:903820"
+                     /translation="MNMKTLLALAVSAVCSVGVAQAHEHNTIPKGASIEVKVQQLDPV
+                     NGNKDVGTVTITESNYGLVFTPDLQGLSEGLHGFHIHENPSCEPKEKEGKLTAGLGAG
+                     GHWDPKGAKQHGYPWQDDAHLGDLPALTVLHDGTATNPVLAPRLKHLDDVRGHSIMIH
+                     TGGDNHSDHPAPLGGGGPRMACGVIK"
+ORIGIN      
+        1 atgaatatga aaaccttatt agcactagcg gttagtgcag tatgttcagt tggtgttgcg
+       61 caagcacacg agcataatac gatacctaaa ggtgcttcta ttgaagtgaa agtgcaacaa
+      121 cttgatccag taaacggtaa caaagatgtg ggtacagtga ctattactga atctaactat
+      181 ggtcttgtgt ttacccctga tttacaagga ttaagcgaag gcttacatgg tttccacatc
+      241 catgaaaacc caagctgtga gccaaaagaa aaagaaggta aattgacagc tggtttaggc
+      301 gcaggcggtc actgggatcc taaaggtgca aaacaacatg gttacccatg gcaagatgat
+      361 gcacacttag gtgatttacc tgcattaact gtattgcatg atggcacagc aacaaatcct
+      421 gttttagcac cacgtcttaa acatttagat gatgttcgcg gtcactctat tatgatccac
+      481 acgggtggtg ataatcactc cgatcatcca gctccacttg gcggtggcgg cccacgtatg
+      541 gcatgtggcg tgattaaata a
+//
+
+LOCUS       AF116348                 760 bp    DNA     linear   BCT 26-JUL-2016
+DEFINITION  Neisseria gonorrhoeae tetracycline resistance protein (tetM) gene,
+            partial cds.
+ACCESSION   AF116348
+VERSION     AF116348.1
+KEYWORDS    .
+SOURCE      Neisseria gonorrhoeae
+  ORGANISM  Neisseria gonorrhoeae
+            Bacteria; Proteobacteria; Betaproteobacteria; Neisseriales;
+            Neisseriaceae; Neisseria.
+REFERENCE   1  (bases 1 to 760)
+  AUTHORS   Ferreira,E., Louro,D., Gomes,J.P., Catry,M.A. and Vaz Pato,M.V.
+  TITLE     Surveillance of tetracycline-resistant gonococci in Lisbon.
+            Isolation of a TRNG strain with tetracycline MIC=2 mg/L
+  JOURNAL   Unpublished
+REFERENCE   2  (bases 1 to 760)
+  AUTHORS   Ferreira,E., Louro,D., Gomes,J.P., Catry,M.A. and Vaz Pato,M.V.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (23-DEC-1998) Bacteriology, Instituto Nacional de Sade
+            Dr. Ricardo Jorge, Av. Padre Cruz, Lisboa, Lisboa 1699-CODEX,
+            Portugal
+FEATURES             Location/Qualifiers
+     source          1..760
+                     /organism="Neisseria gonorrhoeae"
+                     /mol_type="genomic DNA"
+                     /strain="TRNG 400"
+                     /db_xref="taxon:485"
+     gene            <1..>760
+                     /gene="tetM"
+     CDS             <1..>760
+                     /gene="tetM"
+                     /function="prevents ribosome from binding to tetracycline"
+                     /codon_start=3
+                     /transl_table=11
+                     /product="tetracycline resistance protein"
+                     /protein_id="AAD48368.1"
+                     /translation="QAQTRILFHALRKMGIPTIFFINKIDQNGIDLSTVYQDIKEKLS
+                     AEIVIKQKVELYPNMCVTNFTESEQWDTVIEGNDDLLEKYMSGKSLEALELEQEESIR
+                     FQNCSLFPLYHGSAKSNIGIDNLIEVITNKFYSSTHRGPSELCGKVFKIEYSEKRQRL
+                     AYIRLYSGVLHLRDSVRISEKEKIKITEMYTSINGELCKIDKAYSGEIVILQNEFLKL
+                     NSVLGDTKLLPQRKKIENPHPLLQTTVEPSKPEQ"
+ORIGIN      
+        1 tacaagcaca aactcgtata ttatttcatg cacttaggaa aatggggatt cccacaatct
+       61 tttttatcaa taagattgac caaaatggaa ttgatttatc aacggtttat caggatatta
+      121 aagagaaact ttctgccgaa attgtaatca aacagaaggt agaactgtat cctaatatgt
+      181 gtgtgacgaa ctttaccgaa tctgaacaat gggatacggt aatagaggga aacgatgacc
+      241 ttttagagaa atatatgtcc ggtaaatcat tagaagcatt ggaactcgaa caagaggaaa
+      301 gcataagatt tcagaattgt tctctgttcc ctctttatca cggaagtgca aaaagtaata
+      361 tagggattga taaccttata gaagttatta ctaataaatt ttattcatca acacatcgag
+      421 gtccgtctga actttgcgga aaagttttca aaattgagta ttcggaaaaa agacagcgtc
+      481 ttgcatatat acgtctttat agtggcgtac tgcatttgcg agattcggtt agaatatcgg
+      541 aaaaggaaaa aataaaaatt acagaaatgt atacttcaat aaatggtgaa ttatgtaaaa
+      601 ttgataaggc ttattccggg gaaattgtta ttttgcagaa tgagtttttg aagttaaata
+      661 gtgttcttgg agatacaaag ctattgccac agagaaaaaa gattgaaaat ccgcaccctc
+      721 tactacaaac aactgttgaa ccgagtaaac ctgaacagag
+//
+
