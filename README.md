@@ -205,6 +205,3 @@ Features that are currently being updated or will be added in the future include
 - Ellen Kersh
 - Kim Kitzler
 - Amanda Smith
-
-## License
-TBA
