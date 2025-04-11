@@ -5,7 +5,7 @@
 [![Nextflow](https://img.shields.io/badge/nextflow%20DSL2-%E2%89%A523.10.0-23aa62.svg)](https://www.nextflow.io/)
 [![nf-core](https://img.shields.io/badge/nfcore-2.14.1-23aa62.svg)](https://nf-co.re/)
 [![run with singularity](https://img.shields.io/badge/run%20with-singularity-1d355c.svg?labelColor=000000)](https://sylabs.io/docs/)
-[![neissflow version](https://img.shields.io/badge/neissflow%20version-2.0-1E90FF)](https://github.com/CDCgov/neissflow/-/releases)
+[![neissflow version](https://img.shields.io/badge/neissflow%20version-2.0.0-1E90FF)](https://github.com/CDCgov/neissflow/-/releases)
 
 # neissflow
 neissflow is a Nextflow workflow for Neisseria gonorrhoeae (Ng) genome analysis. The mission of neissflow is to consolidate commonly used bioinformatics tools for Ng analysis into a parallel and scalable pipeline. Having all your tools in one place allows you to rapidly generate data and respond quickly to public health demands!
