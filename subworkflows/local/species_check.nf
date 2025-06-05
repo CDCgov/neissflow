@@ -19,7 +19,8 @@ workflow SPECIES_CHECK {
     // Species identification with Mash
     //
     MASH (
-        reads
+        reads,
+        "${params.mash_db}"
     )
     ch_versions = ch_versions.mix(MASH.out.versions)
 

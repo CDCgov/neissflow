@@ -8,6 +8,7 @@ process MASH {
 
     input:
     tuple val(sample_name), file(reads)
+    path(mash_db)
 
     output:
     path '*.tsv'       , emit: mash_results
@@ -31,7 +32,7 @@ process MASH {
 
     \$cmd $read_1 $read_2 2>/dev/null > intermediate.fastq
 
-    mash screen -w -p ${task.cpus} $params.mash_db intermediate.fastq > "${sample_name}.tsv"
+    mash screen -w -p ${task.cpus} $mash_db intermediate.fastq > "${sample_name}.tsv"
 
     rm intermediate.fastq
 
