@@ -8,6 +8,9 @@ process BLASTN {
 
     input:
     tuple val(sample_name), path(assembly)
+    path penAdb
+    path porBdb
+    path mtrR_mosaic_ref
 
     output:
     tuple val(sample_name), path("${sample_name}/${sample_name}_amr_blast.tsv"), emit: blast_report
@@ -30,9 +33,9 @@ process BLASTN {
 
     makeblastdb -in $assembly -dbtype 'nucl' -out ${sample_name}/blastdb/${sample_name}db
 
-    blastn -num_threads ${task.cpus} -query $assembly -db $params.penAdb -out "${sample_name}/${sample_name}_penA.tsv" -outfmt=6
-    blastn -num_threads ${task.cpus} -query $assembly -db $params.porBdb -out "${sample_name}/${sample_name}_porB.tsv" -outfmt=6
-    blastn -num_threads ${task.cpus} -query $assembly -subject $params.mtrR_mosaic_ref -out "${sample_name}/${sample_name}_mtrR_mosaic.tsv" -outfmt=6
+    blastn -num_threads ${task.cpus} -query $assembly -db $penAdb -out "${sample_name}/${sample_name}_penA.tsv" -outfmt=6
+    blastn -num_threads ${task.cpus} -query $assembly -db $porBdb -out "${sample_name}/${sample_name}_porB.tsv" -outfmt=6
+    blastn -num_threads ${task.cpus} -query $assembly -subject $mtrR_mosaic_ref -out "${sample_name}/${sample_name}_mtrR_mosaic.tsv" -outfmt=6
 
     declare -A amr_blast
 

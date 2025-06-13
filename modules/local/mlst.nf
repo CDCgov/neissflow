@@ -10,6 +10,8 @@ process MLST {
 
     input:
     tuple val(sample_name), path(assembly)
+    path pubmlst
+    path blastdb
 
     output:
     tuple val(sample_name), path("${sample_name}/${sample_name}_mlst.tsv"), emit: mlst_report
@@ -29,7 +31,7 @@ process MLST {
     header=("Sample" "ST")
     echo \${header[@]} | sed 's/ /\t/g' > ${sample_name}/${sample_name}_mlst.tsv
 
-    mlst --threads ${task.cpus} --scheme neisseria $assembly --label ${sample_name} --datadir ${params.pubmlst} --blastdb ${params.blastdb} | cut -f1,3 >> ${sample_name}/${sample_name}_mlst.tsv
+    mlst --threads ${task.cpus} --scheme neisseria $assembly --label ${sample_name} --datadir $pubmlst --blastdb $blastdb | cut -f1,3 >> ${sample_name}/${sample_name}_mlst.tsv
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

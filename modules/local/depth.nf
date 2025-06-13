@@ -10,6 +10,7 @@ process DEPTH {
     
     input:
     tuple val(sample_name), path(wg_bam), path(hgt_bam), path(wg_bai), path(hgt_bai)
+    path loci
 
     output:
     tuple val(sample_name), path("*/*_amr_depth.tsv"), emit: avg_depth
@@ -34,7 +35,7 @@ process DEPTH {
         region=\${r//[\$'\t\r\n ']}
         samtools depth $wg_bam -r \$region -X $wg_bai > ${sample_name}/\${gene}_depth.txt
         amr_genes[\$gene]=\$(awk '{ cov_sum+=\$3 }END{ print cov_sum/NR }' ${sample_name}/\${gene}_depth.txt)
-    done < ${params.loci}
+    done < $loci
 
     declare -A chroms
     chroms=(["X67293"]='23SrRNA' ["AB551787"]='blaTEM' ["EU048317"]='ermB' ["AE002098"]='ermC' ["NG_047825"]='ermF' ["16S-CP012026"]='FA19_16SrRNA' ["AY319932"]='mefA' ["NC_003112"]='Nm_sodC' ["AF116348"]='TetM-partial' )
