@@ -6,7 +6,8 @@ process GUBBINS {
         'quay.io/biocontainers/gubbins:3.3.5--py39pl5321he4a0461_0' }"
 
     input:
-    path(clean_full_aln)
+    path(clean_full_aln),
+    path max_itr
 
     output:
     path '*.filtered_polymorphic_sites.phylip', emit: phylip
@@ -28,7 +29,7 @@ process GUBBINS {
     """
     file=$clean_full_aln
     name=\${file%%.clean.full.aln}
-    run_gubbins.py -c ${task.cpus} -i ${params.max_itr} -u -p \$name -t raxml $clean_full_aln
+    run_gubbins.py -c ${task.cpus} -i $max_itr -u -p \$name -t raxml $clean_full_aln
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
