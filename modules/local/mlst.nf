@@ -10,13 +10,7 @@ process MLST {
     tuple val(sample_name), path(assembly)
     path pubmlst
     path blastdb
-    path blastdbndb
-    path blastdbnhr
-    path blastdbnin
-    path blastdbnot
-    path blastdbnsq
-    path blastdbntf
-    path blastdbnto 
+    val dbname
 
     output:
     tuple val(sample_name), path("${sample_name}/${sample_name}_mlst.tsv"), emit: mlst_report
@@ -32,11 +26,11 @@ process MLST {
     if [ ! -d ${sample_name} ]; then
         mkdir ${sample_name}
     fi
-
+    
     header=("Sample" "ST")
     echo \${header[@]} | sed 's/ /\t/g' > ${sample_name}/${sample_name}_mlst.tsv
 
-    mlst --threads ${task.cpus} --scheme neisseria $assembly --label ${sample_name} --datadir $pubmlst --blastdb $blastdb | cut -f1,3 >> ${sample_name}/${sample_name}_mlst.tsv
+    mlst --threads ${task.cpus} --scheme neisseria $assembly --label ${sample_name} --datadir $pubmlst --blastdb ${blastdb}/${dbname} | cut -f1,3 >> ${sample_name}/${sample_name}_mlst.tsv
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

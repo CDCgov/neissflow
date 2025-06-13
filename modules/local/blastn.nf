@@ -8,22 +8,9 @@ process BLASTN {
 
     input:
     tuple val(sample_name), path(assembly)
-    path penA
-    path penAndb
-    path penAnhr
-    path penAnin
-    path penAnot
-    path penAnsq
-    path penAntf
-    path penAnto 
-    path porB
-    path porBndb
-    path porBnhr
-    path porBnin
-    path porBnot
-    path porBnsq
-    path porBntf
-    path porBnto
+    path blastdb
+    val penAdb
+    val porBdb
     path mtrR_mosaic_ref
 
     output:
@@ -47,8 +34,8 @@ process BLASTN {
 
     makeblastdb -in $assembly -dbtype 'nucl' -out ${sample_name}/blastdb/${sample_name}db
 
-    blastn -num_threads ${task.cpus} -query $assembly -db $penA -out "${sample_name}/${sample_name}_penA.tsv" -outfmt=6
-    blastn -num_threads ${task.cpus} -query $assembly -db $porB -out "${sample_name}/${sample_name}_porB.tsv" -outfmt=6
+    blastn -num_threads ${task.cpus} -query $assembly -db ${blastdb}/${penAdb} -out "${sample_name}/${sample_name}_penA.tsv" -outfmt=6
+    blastn -num_threads ${task.cpus} -query $assembly -db ${blastdb}/${porBdb} -out "${sample_name}/${sample_name}_porB.tsv" -outfmt=6
     blastn -num_threads ${task.cpus} -query $assembly -subject $mtrR_mosaic_ref -out "${sample_name}/${sample_name}_mtrR_mosaic.tsv" -outfmt=6
 
     declare -A amr_blast

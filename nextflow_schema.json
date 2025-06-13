@@ -203,100 +203,22 @@
                     "description": "Path to FASTA mtrR mosaic reference",
                     "hidden": true
                 },
+                "a_blastdb": {
+                    "type": "string",
+                    "default":  "assets/blastdb",
+                    "description": "Allele BLAST database",
+                    "hidden": true
+                },
                 "penAdb": {
                     "type": "string",
-                    "default":  "assets/blastdb/porBdb/porBdb.nhr",
-                    "description": "Path to BLAST database for porB",
-                    "hidden": true
-                },
-                "porBndb": {
-                    "type": "string",
-                    "default":  "assets/blastdb/porBdb/porBdb.ndb",
-                    "description": "Path to ndb for porB",
-                    "hidden": true
-                },
-                "porBnhr": {
-                    "type": "string",
-                    "default":  "assets/blastdb/porBdb/porBdb.nhr",
-                    "description": "Path to nhr for porB",
-                    "hidden": true
-                },
-                "porBnin": {
-                    "type": "string",
-                    "default":  "assets/blastdb/porBdb/porBdb.nin",
-                    "description": "Path to nin for porB",
-                    "hidden": true
-                },
-                "porBnot": {
-                    "type": "string",
-                    "default":  "assets/blastdb/porBdb/porBdb.not",
-                    "description": "Path to not for porB",
-                    "hidden": true
-                },
-                "porBnsq": {
-                    "type": "string",
-                    "default":  "assets/blastdb/porBdb/porBdb.nsq",
-                    "description": "Path to nsq for porB",
-                    "hidden": true
-                },
-                "porBntf": {
-                    "type": "string",
-                    "default":  "assets/blastdb/porBdb/porBdb.ntf",
-                    "description": "Path to ntf for porB",
-                    "hidden": true
-                },
-                "porBnto": {
-                    "type": "string",
-                    "default":  "assets/blastdb/porBdb/porBdb.nto",
-                    "description": "Path to nto for porB",
+                    "default":  "penAdb",
+                    "description": "Prefix for penA BLAST db",
                     "hidden": true
                 },
                 "porBdb": {
                     "type": "string",
-                    "default":  "assets/blastdb/porBdb",
-                    "description": "Path to BLAST database for porB",
-                    "hidden": true
-                },
-                "penAndb": {
-                    "type": "string",
-                    "default":  "assets/blastdb/penAdb/penAdb.ndb",
-                    "description": "Path to ndb for penA",
-                    "hidden": true
-                },
-                "penAnhr": {
-                    "type": "string",
-                    "default":  "assets/blastdb/penAdb/penAdb.nhr",
-                    "description": "Path to nhr for penA",
-                    "hidden": true
-                },
-                "penAnin": {
-                    "type": "string",
-                    "default":  "assets/blastdb/penAdb/penAdb.nin",
-                    "description": "Path to nin for penA",
-                    "hidden": true
-                },
-                "penAnot": {
-                    "type": "string",
-                    "default":  "assets/blastdb/penAdb/penAdb.not",
-                    "description": "Path to not for penA",
-                    "hidden": true
-                },
-                "penAnsq": {
-                    "type": "string",
-                    "default":  "assets/blastdb/penAdb/penAdb.nsq",
-                    "description": "Path to nsq for penA",
-                    "hidden": true
-                },
-                "penAntf": {
-                    "type": "string",
-                    "default":  "assets/blastdb/penAdb/penAdb.ntf",
-                    "description": "Path to ntf for penA",
-                    "hidden": true
-                },
-                "penAnto": {
-                    "type": "string",
-                    "default":  "assets/blastdb/penAdb/penAdb.nto",
-                    "description": "Path to nto for penA",
+                    "default":  "porBdb",
+                    "description": "Prefix for porB BLAST db",
                     "hidden": true
                 },
                 "pubmlst": {
@@ -307,50 +229,14 @@
                 },
                 "blastdb": {
                     "type": "string",
-                    "default":  "mlst/blastdb/mlst.fa",
+                    "default":  "mlst/blastdb",
                     "description": "path to local blast database for mlst",
                     "hidden": false
                 },
-                "blastdbndb": {
+                "dbname": {
                     "type": "string",
-                    "default":  "mlst/blastdb/mlst.fa.ndb",
-                    "description": "Path to ndb for local blast database for mlst",
-                    "hidden": false
-                },
-                "blastdbnhr": {
-                    "type": "string",
-                    "default":  "mlst/blastdb/mlst.fa.nhr",
-                    "description": "Path to nhr for local blast database for mlst",
-                    "hidden": false
-                },
-                "blastdbnin": {
-                    "type": "string",
-                    "default":  "mlst/blastdb/mlst.fa.nin",
-                    "description": "Path to nin for local blast database for mlst",
-                    "hidden": false
-                },
-                "blastdbnot": {
-                    "type": "string",
-                    "default":  "mlst/blastdb/mlst.fa.not",
-                    "description": "Path to not for local blast database for mlst",
-                    "hidden": false
-                },
-                "blastdbnsq": {
-                    "type": "string",
-                    "default":  "mlst/blastdb/mlst.fa.nsq",
-                    "description": "Path to nsq for local blast database for mlst",
-                    "hidden": false
-                },
-                "blastdbntf": {
-                    "type": "string",
-                    "default":  "mlst/blastdb/mlst.fa.ntf",
-                    "description": "Path to ntf for local blast database for mlst",
-                    "hidden": false
-                },
-                "blastdbnto": {
-                    "type": "string",
-                    "default":  "mlst/blastdb/mlst.fa.nto",
-                    "description": "Path to nto for local blast database for mlst",
+                    "default":  "mlst.fa",
+                    "description": "prefix local blast database for mlst",
                     "hidden": false
                 },
                 "ngmasterdb": {

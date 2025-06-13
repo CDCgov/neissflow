@@ -37,7 +37,7 @@ This document overviews the setup process for neissflow, depending on how you pl
     ```
     - check that data has populated those directories & has read permissions
     - Using this database in neissflow:
-        - Option 1: change the default paths for `pubmlst` and `blastdb` variables (the `blastdb` path specifically needs to be the path to mlst.fa) in [nextflow.config](../nextflow.config)
+        - Option 1: change the default paths for `pubmlst` and `blastdb` variables in [nextflow.config](../nextflow.config)
         - Option 2: pass these paths to the pipeline as parameters each run with the arguments `--pubmlst` and `--blastdb`
 4) Use the RefSeq Mash sketch in neissflow
     - Option 1: change the default path for the `mash_db` parameter in [nextflow.config](../nextflow.config) to the path to RefSeqSketchesDefaults.msh
