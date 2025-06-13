@@ -4,7 +4,7 @@ process OUTBREAK_DETECTION {
     container "https://depot.galaxyproject.org/singularity/numpy%3A2.2.2"
 
     input:
-    path(snp_matrix),
+    path(snp_matrix)
     path snp_dist
 
     output:

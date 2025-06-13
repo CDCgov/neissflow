@@ -6,7 +6,7 @@ process GUBBINS {
         'quay.io/biocontainers/gubbins:3.3.5--py39pl5321he4a0461_0' }"
 
     input:
-    path(clean_full_aln),
+    path(clean_full_aln)
     path max_itr
 
     output:

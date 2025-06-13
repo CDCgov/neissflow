@@ -4,9 +4,7 @@ process MLST {
     tag "$sample_name"
     label 'process_low'
 
-    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-    'https://depot.galaxyproject.org/singularity/mlst:2.23.0--hdfd78af_0' :
-    'biocontainers/mlst:2.23.0--hdfd78af_0' }"
+    container "https://depot.galaxyproject.org/singularity/mlst%3A2.23.0--hdfd78af_0"
 
     input:
     tuple val(sample_name), path(assembly)
