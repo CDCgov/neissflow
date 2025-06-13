@@ -10,6 +10,13 @@ process MLST {
     tuple val(sample_name), path(assembly)
     path pubmlst
     path blastdb
+    path blastdbndb
+    path blastdbnhr
+    path blastdbnin
+    path blastdbnot
+    path blastdbnsq
+    path blastdbntf
+    path blastdbnto 
 
     output:
     tuple val(sample_name), path("${sample_name}/${sample_name}_mlst.tsv"), emit: mlst_report

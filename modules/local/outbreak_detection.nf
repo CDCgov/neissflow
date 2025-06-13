@@ -5,7 +5,7 @@ process OUTBREAK_DETECTION {
 
     input:
     path(snp_matrix)
-    path snp_dist
+    val snp_dist
 
     output:
     path("isolate_clusters.txt"), emit: outbreaks

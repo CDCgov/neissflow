@@ -62,7 +62,14 @@ workflow AMR_PROFILER {
     MLST (
         contigs,
         "${params.pubmlst}",
-        "${params.blastdb}"
+        "${params.blastdb}",
+        "${params.blastdbndb}",
+        "${params.blastdbnhr}",
+        "${params.blastdbnin}",
+        "${params.blastdbnot}",
+        "${params.blastdbnsq}",
+        "${params.blastdbntf}",
+        "${params.blastdbnto}",
     )
     ch_versions = ch_versions.mix(MLST.out.versions)
 
@@ -83,7 +90,21 @@ workflow AMR_PROFILER {
     BLASTN (
         contigs,
         "${params.penAdb}",
+        "${params.penAndb}",
+        "${params.penAnhr}",
+        "${params.penAnin}",
+        "${params.penAnot}",
+        "${params.penAnsq}",
+        "${params.penAntf}",
+        "${params.penAnto}", 
         "${params.porBdb}",
+        "${params.porBndb}",
+        "${params.porBnhr}",
+        "${params.porBnin}",
+        "${params.porBnot}",
+        "${params.porBnsq}",
+        "${params.porBntf}",
+        "${params.porBnto}",
         "${params.mtrR_mosaic_ref}"
     )
     //ch_versions = ch_versions.mix(BLASTN.out.versions)
