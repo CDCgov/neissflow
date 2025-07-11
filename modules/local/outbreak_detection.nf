@@ -5,6 +5,7 @@ process OUTBREAK_DETECTION {
 
     input:
     path(snp_matrix)
+    val snp_dist
 
     output:
     path("isolate_clusters.txt"), emit: outbreaks
@@ -14,7 +15,7 @@ process OUTBREAK_DETECTION {
     task.ext.when == null || task.ext.when
 
     script:
-    def args = task.ext.args ?: "-i ${snp_matrix} -d ${params.snp_dist}"
+    def args = task.ext.args ?: "-i ${snp_matrix} -d ${snp_dist}"
 
     """
 

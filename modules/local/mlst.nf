@@ -4,12 +4,13 @@ process MLST {
     tag "$sample_name"
     label 'process_low'
 
-    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-    'https://depot.galaxyproject.org/singularity/mlst:2.23.0--hdfd78af_0' :
-    'biocontainers/mlst:2.23.0--hdfd78af_0' }"
+    container "https://depot.galaxyproject.org/singularity/mlst%3A2.23.0--hdfd78af_0"
 
     input:
     tuple val(sample_name), path(assembly)
+    path pubmlst
+    path blastdb
+    val dbname
 
     output:
     tuple val(sample_name), path("${sample_name}/${sample_name}_mlst.tsv"), emit: mlst_report
@@ -25,11 +26,11 @@ process MLST {
     if [ ! -d ${sample_name} ]; then
         mkdir ${sample_name}
     fi
-
+    
     header=("Sample" "ST")
     echo \${header[@]} | sed 's/ /\t/g' > ${sample_name}/${sample_name}_mlst.tsv
 
-    mlst --threads ${task.cpus} --scheme neisseria $assembly --label ${sample_name} --datadir ${params.pubmlst} --blastdb ${params.blastdb} | cut -f1,3 >> ${sample_name}/${sample_name}_mlst.tsv
+    mlst --threads ${task.cpus} --scheme neisseria $assembly --label ${sample_name} --datadir $pubmlst --blastdb ${blastdb}/${dbname} | cut -f1,3 >> ${sample_name}/${sample_name}_mlst.tsv
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

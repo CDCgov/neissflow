@@ -72,7 +72,8 @@ workflow PHYLOGENY {
     // Mark recombination regions and contruct phylogeny on mutations outside of recombination regions
     //
     GUBBINS (
-        ch_clean
+        ch_clean,
+        "${params.max_itr}"
     )
     ch_versions = ch_versions.mix(GUBBINS.out.versions)
 
@@ -96,7 +97,8 @@ workflow PHYLOGENY {
     // Get potential outbreak clusters by identifying connected components in graph constructed using SNP distances
     //
     OUTBREAK_DETECTION (
-        SNPDISTS.out.snp_matrix
+        SNPDISTS.out.snp_matrix,
+        "${params.snp_dist}"
     )
     ch_versions = ch_versions.mix(OUTBREAK_DETECTION.out.versions)
 

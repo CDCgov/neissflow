@@ -203,16 +203,22 @@
                     "description": "Path to FASTA mtrR mosaic reference",
                     "hidden": true
                 },
+                "a_blastdb": {
+                    "type": "string",
+                    "default":  "assets/blastdb",
+                    "description": "Allele BLAST database",
+                    "hidden": true
+                },
                 "penAdb": {
                     "type": "string",
-                    "default":  "assets/blastdb/penAdb",
-                    "description": "Path to BLAST database for penA",
+                    "default":  "penAdb",
+                    "description": "Prefix for penA BLAST db",
                     "hidden": true
                 },
                 "porBdb": {
                     "type": "string",
-                    "default":  "assets/blastdb/porBdb",
-                    "description": "Path to BLAST database for porB",
+                    "default":  "porBdb",
+                    "description": "Prefix for porB BLAST db",
                     "hidden": true
                 },
                 "pubmlst": {
@@ -223,8 +229,14 @@
                 },
                 "blastdb": {
                     "type": "string",
-                    "default":  "mlst/blastdb/mlst.fa",
+                    "default":  "mlst/blastdb",
                     "description": "path to local blast database for mlst",
+                    "hidden": false
+                },
+                "dbname": {
+                    "type": "string",
+                    "default":  "mlst.fa",
+                    "description": "prefix local blast database for mlst",
                     "hidden": false
                 },
                 "ngmasterdb": {

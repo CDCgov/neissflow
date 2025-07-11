@@ -28,7 +28,8 @@ workflow AMR_PROFILER {
     // Variant calling for HGT genes with Snippy
     //
     SNIPPY_AMR (
-        reads
+        reads,
+        "${params.amr_ref}"
     )
     ch_versions = ch_versions.mix(SNIPPY_AMR.out.versions)
 
@@ -38,7 +39,8 @@ workflow AMR_PROFILER {
     ch_depth_input = wg_bam.join(SNIPPY_AMR.out.bam).join(wg_bai).join(SNIPPY_AMR.out.bai)
     ch_depth_report = Channel.empty()
     DEPTH (
-        ch_depth_input
+        ch_depth_input,
+        "${params.loci}"
     )
     ch_depth_report = DEPTH.out.avg_depth
     //ch_versions = ch_versions.mix(DEPTH.out.versions)
@@ -48,7 +50,9 @@ workflow AMR_PROFILER {
     //
     ch_variant_analysis_input = wg_tab.join(SNIPPY_AMR.out.tab).join(ch_depth_report).join(DEPTH.out.pos_depths)
     VARIANT_ANALYSIS (
-        ch_variant_analysis_input
+        ch_variant_analysis_input,
+        "${params.default_amr}",
+        "${params.columns}"
     )
     ch_versions = ch_versions.mix(VARIANT_ANALYSIS.out.versions)
 
@@ -56,7 +60,10 @@ workflow AMR_PROFILER {
     // Get ST for sample
     //
     MLST (
-        contigs
+        contigs,
+        "${params.pubmlst}",
+        "${params.blastdb}",
+        "${params.dbname}"
     )
     ch_versions = ch_versions.mix(MLST.out.versions)
 
@@ -64,7 +71,10 @@ workflow AMR_PROFILER {
     // Get NGSTAR and NGMAST type
     //
     NGMASTER (
-        contigs
+        contigs,
+        "${params.ngmasterdb}",
+        "${params.ngstar}",
+        "${params.ngmast}"
     )
     ch_versions = ch_versions.mix(NGMASTER.out.versions)
 
@@ -72,7 +82,11 @@ workflow AMR_PROFILER {
     // Run Blastn to get alleles and gene lengths
     //
     BLASTN (
-        contigs
+        contigs,
+        "${params.a_blastdb}",
+        "${params.penAdb}",
+        "${params.porBdb}",
+        "${params.mtrR_mosaic_ref}"
     )
     //ch_versions = ch_versions.mix(BLASTN.out.versions)
 
