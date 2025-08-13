@@ -461,7 +461,7 @@ def check_presence(cov,gene):
     output:
         bool - True if average depth of the gene is >= 2 and False if it is not (string)
     '''
-    return str(float(cov[gene]) >= 2) #threshold of 2 used (determined by Matthew)
+    return str(float(cov[gene]) >= 10) #threshold of 10 used (determined by Matthew & Kim)
 
 ### Check presence of horizontally transferred genes in the sample ###
 def htg(results,coverage_file):
