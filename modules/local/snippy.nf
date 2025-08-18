@@ -41,7 +41,7 @@ process SNIPPY {
         filename=$ref
         outdir="\${filename%.*}"
 
-        snippy --cpus ${task.cpus} --prefix $sample_name --outdir \${outdir}/$sample_name --ref $ref --R1 $read_1 --R2 $read_2 --tmpdir \$TMPDIR --minfrac 0.9 --basequal 20 --bwaopt "-B 2"
+        snippy --cpus ${task.cpus} --prefix $sample_name --outdir \${outdir}/$sample_name --ref $ref --R1 $read_1 --R2 $read_2 --tmpdir \$TMPDIR --minfrac 0.8 --basequal 20 --maxsoft 50 --bwaopt "-B 1"
 
         cat <<-END_VERSIONS > versions.yml
         "${task.process}":
