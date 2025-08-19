@@ -181,7 +181,7 @@ def get_FA19_calls(WG_defaults,file,AA):
         else: results[field] = penA_D345ins(WG_defaults,WG_defaults[field]["Gene"],field,file)
     return results
 
-### Check if mutations were found at the mtrR promoter positions (Matthew only wants 1 value reported for 5 positions since there is "usually only one mutation at most" so that's what we're doing) ###
+### Check if mutations were found at the mtrR promoter positions ###
 def get_mtrR_promoter(mtrR_promoter,file,results):
     '''
     input:
@@ -192,12 +192,18 @@ def get_mtrR_promoter(mtrR_promoter,file,results):
         results - results dictionary with 'mtrR promoter' key and nucleotide values added (dictionary)
     '''
     call = ""
+    l = 0
     for nuc_pos in mtrR_promoter.keys():
         pattern = '.*[^\S]+' + nuc_pos + '[^\S]+.*'
         found,variant = run_grep(pattern,file)
-        if found:
+        if found and int(nuc_pos) == 1110843: #check for del in promoter marked at position adj to promoter
+            if variant[2] == 'del':
+                l = len(variant[3])-len(variant[4]) #check for number of dels
+                for i in range(l):
+                    call += 'del'
+        elif found:
             call += variant[4]
-        else:
+        elif int(nuc_pos) > (1110843 + l): #only add reference if not a del
             call += mtrR_promoter[nuc_pos]
     results['mtrR promoter'] = call
     return results
@@ -325,11 +331,12 @@ def check_complex(results,file,hgt_defaults,WG_defaults,AA):
     return results
 
 ### Parse gene depth file determine depth at position of interest ###
-def get_depth(file, poi):
+def get_depth(file, poi, gene_strands):
     '''
     input:
         file - file name of file containing per position depth for gene the position of interest is in (string)
         poi - position of interest dictionary with "Gene", "Locus", "Nucleotide Position", "AA Position", and "Default" as keys with the corresponding information as values (dictionary)
+        gene_strands - dictionary with genes as keys and strand in FA19 the key gene is on as the value (dictionary)
     output:
         found - True if the position was checked and a depth was determined, False otherwise (bool)
         depth - depth at the position of interest (float)
@@ -347,25 +354,45 @@ def get_depth(file, poi):
         with open(file) as f:
             count = 0
             first = True
-            for line in f:
-                l = line.split("\t")
-                if first:
-                    start = int(l[1]) #need to use this to find correct nucleotide position
-                    first = False
-                if int(l[1]) == start+position+count:
-                    depth += int(l[2])
-                    count += 1 
-                if count == 3: #we got all the nucleotide positions for the AA of interest
-                    return True,depth/3       
+            if gene_strands[poi["Gene"]] == "forward":
+                for line in f:
+                    l = line.split("\t")
+                    if first:
+                        start = int(l[1]) #need to use this to find correct nucleotide position
+                        first = False
+                    if int(l[1]) == start+position+count:
+                        depth += int(l[2])
+                        count += 1 
+                    if count == 3: #we got all the nucleotide positions for the AA of interest
+                        return True,depth/3    
+            else:
+                lines = f.readlines()
+                for line in reversed(lines):
+                    l = line.split("\t")
+                    if first:
+                        start = int(l[1]) #need to use this to find correct nucleotide position
+                        if int(poi['AA Position']) == 516 and poi['Gene'] == 'penA':
+                            print(start,position)
+                        first = False
+                    if int(l[1]) == start-position-count:
+                        if int(poi['AA Position']) == 516 and poi['Gene'] == 'penA':
+                            print(start+position+count,l[2])
+                        depth += int(l[2])
+                        count += 1 
+                    if count == 3: #we got all the nucleotide positions for the AA of interest
+                        if int(poi['AA Position']) == 516 and poi['Gene'] == 'penA':
+                            print(depth, depth/3)
+                        return True,depth/3 
         f.close()
     return False,0 #If a position and gene designation don't agree we don't get stuck (not an issue with current pois)
 
 ### Get correct gene file and call get depth function ###
-def check_position(files,poi):
+def check_position(files,poi,gene_strands):
     '''
     input:
         files - files containing per position depth for each of the FA19 genes (not including 16S and 23S since those have multiple copies & very high coverage) (list)
         poi - position of interest dictionary with "Gene", "Locus", "Nucleotide Position", "AA Position", and "Default" as keys with the corresponding information as values (dictionary)
+        gene_strands - dictionary with genes as keys and strand in FA19 the key gene is on as the value (dictionary)
     output:
         checked - True if the position was checked and a depth was determined, False otherwise (bool)
         depth - depth at the position of interest (float)
@@ -374,7 +401,7 @@ def check_position(files,poi):
     checked = False
     for file in files:
         if (poi['Gene'] + "_depth.txt") in file:
-            checked,depth = get_depth(file,poi)
+            checked,depth = get_depth(file,poi,gene_strands)
             return checked,depth
     return checked,depth
 
@@ -401,33 +428,48 @@ def mtrR_promoter_depth(mtrR_promoter,files):
     return depths
 
 ### Determine if position of interest has enough coverage to make a determination or not ###
-def check_depths(files,results,WG_defaults,mtrR_promoter):
+def check_depths(files,results,WG_defaults,mtrR_promoter,strands):
     '''
     input:
         files - files containing per position depth for each of the FA19 genes (not including 16S and 23S since those have multiple copies & very high coverage) (list)
         results - stores variants for sample with positions as keys and found variants or defaults as values (dictionary)
         WG_defaults - contains defaults for positions in AMR genes that are present in FA19 with positions of interest as keys (nested dictionary)
         mtrR_promoter - contains nucleotide positions as keys and default nucleotides as values for the mtrR promoter (dictionary)
+        strands - path to file containing which strand each gene is on (forward / reverse)
     output:
         results - results dictionary updated with some values as "NF" if the position of interest did not have enough coverage (>10x) to call variant or wild type (nested dictionary)
     '''
+    gene_strands = {}
+    with open(strands) as f:
+        for line in f:
+            l = line.split('\t')
+            if l[0] != "Gene":
+                gene_strands[l[0]] = l[1]
+    f.close()
     for result in results:
         if result in WG_defaults and result != 'penA D345ins':
             if results[result] == WG_defaults[result]['Default']:
-                checked, depth = check_position(files,WG_defaults[result])
+                checked, depth = check_position(files,WG_defaults[result],gene_strands)
                 if depth <= 10 and checked:
                     results[result] = 'NF' #not enough depth of coverage at position, change to not found
     
     depths = mtrR_promoter_depth(mtrR_promoter,files)
-
-    nucs = list(results['mtrR promoter'])
+    depths.pop(0) #remove depth of adj nucleotide
+    
+    count = 0
+    if 'del' not in results['mtrR promoter']:
+        nucs = list(results['mtrR promoter'])
+    else:
+        count = results['mtrR promoter'].count('del')
+        no_del = results['mtrR promoter'].replace('del',"")
+        nucs = list(no_del)
     low_cov = False
-    for i in range(len(depths)):
-        if nucs[i] == "A" and depths[i] <= 10:
-            nucs[i] = "NF"
+    for i in range(count,len(depths)):
+        if nucs[i-count] == "A" and depths[i] <= 10:
+            nucs[i-count] = "NF"
             low_cov = True
     if low_cov:
-        results['mtrR promoter'] = ''.join(nucs)
+        results['mtrR promoter'] = count*('del')+''.join(nucs)
         
     return results
 
@@ -521,6 +563,7 @@ if __name__ == "__main__":
     parser.add_argument('-o','--out_path', type=str, required=True, help='path of output directory')
     parser.add_argument('-d','--defaults', type=str, required=True, help='path of default AMR genes file')
     parser.add_argument('-f','--fields', type=str, required=True, help='path of column order file')
+    parser.add_argument('-gs','--gene_strands', type=str, required=True, help='path to tsv file containing strand each gene is on')
     
         
     args = parser.parse_args()
@@ -533,6 +576,7 @@ if __name__ == "__main__":
     out = args.out_path
     defaults = args.defaults
     column_file = args.fields
+    strands = args.gene_strands
 
     hgt_genes={"X67293":'23SrRNA', "AB551787":'blaTEM',"EU048317":'ermB',"AE002098":'ermC', "NG_047825":'ermF', "16S-CP012026":'FA19_16SrRNA', "AY319932":'mefA', "NC_003112":'Nm_sodC', "AF116348":'TetM-partial'}
     AA = {'Ala':'A','Arg':'R','Asn':'N','Asp':'D','Cys':'C','Glu':'E','Gln':'Q','Gly':'G','His':'H','Ile':'I','Leu':'L','Lys':'K','Met':'M','Phe':'F','Pro':'P','Ser':'S','Thr':'T','Trp':'W','Tyr':'Y','Val':'V'}
@@ -544,7 +588,7 @@ if __name__ == "__main__":
     results = get_hgt_calls(hgt_calls,hgt_defaults,results)
     results = check_complex(results,file,hgt_defaults,WG_defaults,AA)
     results = get_mtrR_promoter(mtrR_promoter,file,results)
-    results = check_depths(files,results,WG_defaults,mtrR_promoter)
+    results = check_depths(files,results,WG_defaults,mtrR_promoter,strands)
     results = rplV_ins(results,file)
     results = premature_stop('pilQ',results,file,'pilQ full length',True)
     results = premature_stop('mtrR',results,file,'mtrR premature stop',False)
