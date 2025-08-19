@@ -10,6 +10,7 @@ process VARIANT_ANALYSIS {
     tuple val(sample_name), path(wg), path(hgt), path(avg_depth), path(depths)
     path default_amr
     path columns
+    path strands
 
     output:
     tuple val(sample_name), path("${sample_name}/${sample_name}_variant_report.tsv"), emit: report
@@ -23,7 +24,7 @@ process VARIANT_ANALYSIS {
     script:
     """
 
-    AMR_variant_analysis.py -w $wg -t $hgt -c $avg_depth -n $sample_name -o $sample_name -d $default_amr -f $columns -s $depths
+    AMR_variant_analysis.py -w $wg -t $hgt -c $avg_depth -n $sample_name -o $sample_name -d $default_amr -f $columns -s $depths -gs $strands
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

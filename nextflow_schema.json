@@ -197,6 +197,12 @@
                     "description": "Path to file containing the column order for the AMR report",
                     "hidden": true
                 },
+                "strands": {
+                    "type": "string",
+                    "default":  "assets/gene_columns.tsv",
+                    "description": "Path to file containing the strandedness of AMR genes in FA19",
+                    "hidden": true
+                },
                 "mtrR_mosaic_ref": {
                     "type": "string",
                     "default":  "assets/gene_refs/mosaic-mtrR.fasta",
