@@ -52,7 +52,8 @@ workflow AMR_PROFILER {
     VARIANT_ANALYSIS (
         ch_variant_analysis_input,
         "${params.default_amr}",
-        "${params.columns}"
+        "${params.columns}",
+        "${params.strands}"
     )
     ch_versions = ch_versions.mix(VARIANT_ANALYSIS.out.versions)
 
