@@ -76,12 +76,12 @@ workflow PREPROCESSING {
     emit:
 
     fastp_report        = COMBINE_FASTP_REPORTS.out.fastp_report        // channel:  fastp_report 
-    fastp_json          = FASTP.out.json_path                           // channel:  [ val(sample_name), [ json_path ] ]
+    fastp_json          = FASTP.out.json_path                           // channel:  [ meta, [ json_path ] ]
 
-    passed              = FASTP_QC_CHECK.out.passed                     // channel: passed
-    failed              = FASTP_QC_CHECK.out.failed                     // channel: failed
+    passed              = FASTP_QC_CHECK.out.passed                     // channel: path(passed)
+    failed              = FASTP_QC_CHECK.out.failed                     // channel: path(failed)
 
-    trimmed_fastq_paths = ch_passed                                     // channel: [ val(sample_name), [ trimmed_fastq_paths ] ]
+    trimmed_fastq_paths = ch_passed                                     // channel: [ meta, [ trimmed_fastq_paths ] ]
 
     versions            = ch_versions                                   // channel: [ versions.yml ]
 

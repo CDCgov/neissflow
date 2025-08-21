@@ -100,11 +100,11 @@ workflow NEISSFLOW {
             // Species ID is also based on coverage of FA19
             ALT_SNIPPY (
                 ch_input,
-                params.reference_genome
+                "${params.reference_genome}"
             )
             SNIPPY (
                 ch_input,
-                params.FA19_ref
+                "${params.FA19_ref}"
             )
             ch_multiqc_files = ch_multiqc_files.mix(ALT_SNIPPY.out.txt.collect{it[1]})
             ch_vcf = ALT_SNIPPY.out.vcf
@@ -113,14 +113,14 @@ workflow NEISSFLOW {
         else if (params.reference_genome && params.skip_amr && params.skip_species_id) {
             SNIPPY (
                 ch_input,
-                params.reference_genome
+                "${params.reference_genome}"
             )
             ch_vcf = SNIPPY.out.vcf
             ch_aligned_fa = SNIPPY.out.aligned_fa
         } else {
             SNIPPY (
                 ch_input,
-                params.FA19_ref
+                "${params.FA19_ref}"
             )
             ch_vcf = SNIPPY.out.vcf
             ch_aligned_fa = SNIPPY.out.aligned_fa
@@ -132,11 +132,11 @@ workflow NEISSFLOW {
             // Species ID is also based on coverage of FA19
             ALT_SNIPPY (
                 ch_contigs,
-                params.reference_genome
+                "${params.reference_genome}"
             )
             SNIPPY (
                 ch_contigs,
-                params.FA19_ref
+                "${params.FA19_ref}"
             )
             ch_multiqc_files = ch_multiqc_files.mix(ALT_SNIPPY.out.txt.collect{it[1]})
             ch_vcf = ALT_SNIPPY.out.vcf
@@ -145,14 +145,14 @@ workflow NEISSFLOW {
         else if (params.reference_genome && params.skip_amr && params.skip_species_id) {
             SNIPPY (
                 ch_contigs,
-                params.reference_genome
+                "${params.reference_genome}"
             )
             ch_vcf = SNIPPY.out.vcf
             ch_aligned_fa = SNIPPY.out.aligned_fa
         } else {
             SNIPPY (
                 ch_contigs,
-                params.FA19_ref
+                "${params.FA19_ref}"
             )
             ch_vcf = SNIPPY.out.vcf
             ch_aligned_fa = SNIPPY.out.aligned_fa
