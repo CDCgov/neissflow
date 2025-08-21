@@ -44,12 +44,12 @@ workflow PIPELINE_INITIALISATION {
     //
     // Print version and exit if required and dump pipeline parameters to JSON file
     //
-    // UTILS_NEXTFLOW_PIPELINE (
-    //     version,
-    //     true,
-    //     outdir,
-    //     workflow.profile.tokenize(',').intersect(['conda', 'mamba']).size() >= 1
-    // )
+    UTILS_NEXTFLOW_PIPELINE (
+        version,
+        true,
+        outdir,
+        workflow.profile.tokenize(',').intersect(['conda', 'mamba']).size() >= 1
+    )
 
     //
     // Validate parameters and generate parameter summary to stdout
@@ -85,11 +85,11 @@ workflow PIPELINE_INITIALISATION {
         .map {
             meta, fastq_1, fastq_2, fasta ->
                 if(!fasta){
-                    return [ meta.id, [ fastq_1, fastq_2 ] ]
+                    return [ meta, [ fastq_1, fastq_2 ] ]
                 } else if(!fastq_1) {
-                    return [ meta.id, [ fasta ] ]
+                    return [ meta, [ fasta ] ]
                 } else {
-                    [ meta.id, [ fastq_1, fastq_2, fasta ] ]
+                    [ meta, [ fastq_1, fastq_2, fasta ] ]
                 }
         }
         .set { ch_samplesheet }

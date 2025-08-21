@@ -8,7 +8,7 @@ include { FASTP_QC_CHECK        } from '../../../modules/local/preprocess/fastp_
 
 workflow PREPROCESSING {
     take:
-    reads          // channel: [ val(sample_name), [ reads ] ]
+    reads          // channel: [ meta, [ reads ] ]
     prefix         // val(prefix)
 
     main:
