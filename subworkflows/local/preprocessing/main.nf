@@ -1,10 +1,10 @@
 //
 // Quality Trimming & Filtering, Adaptor Trimming, and QC Check
 //
-include { FASTP                 } from '../../modules/local/fastp/fastp'
-include { PARSE_FASTP_REPORTS   } from '../../modules/local/fastp/parse_fastp'
-include { COMBINE_FASTP_REPORTS } from '../../modules/local/fastp/combine_reports'
-include { FASTP_QC_CHECK        } from '../../modules/local/fastp/fastp_qc'
+include { FASTP                 } from '../../modules/local/preprocess/fastp/main'
+include { PARSE_FASTP_REPORTS   } from '../../modules/local/preprocess/parse_fastp/main'
+include { COMBINE_FASTP_REPORTS } from '../../modules/local/preprocess/combine_reports/main'
+include { FASTP_QC_CHECK        } from '../../modules/local/preprocess/fastp_qc/main'
 
 workflow PREPROCESSING {
     take:

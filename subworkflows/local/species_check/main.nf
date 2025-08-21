@@ -1,10 +1,10 @@
 //
 // Check species via alignment with FA19 and Mash results
 //
-include { MASH                 } from '../../modules/local/mash/mash'
-include { STATS                } from '../../modules/local/stats/stats'
-include { COVERAGE             } from '../../modules/local/stats/coverage'
-include { COMBINE_MASH_REPORTS } from '../../modules/local/mash/combine_mash_reports'
+include { MASH                 } from '../../modules/local/species_id/mash/main'
+include { STATS                } from '../../modules/local/species_id/stats/main'
+include { COVERAGE             } from '../../modules/local/species_id/coverage/main'
+include { COMBINE_MASH_REPORTS } from '../../modules/local/species_id/combine_mash_reports/main'
 
 workflow SPECIES_CHECK {
     take:

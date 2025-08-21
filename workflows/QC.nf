@@ -11,21 +11,21 @@
     IMPORT MODULES / SUBWORKFLOWS / FUNCTIONS
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
-include { CHECK_FASTQS           } from '../modules/local/check_fastqs'
-include { SNIPPY                 } from '../modules/local/snippy'
-include { INITIAL_MERGE          } from '../modules/local/qc_check/initial_merge'
-include { QC_CHECK               } from '../modules/local/qc_check/qc_check'
-include { MERGE_REPORTS          } from '../modules/local/merge/merge'
+include { CHECK_FASTQS           } from '../modules/local/check_fastqs/main'
+include { SNIPPY                 } from '../modules/local/snippy/main'
+include { INITIAL_MERGE          } from '../modules/local/qc_check2/initial_merge/main'
+include { QC_CHECK               } from '../modules/local/qc_check2/qc_check/main'
+include { MERGE_REPORTS          } from '../modules/local/merge/main'
 include { MULTIQC                } from '../modules/nf-core/multiqc/main'
 include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { paramsSummaryMap       } from 'plugin/nf-validation'
 include { paramsSummaryMultiqc   } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_neissflow_pipeline'
 
-include { PREPROCESSING } from '../subworkflows/local/preprocessing'
-include { ASSEMBLY      } from '../subworkflows/local/assembly'
-include { SPECIES_CHECK } from '../subworkflows/local/species_check'
-include { AMR_PROFILER  } from '../subworkflows/local/amr_profiler'
+include { PREPROCESSING } from '../subworkflows/local/preprocessing/main'
+include { ASSEMBLY      } from '../subworkflows/local/assembly/main'
+include { SPECIES_CHECK } from '../subworkflows/local/species_check/main'
+include { AMR_PROFILER  } from '../subworkflows/local/amr_profiler/main'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

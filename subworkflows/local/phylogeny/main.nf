@@ -2,20 +2,20 @@
 // Phylogenetic analysis and tree generation
 //
 
-include { SNIPPY_CORE          } from '../../modules/local/snippy_core'
-include { SNIPPY_CLEAN         } from '../../modules/local/snippy_clean'
-include { REMOVE_REF           } from '../../modules/local/remove_ref'
-include { SNPDISTS             } from '../../modules/local/snpdists'
-include { OUTBREAK_DETECTION   } from '../../modules/local/outbreak_detection'
-include { CLUSTER_COLORING     } from '../../modules/local/cluster_coloring'
-include { GUBBINS              } from '../../modules/local/gubbins'
-include { COUNT_MONO_NUC       } from '../../modules/local/count_mono'
-include { MAKE_PARTITION_GUIDE } from '../../modules/local/make_guide'
-include { RAXML                } from '../../modules/local/raxml'
-include { PHYLOGENY_QC         } from '../../modules/local/phylogeny_qc'
-include { REROOT               } from '../../modules/local/reroot'
-include { GOTREE_PNG           } from '../../modules/local/gotree'
-include { REPORT               } from '../../modules/local/report'
+include { SNIPPY_CORE          } from '../../modules/local/phylogeny/snippy_core/main'
+include { SNIPPY_CLEAN         } from '../../modules/local/phylogeny/snippy_clean/main'
+include { REMOVE_REF           } from '../../modules/local/phylogeny/remove_ref/main'
+include { SNPDISTS             } from '../../modules/local/phylogeny/snpdists/main'
+include { OUTBREAK_DETECTION   } from '../../modules/local/phylogeny/outbreak_detection/main'
+include { CLUSTER_COLORING     } from '../../modules/local/phylogeny/cluster_coloring/main'
+include { GUBBINS              } from '../../modules/local/phylogeny/gubbins/main'
+include { COUNT_MONO_NUC       } from '../../modules/local/phylogeny/count_mono/main'
+include { MAKE_PARTITION_GUIDE } from '../../modules/local/phylogeny/make_guide/main'
+include { RAXML                } from '../../modules/local/phylogeny/raxml/main'
+include { PHYLOGENY_QC         } from '../../modules/local/phylogeny/phylogeny_qc/main'
+include { REROOT               } from '../../modules/local/phylogeny/reroot/main'
+include { GOTREE_PNG           } from '../../modules/local/phylogeny/gotree/main'
+include { REPORT               } from '../../modules/local/phylogeny/report/main'
 
 workflow PHYLOGENY {
     take:

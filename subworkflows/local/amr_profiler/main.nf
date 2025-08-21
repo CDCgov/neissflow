@@ -2,14 +2,14 @@
 // AMR Typing and Analysis
 //
 
-include { SNIPPY_AMR       } from '../../modules/local/snippy_amr'
-include { DEPTH            } from '../../modules/local/depth'
-include { VARIANT_ANALYSIS } from '../../modules/local/variant_analysis'
-include { MLST             } from '../../modules/local/mlst'
-include { NGMASTER         } from '../../modules/local/ngmaster'
-include { BLASTN           } from '../../modules/local/blastn'
-include { MERGE_SINGLE_AMR } from '../../modules/local/merge_single_amr'
-include { MERGE_AMR        } from '../../modules/local/merge_amr'
+include { SNIPPY_AMR       } from '../../modules/local/amr_profiler/snippy_amr/main'
+include { DEPTH            } from '../../modules/local/amr_profiler/depth/main'
+include { VARIANT_ANALYSIS } from '../../modules/local/amr_profiler/variant_analysis/main'
+include { MLST             } from '../../modules/local/amr_profiler/mlst/main'
+include { NGMASTER         } from '../../modules/local/amr_profiler/ngmaster/main'
+include { BLASTN           } from '../../modules/local/amr_profiler/blastn/main'
+include { MERGE_SINGLE_AMR } from '../../modules/local/amr_profiler/merge_single_amr/main'
+include { MERGE_AMR        } from '../../modules/local/amr_profiler/merge_amr/main'
 
 workflow AMR_PROFILER {
     take:
