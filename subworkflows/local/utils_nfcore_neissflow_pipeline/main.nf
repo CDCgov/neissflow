@@ -44,12 +44,12 @@ workflow PIPELINE_INITIALISATION {
     //
     // Print version and exit if required and dump pipeline parameters to JSON file
     //
-    UTILS_NEXTFLOW_PIPELINE (
-        version,
-        true,
-        outdir,
-        workflow.profile.tokenize(',').intersect(['conda', 'mamba']).size() >= 1
-    )
+    // UTILS_NEXTFLOW_PIPELINE (
+    //     version,
+    //     true,
+    //     outdir,
+    //     workflow.profile.tokenize(',').intersect(['conda', 'mamba']).size() >= 1
+    // )
 
     //
     // Validate parameters and generate parameter summary to stdout

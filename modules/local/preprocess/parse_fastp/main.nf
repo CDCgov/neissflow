@@ -1,5 +1,5 @@
 process PARSE_FASTP_REPORTS {
-    tag "$meta"
+    tag "$meta.id"
     label 'process_low'
 
     container "https://depot.galaxyproject.org/singularity/python%3A3.7"

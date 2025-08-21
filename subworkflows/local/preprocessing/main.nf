@@ -58,20 +58,25 @@ workflow PREPROCESSING {
             .passed
             .splitCsv ( header:true, sep:'\t' )
             .map { row -> "${row.isolate}" }
-
-    ch_fastq = ch_fastq
+            
+    ch_fastq2 = ch_fastq
             .map { 
                 meta, fastqs ->
-                    [ meta, fastqs ]
+                    [ meta.id, fastqs ]
             }
-    ch_qc = ch_qc
+    ch_qc2 = ch_qc
             .map {
                 meta ->
-                    [ meta ]
+                    [ meta, 'placeholder' ]
             }
 
     ch_passed = Channel.empty()
-    ch_passed = ch_fastq.join(ch_qc)
+
+    ch_passed = ch_qc2.join(ch_fastq2)
+                        .map {
+                            meta, placeholder, fastqs ->
+                            [ [ id:meta ], fastqs ]
+                        }
 
     emit:
 
