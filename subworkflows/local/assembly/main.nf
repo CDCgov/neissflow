@@ -2,10 +2,9 @@
 // shovill assembly & assembly QC
 //
 
-//include { SPADES                 } from '../../modules/local/spades/spades'
-include { SHOVILL                } from '../../modules/local/shovill'
-include { ASSEMBLY_STATS         } from '../../modules/local/spades/assembly_stats'
-include { QUAST                  } from '../../modules/nf-core/quast/main'
+include { SHOVILL                } from '../../../modules/local/assembly/shovill/main'
+include { ASSEMBLY_STATS         } from '../../../modules/local/assembly/assembly_stats/main'
+include { QUAST                  } from '../../../modules/nf-core/quast/main'
 
 workflow ASSEMBLY {
     take:
