@@ -18,7 +18,14 @@
 
     script:
     """
-    cat $rerooted | gotree draw png --fill-background -H 6000 -w 3000 --annotation-file $annotation -o bestTree.png
+    cat $rerooted | gotree \\
+        draw \\
+        png \\
+        --fill-background \\
+        -H 6000 \\
+        -w 3000 \\
+        --annotation-file $annotation\\
+        -o bestTree.png
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

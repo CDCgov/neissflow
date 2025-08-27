@@ -11,7 +11,6 @@ process RAXML {
     path(partition_guide)
 
     output:
-    //path '*', emit: all
     path 'RAxML_bipartitions.*'            , emit: bipart
     path 'RAxML_bipartitionsBranchLabels.*', emit: bibranch
     path 'RAxML_bootstrap.*'               , emit: bootstrap          
@@ -26,7 +25,17 @@ process RAXML {
     """
     file=$phylip
     name=\${file%%.filtered_polymorphic_sites.phylip}
-    raxmlHPC-PTHREADS -s $phylip -n \$name --asc-corr=stamatakis -q $partition_guide -m GTRGAMMAX -T ${task.cpus} -N autoMRE -p \$RANDOM -f a -x \$RANDOM 
+    raxmlHPC-PTHREADS \\
+        -s $phylip \\
+        -n \$name \\
+        --asc-corr=stamatakis \\
+        -q $partition_guide \\
+        -m GTRGAMMAX \\
+        -T ${task.cpus} \\
+        -N autoMRE \\
+        -p \$RANDOM \\
+        -f a \\
+        -x \$RANDOM 
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

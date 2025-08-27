@@ -17,7 +17,10 @@ process REROOT {
 
     script:
     """
-    gotree reroot midpoint -i $best_tree > midpoint_bestTree.nw
+    gotree \\
+        reroot \\
+        midpoint \\
+        -i $best_tree > midpoint_bestTree.nw
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

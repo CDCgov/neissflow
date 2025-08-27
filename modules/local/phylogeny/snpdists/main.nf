@@ -16,11 +16,12 @@ process SNPDISTS {
     task.ext.when == null || task.ext.when
 
     script:
-    def args = task.ext.args ?: "-j ${task.cpus}"
+    def args = task.ext.args ?: ''
 
     """
     snp-dists \\
         $args \\
+        -j ${task.cpus} \\
         $alignment > matrix.tsv
 
     cat <<-END_VERSIONS > versions.yml

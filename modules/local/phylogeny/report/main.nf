@@ -17,7 +17,9 @@ process REPORT {
     script:
     """
 
-    generate_html.sh -p $png -c $isolate_clusters
+    generate_html.sh \\
+        -p $png \\
+        -c $isolate_clusters
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

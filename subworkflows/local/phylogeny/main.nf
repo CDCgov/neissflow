@@ -178,7 +178,6 @@ workflow PHYLOGENY {
     vcf                  = GUBBINS.out.vcf                         // channel : [ vcf ]
     tre                  = GUBBINS.out.tre                         // channel : [ tre ]
     node_tre             = GUBBINS.out.node_tre                    // channel : [ node_tre ]
-    //log                  = GUBBINS.out.log                         // channel : [ log ]
     csv                  = GUBBINS.out.csv                         // channel : [ csv ]
     monomorphic_nuc_vals = COUNT_MONO_NUC.out.monomorphic_nuc_vals // channel: [ monomorphic_nuc_vals ]
     snp_matrix           = SNPDISTS.out.snp_matrix                 // channel: [ snp_matrix ]
@@ -193,5 +192,5 @@ workflow PHYLOGENY {
     png                  = GOTREE_PNG.out.png                      // channel: [ png ]
     report               = REPORT.out.report                       // channel: [ report ]
 
-    versions             = ch_versions                               // channel: [ versions.yml ]
+    versions             = ch_versions                             // channel: [ versions.yml ]
 }
