@@ -1,30 +1,38 @@
-nextflow.enable.dsl=2
-
 process VARIANT_ANALYSIS {
-    tag "$sample_name"
+    tag "$meta.id"
     label 'process_low'
 
     container "docker://python:3.9"
 
     input:
-    tuple val(sample_name), path(wg), path(hgt), path(avg_depth), path(depths)
+    tuple val(meta), path(wg), path(hgt), path(avg_depth), path(depths)
     path default_amr
     path columns
     path strands
 
     output:
-    tuple val(sample_name), path("${sample_name}/${sample_name}_variant_report.tsv"), emit: report
-    tuple val(sample_name), path ("${sample_name}/${sample_name}_amr_vcf.tsv")      , emit: amr_vcf
-    path "versions.yml"                                                             , emit: versions
+    tuple val(meta), path("*/*_variant_report.tsv"), emit: report
+    tuple val(meta), path ("*/*_amr_vcf.tsv")      , emit: amr_vcf
+    path "versions.yml"                            , emit: versions
 
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
+    prefix   = task.ext.prefix ?: "${meta.id}"
     """
 
-    AMR_variant_analysis.py -w $wg -t $hgt -c $avg_depth -n $sample_name -o $sample_name -d $default_amr -f $columns -s $depths -gs $strands
+    AMR_variant_analysis.py \\
+        -w $wg \\
+        -t $hgt \\
+        -c $avg_depth \\
+        -n $prefix \\
+        -o $prefix \\
+        -d $default_amr \\
+        -f $columns \\
+        -s $depths \\
+        -gs $strands
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

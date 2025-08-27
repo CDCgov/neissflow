@@ -35,8 +35,6 @@ process MASH {
 
     mash screen -w -p ${task.cpus} $mash_db intermediate.fastq > "${prefix}.tsv"
 
-    rm intermediate.fastq
-
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         mash: \$( mash --version )

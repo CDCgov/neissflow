@@ -10,7 +10,7 @@ process QC_CHECK {
     output:
     path '*passed_qc2.tsv', emit: passed
     path '*failed_qc2.tsv', emit: failed
-    path "versions.yml"  , emit: versions
+    path "versions.yml"   , emit: versions
 
     when:
     task.ext.when == null || task.ext.when

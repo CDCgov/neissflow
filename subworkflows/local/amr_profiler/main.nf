@@ -13,11 +13,11 @@ include { MERGE_AMR        } from '../../../modules/local/amr_profiler/merge_amr
 
 workflow AMR_PROFILER {
     take:
-    reads          // channel: [ val(sample_name), [ reads ] ]
-    contigs        // channel: [ val(sample_name), [ contigs ] ]
-    wg_bam         // channel: [ val(sample_name), [ bam ] ]
-    wg_tab         // channel: [ val(sample_name), [ tab ] ]
-    wg_bai         // channel: [ val(sample_name), [ bai ] ]
+    reads          // channel: [ meta, [ reads ] ]
+    contigs        // channel: [ meta, [ contigs ] ]
+    wg_bam         // channel: [ meta, [ bam ] ]
+    wg_tab         // channel: [ meta, [ tab ] ]
+    wg_bai         // channel: [ meta, [ bai ] ]
     prefix         // val(prefix)
 
     main:
@@ -119,39 +119,39 @@ workflow AMR_PROFILER {
 
     emit:
 
-    tab                = SNIPPY_AMR.out.tab                // channel: [ val(sample_name), [ tab ] ]
-    csv                = SNIPPY_AMR.out.csv                // channel: [ val(sample_name), [ csv ] ]
-    html               = SNIPPY_AMR.out.html               // channel: [ val(sample_name), [ html ] ]
-    vcf                = SNIPPY_AMR.out.vcf                // channel: [ val(sample_name), [ vcf ] ]
-    bed                = SNIPPY_AMR.out.bed                // channel: [ val(sample_name), [ bed ] ]
-    gff                = SNIPPY_AMR.out.gff                // channel: [ val(sample_name), [ gff ] ]
-    bam                = SNIPPY_AMR.out.bam                // channel: [ val(sample_name), [ bam ] ]
-    bai                = SNIPPY_AMR.out.bai                // channel: [ val(sample_name), [ bai ] ]    
-    //log                = SNIPPY_AMR.out.log                // channel: [ val(sample_name), [ log ] ]
-    aligned_fa         = SNIPPY_AMR.out.aligned_fa         // channel: [ val(sample_name), [ aligned_fa ] ]
-    consensus_fa       = SNIPPY_AMR.out.consensus_fa       // channel: [ val(sample_name), [ consensus_fa ] ]
-    consensus_subs_fa  = SNIPPY_AMR.out.consensus_subs_fa  // channel: [ val(sample_name), [ consensus_subs_fa ] ]
-    raw_vcf            = SNIPPY_AMR.out.raw_vcf            // channel: [ val(sample_name), [ raw_vcf ] ]
-    filt_vcf           = SNIPPY_AMR.out.filt_vcf           // channel: [ val(sample_name), [ filt_vcf ] ]
-    vcf_gz             = SNIPPY_AMR.out.vcf_gz             // channel: [ val(sample_name), [ vcf_gz ] ]    
-    vcf_csi            = SNIPPY_AMR.out.vcf_csi            // channel: [ val(sample_name), [ vcf_csi ] ]
-    txt                = SNIPPY_AMR.out.txt                // channel: [ val(sample_name), [ txt ] ]
+    tab                = SNIPPY_AMR.out.tab                // channel: [ meta, [ tab ] ]
+    csv                = SNIPPY_AMR.out.csv                // channel: [ meta, [ csv ] ]
+    html               = SNIPPY_AMR.out.html               // channel: [ meta, [ html ] ]
+    vcf                = SNIPPY_AMR.out.vcf                // channel: [ meta, [ vcf ] ]
+    bed                = SNIPPY_AMR.out.bed                // channel: [ meta, [ bed ] ]
+    gff                = SNIPPY_AMR.out.gff                // channel: [ meta, [ gff ] ]
+    bam                = SNIPPY_AMR.out.bam                // channel: [ meta, [ bam ] ]
+    bai                = SNIPPY_AMR.out.bai                // channel: [ meta, [ bai ] ]    
+    //log                = SNIPPY_AMR.out.log              // channel: [ meta, [ log ] ]
+    aligned_fa         = SNIPPY_AMR.out.aligned_fa         // channel: [ meta, [ aligned_fa ] ]
+    consensus_fa       = SNIPPY_AMR.out.consensus_fa       // channel: [ meta, [ consensus_fa ] ]
+    consensus_subs_fa  = SNIPPY_AMR.out.consensus_subs_fa  // channel: [ meta, [ consensus_subs_fa ] ]
+    raw_vcf            = SNIPPY_AMR.out.raw_vcf            // channel: [ meta, [ raw_vcf ] ]
+    filt_vcf           = SNIPPY_AMR.out.filt_vcf           // channel: [ meta, [ filt_vcf ] ]
+    vcf_gz             = SNIPPY_AMR.out.vcf_gz             // channel: [ meta, [ vcf_gz ] ]    
+    vcf_csi            = SNIPPY_AMR.out.vcf_csi            // channel: [ meta, [ vcf_csi ] ]
+    txt                = SNIPPY_AMR.out.txt                // channel: [ meta, [ txt ] ]
 
-    avg_depth          = ch_depth_report                     // channel: [ val(sample_name), [ avg_depth ] ]
+    avg_depth          = ch_depth_report                   // channel: [ meta, [ avg_depth ] ]
 
-    report             = VARIANT_ANALYSIS.out.report        // channel: [ val(sample_name), [ report ] ]
-    amr_vcf            = VARIANT_ANALYSIS.out.amr_vcf       // channel: [ val(sample_name), [ amr_vcf ] ]
+    report             = VARIANT_ANALYSIS.out.report       // channel: [ meta, [ report ] ]
+    amr_vcf            = VARIANT_ANALYSIS.out.amr_vcf      // channel: [ meta, [ amr_vcf ] ]
 
-    mlst_report        = MLST.out.mlst_report               // channel: [ val(sample_name), [ mlst_report ] ]
+    mlst_report        = MLST.out.mlst_report              // channel: [ meta, [ mlst_report ] ]
 
-    ngmaster_report    = NGMASTER.out.ngmaster_report       // channel: [ val(sample_name), [ ngmaster_report ] ]
+    ngmaster_report    = NGMASTER.out.ngmaster_report      // channel: [ meta, [ ngmaster_report ] ]
 
-    blast_report       = BLASTN.out.blast_report            // channel: [ val(sample_name), [ blast_report ] ]
+    blast_report       = BLASTN.out.blast_report           // channel: [ meta, [ blast_report ] ]
 
-    amr_report         = ch_amr_report                      // channel: [ val(sample_name), [ amr_report ] ]
+    amr_report         = ch_amr_report                     // channel: [ meta, [ amr_report ] ]
 
-    all_amr            = MERGE_AMR.out.all_amr              // channel: [ all_amr ]
-    all_depth          = MERGE_AMR.out.all_depth            // channel: [ all_depth ]
+    all_amr            = MERGE_AMR.out.all_amr             // channel: [ all_amr ]
+    all_depth          = MERGE_AMR.out.all_depth           // channel: [ all_depth ]
 
-    versions           = ch_versions                        // channel: [ versions.yml ]
+    versions           = ch_versions                       // channel: [ versions.yml ]
 }

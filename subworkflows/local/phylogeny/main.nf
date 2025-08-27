@@ -41,7 +41,7 @@ workflow PHYLOGENY {
         SNIPPY_CORE (
             vcf,
             aligned_fa,
-            params.FA19_ref
+            "${params.FA19_ref}"
             )
     }
     ch_versions = ch_versions.mix(SNIPPY_CORE.out.versions)
@@ -193,5 +193,5 @@ workflow PHYLOGENY {
     png                  = GOTREE_PNG.out.png                      // channel: [ png ]
     report               = REPORT.out.report                       // channel: [ report ]
 
-    versions           = ch_versions                               // channel: [ versions.yml ]
+    versions             = ch_versions                               // channel: [ versions.yml ]
 }
