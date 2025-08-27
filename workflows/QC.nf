@@ -75,7 +75,7 @@ workflow QC {
     if (!params.only_fasta){
         SNIPPY (
             ch_input,
-            params.FA19_ref
+            "${params.FA19_ref}"
         )
         ch_vcf = SNIPPY.out.vcf
         ch_aligned_fa = SNIPPY.out.aligned_fa
@@ -146,16 +146,52 @@ workflow QC {
                     }
             
             ch_passed_vcf = Channel.empty()
-            ch_passed_vcf = ch_vcf.join(ch_qc)
+            ch_passed_vcf = ch_vcf
+                            .map {
+                                meta, vcf ->
+                                [ meta.id, vcf ]
+                            }
+                            .join(ch_qc)
+                            .map {
+                                meta, vcf ->
+                                [ [ id:meta ], vcf ]
+                            }
 
             ch_passed_aligned_fa = Channel.empty()
-            ch_passed_aligned_fa = ch_aligned_fa.join(ch_qc)
+            ch_passed_aligned_fa = ch_aligned_fa
+                                    .map {
+                                        meta, aligned_fa ->
+                                        [ meta.id, aligned_fa ]
+                                    }
+                                    .join(ch_qc)
+                                    .map {
+                                        meta, aligned_fa ->
+                                        [ [ id:meta ], aligned_fa ]
+                                    }
 
             ch_passed_fq = Channel.empty()
-            ch_passed_fq = ch_input.join(ch_qc)
+            ch_passed_fq = ch_input
+                            .map {
+                                meta, fq ->
+                                [ meta.id, fq ]
+                            }
+                            .join(ch_qc)
+                            .map {
+                                meta, fq ->
+                                [ [ id:meta ], fq ]
+                            }
 
             ch_passed_fa = Channel.empty()
-            ch_passed_fa = ch_contigs.join(ch_qc)
+            ch_passed_fa = ch_contigs
+                            .map {
+                                meta, fa ->
+                                [ meta.id, fa ]
+                            }
+                            .join(ch_qc)
+                            .map {
+                                meta, fa ->
+                                [ [ id:meta ], fa ]
+                            }
 
             ch_input = ch_passed_fq
             ch_contigs = ch_passed_fa
