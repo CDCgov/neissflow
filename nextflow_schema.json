@@ -72,8 +72,7 @@
                 "QC": {
                     "type": "boolean",
                     "description": "True if running control samples through as well",
-                    "fa_icon": "fas fa-copy",
-                    "hidden": true
+                    "fa_icon": "fas fa-copy"
                 }
             }
         },
