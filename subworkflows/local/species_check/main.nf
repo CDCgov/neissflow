@@ -8,8 +8,8 @@ include { COMBINE_MASH_REPORTS } from '../../../modules/local/species_id/combine
 
 workflow SPECIES_CHECK {
     take:
-    reads          // channel: [ val(sample_name), [ reads ] ]
-    ch_stats_input // channel: [ val(sample_name), bam, bai ]
+    reads          // channel: [ meta, [ reads ] ]
+    ch_stats_input // channel: [ meta, bam, bai ]
     prefix         // val(prefix)
 
     main:

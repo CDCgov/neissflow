@@ -8,8 +8,8 @@ include { QUAST                  } from '../../../modules/nf-core/quast/main'
 
 workflow ASSEMBLY {
     take:
-    reads             // channel: [ val(sample_name), [ reads ] ]
-    ch_contigs        // channel: [ val(sample_name), contigs ]
+    reads             // channel: [ meta, [ reads ] ]
+    ch_contigs        // channel: [ meta, contigs ]
     prefix            // val(prefix)
 
     main:
@@ -38,23 +38,6 @@ workflow ASSEMBLY {
                         meta, contigs ->
                         contigs
                     }
-    if (params.only_fastq){
-        ch_quast_in = ch_assembly
-                        .map {
-                            sample_id, contigs ->
-                            def meta = [:]
-                            meta.id = sample_id
-                            [ meta, [ contigs ] ]
-                        }
-    } else {
-        ch_quast_in = ch_assembly
-                        .map {
-                            sample_id, contigs ->
-                            def meta = [:]
-                            meta.id = sample_id
-                            [ meta, contigs ]
-                        }
-    }
     
     ch_qc_stats_report = Channel.empty()
     if (!params.skip_assembly_qc) {
@@ -67,19 +50,19 @@ workflow ASSEMBLY {
     }
 
     QUAST(
-        ch_quast_in,
-        [[],params.FA19cg],
+        ch_assembly,
+        [[],"${params.FA19cg}"],
         [[],[]]
     )
     ch_versions = ch_versions.mix(QUAST.out.versions)
 
     emit:
 
-    contigs             = ch_assembly                                // channel:  [ val(sample_name), [ spades_contigs ] ] 
+    contigs             = ch_assembly                                // channel: [ meta, contigs ] 
 
     qc_stats_report     = ch_qc_stats_report                         // channel: qc_stats_report
 
-    quast_results       = QUAST.out.results                          // channel: [ val(sample_name), [ results ] ]
+    quast_results       = QUAST.out.results                          // channel: [ meta, results ]
 
     versions            = ch_versions                                // channel: [ versions.yml ]
 
