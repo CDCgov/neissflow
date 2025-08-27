@@ -9,12 +9,13 @@ process COMBINE_FASTP_REPORTS {
 
     output:
     path '*FASTQ_QC_report.tsv', emit: fastp_report
-    path "versions.yml"       , emit: versions
+    path "versions.yml"        , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
+    def args = task.ext.args   ?: ''
     """
     awk 'FNR==1 && NR!=1{next;}{print}' $tsv_paths > '${prefix}_FASTQ_QC_report.tsv'
 

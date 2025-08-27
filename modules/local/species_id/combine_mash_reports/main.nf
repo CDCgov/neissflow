@@ -11,7 +11,7 @@ process COMBINE_MASH_REPORTS {
     path '*Mash_top_hit_report.tsv', emit: top_hits
     path '*Mash_contaminants.tsv'  , emit: contams
     path '*Mash_plasmids.tsv'      , emit: plasmids
-    path "versions.yml"           , emit: versions
+    path "versions.yml"            , emit: versions
 
     when:
     task.ext.when == null || task.ext.when

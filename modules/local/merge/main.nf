@@ -1,7 +1,3 @@
-#!/usr/bin/env nextflow
-
-nextflow.enable.dsl=2
-
 process MERGE_REPORTS {
     label 'process_single'
 
@@ -19,7 +15,7 @@ process MERGE_REPORTS {
 
     output:
     path '*final_report.tsv', emit: final_report 
-    path "versions.yml"    , emit: versions
+    path "versions.yml"     , emit: versions
 
     when:
     task.ext.when == null || task.ext.when

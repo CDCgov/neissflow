@@ -1,5 +1,5 @@
 process STATS {
-    tag "$sample_name"
+    tag "$meta.id"
     label 'process_medium'
 
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
@@ -7,16 +7,17 @@ process STATS {
         'quay.io/biocontainers/samtools:1.20--h50ea8bc_0' }"
 
     input:
-    tuple val(sample_name), path(bam), path(bai)
+    tuple val(meta), path(bam), path(bai)
 
     output:
-    path "*.txt", emit: stats_out
+    path "*.txt"       , emit: stats_out
     path "versions.yml", emit: versions
 
     when:
     task.ext.when == null || task.ext.when
     
     script: 
+    prefix = task.ext.prefix ?: "${meta.id}"
     """
 
     samtools \\
@@ -27,7 +28,7 @@ process STATS {
         CP012026 \\
         | grep ^SN \\
         | cut -f 2- \\
-        > ${sample_name}_stats.txt
+        > ${prefix}_stats.txt
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

@@ -17,8 +17,8 @@ nextflow.enable.dsl = 2
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-include { NEISSFLOW  } from './workflows/neissflow'
-include { QC  } from './workflows/QC'
+include { NEISSFLOW               } from './workflows/neissflow'
+include { QC                      } from './workflows/QC'
 include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_neissflow_pipeline'
 include { fromSamplesheet         } from 'plugin/nf-validation'
 include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_neissflow_pipeline'
@@ -106,7 +106,7 @@ workflow {
             .fromSamplesheet("controls")
             .map {
                 meta, fastq_1, fastq_2 ->
-                    [ meta.id, [ fastq_1, fastq_2 ] ]
+                    [ meta, [ fastq_1, fastq_2 ] ]
             }
             .set { ch_control_samplesheet }
         

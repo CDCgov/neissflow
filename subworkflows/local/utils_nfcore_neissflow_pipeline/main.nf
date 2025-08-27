@@ -85,11 +85,11 @@ workflow PIPELINE_INITIALISATION {
         .map {
             meta, fastq_1, fastq_2, fasta ->
                 if(!fasta){
-                    return [ meta.id, [ fastq_1, fastq_2 ] ]
+                    return [ meta, [ fastq_1, fastq_2 ] ]
                 } else if(!fastq_1) {
-                    return [ meta.id, [ fasta ] ]
+                    return [ meta, [ fasta ] ]
                 } else {
-                    [ meta.id, [ fastq_1, fastq_2, fasta ] ]
+                    [ meta, [ fastq_1, fastq_2, fasta ] ]
                 }
         }
         .set { ch_samplesheet }

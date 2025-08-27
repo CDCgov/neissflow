@@ -16,7 +16,6 @@ process GUBBINS {
     path '*.summary_of_snp_distribution.vcf'  , emit: vcf 
     path '*.final_tree.tre'                   , emit: tre
     path '*.node_labelled.final_tree.tre'     , emit: node_tre
-    //path '*.log'                              , emit: log
     path '*.per_branch_statistics.csv'        , emit: csv
     path "versions.yml"                       , emit: versions
 
@@ -27,7 +26,13 @@ process GUBBINS {
     """
     file=$clean_full_aln
     name=\${file%%.clean.full.aln}
-    run_gubbins.py -c ${task.cpus} -i $max_itr -u -p \$name -t raxml $clean_full_aln
+    run_gubbins.py \\
+        -c ${task.cpus} \\
+        -i $max_itr \\
+        -u \\
+        -p \$name \\
+        -t raxml \\
+        $clean_full_aln
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

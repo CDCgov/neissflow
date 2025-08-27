@@ -4,18 +4,19 @@ process FASTP_QC_CHECK {
     container "https://depot.galaxyproject.org/singularity/centos:7.9.2009"
 
     input:
-    path fastp_report
+    path(fastp_report)
     val(prefix)
 
     output:
     path '*passed_qc1.tsv', emit: passed
     path '*failed_qc1.tsv', emit: failed 
-    path "versions.yml"  , emit: versions
+    path "versions.yml"   , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
+    def args = task.ext.args   ?: ''
     """
     head -n 1 $fastp_report > ${prefix}_passed_qc1.tsv
     head -n 1 $fastp_report > ${prefix}_failed_qc1.tsv

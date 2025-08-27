@@ -11,7 +11,7 @@ process MERGE_AMR {
     output:
     path '*amr_report.tsv'      , emit: all_amr
     path '*avg_depth_report.tsv', emit: all_depth
-    path 'versions.yml'        , emit: versions
+    path 'versions.yml'         , emit: versions
 
     when:
     task.ext.when == null || task.ext.when

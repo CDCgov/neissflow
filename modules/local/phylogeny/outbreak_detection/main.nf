@@ -15,11 +15,13 @@ process OUTBREAK_DETECTION {
     task.ext.when == null || task.ext.when
 
     script:
-    def args = task.ext.args ?: "-i ${snp_matrix} -d ${snp_dist}"
+    def args = task.ext.args ?: ""
 
     """
 
     outbreak_detection.py \\
+        -i ${snp_matrix} \\
+        -d ${snp_dist} \\
         $args > isolate_clusters.txt
 
     cat <<-END_VERSIONS > versions.yml

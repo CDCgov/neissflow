@@ -8,7 +8,7 @@ include { FASTP_QC_CHECK        } from '../../../modules/local/preprocess/fastp_
 
 workflow PREPROCESSING {
     take:
-    reads          // channel: [ val(sample_name), [ reads ] ]
+    reads          // channel: [ meta, [ reads ] ]
     prefix         // val(prefix)
 
     main:
@@ -58,30 +58,35 @@ workflow PREPROCESSING {
             .passed
             .splitCsv ( header:true, sep:'\t' )
             .map { row -> "${row.isolate}" }
-
-    ch_fastq = ch_fastq
+            
+    ch_fastq2 = ch_fastq
             .map { 
                 meta, fastqs ->
-                    [ meta, fastqs ]
+                    [ meta.id, fastqs ]
             }
-    ch_qc = ch_qc
+    ch_qc2 = ch_qc
             .map {
                 meta ->
-                    [ meta ]
+                    [ meta, 'placeholder' ]
             }
 
     ch_passed = Channel.empty()
-    ch_passed = ch_fastq.join(ch_qc)
+
+    ch_passed = ch_qc2.join(ch_fastq2)
+                        .map {
+                            meta, placeholder, fastqs ->
+                            [ [ id:meta ], fastqs ]
+                        }
 
     emit:
 
     fastp_report        = COMBINE_FASTP_REPORTS.out.fastp_report        // channel:  fastp_report 
-    fastp_json          = FASTP.out.json_path                           // channel:  [ val(sample_name), [ json_path ] ]
+    fastp_json          = FASTP.out.json_path                           // channel:  [ meta, [ json_path ] ]
 
-    passed              = FASTP_QC_CHECK.out.passed                     // channel: passed
-    failed              = FASTP_QC_CHECK.out.failed                     // channel: failed
+    passed              = FASTP_QC_CHECK.out.passed                     // channel: path(passed)
+    failed              = FASTP_QC_CHECK.out.failed                     // channel: path(failed)
 
-    trimmed_fastq_paths = ch_passed                                     // channel: [ val(sample_name), [ trimmed_fastq_paths ] ]
+    trimmed_fastq_paths = ch_passed                                     // channel: [ meta, [ trimmed_fastq_paths ] ]
 
     versions            = ch_versions                                   // channel: [ versions.yml ]
 

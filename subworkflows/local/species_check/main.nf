@@ -8,8 +8,8 @@ include { COMBINE_MASH_REPORTS } from '../../../modules/local/species_id/combine
 
 workflow SPECIES_CHECK {
     take:
-    reads          // channel: [ val(sample_name), [ reads ] ]
-    ch_stats_input // channel: [ val(sample_name), bam, bai ]
+    reads          // channel: [ meta, [ reads ] ]
+    ch_stats_input // channel: [ meta, bam, bai ]
     prefix         // val(prefix)
 
     main:
@@ -52,7 +52,7 @@ workflow SPECIES_CHECK {
 
     emit:
 
-    mash_reports        = MASH.out.mash_results                         // channel:  [ val(sample_name), mash_report ] 
+    mash_reports        = MASH.out.mash_results                         // channel:  [ meta, mash_report ] 
 
     top_hits            = COMBINE_MASH_REPORTS.out.top_hits             // channel: top_hits
     contams             = COMBINE_MASH_REPORTS.out.contams              // channel: contams
@@ -60,7 +60,7 @@ workflow SPECIES_CHECK {
 
     stats_out           = STATS.out.stats_out                           // channel: [ stats_report ]
 
-    cov                 = COVERAGE.out.cov                              // channel: [ val(sample_name), coverage ]
+    cov                 = COVERAGE.out.cov                              // channel: [ meta, coverage ]
 
     versions            = ch_versions                                   // channel: [ versions.yml ]
 }

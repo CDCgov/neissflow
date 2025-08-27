@@ -1,14 +1,14 @@
 process CHECK_FASTQS {
-    tag "$sample_name"
+    tag "$meta.id"
     label 'process_low' 
 
     container "https://depot.galaxyproject.org/singularity/centos:7.9.2009"
 
     input:
-    tuple val(sample_name), path(reads)
+    tuple val(meta), path(reads)
 
     output:
-    tuple val(sample_name), path(reads), emit: pass
+    tuple val(meta), path(reads)       , emit: pass
     path 'versions.yml'                , emit: versions
 
     when:

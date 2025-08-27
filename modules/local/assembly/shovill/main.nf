@@ -1,5 +1,5 @@
 process SHOVILL {
-    tag "$sample_name"
+    tag "$meta.id"
     label 'process_medium'
 
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
@@ -7,21 +7,22 @@ process SHOVILL {
         'biocontainers/shovill:1.1.0--0' }"
 
     input:
-    tuple val(sample_name), path(reads)
+    tuple val(meta), path(reads)
 
     output:
-    tuple val(sample_name), path("*_contigs.fa")                       , emit: contigs
-    tuple val(sample_name), path("shovill.corrections")                , emit: corrections
-    tuple val(sample_name), path("shovill.log")                        , emit: log
-    tuple val(sample_name), path("{skesa,spades,megahit,velvet}.fasta"), emit: raw_contigs
-    tuple val(sample_name), path("contigs.{fastg,gfa,LastGraph}")      , optional:true, emit: gfa
-    path "versions.yml"                                                , emit: versions
+    tuple val(meta), path("*_contigs.fa")                       , emit: contigs
+    tuple val(meta), path("shovill.corrections")                , emit: corrections
+    tuple val(meta), path("shovill.log")                        , emit: log
+    tuple val(meta), path("{skesa,spades,megahit,velvet}.fasta"), emit: raw_contigs
+    tuple val(meta), path("contigs.{fastg,gfa,LastGraph}")      , optional:true, emit: gfa
+    path "versions.yml"                                         , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
-    def args = task.ext.args ?: ''
+    prefix     = task.ext.prefix ?: "${meta.id}"
+    def args   = task.ext.args ?: ''
     def memory = task.memory.toGiga()
 
     if (params.downsample) {
@@ -37,7 +38,7 @@ process SHOVILL {
             $args \\
             --force
 
-        mv contigs.fa ${sample_name}_contigs.fa
+        mv contigs.fa ${prefix}_contigs.fa
 
         cat <<-END_VERSIONS > versions.yml
         "${task.process}":
@@ -56,7 +57,7 @@ process SHOVILL {
             $args \\
             --force
 
-        mv contigs.fa ${sample_name}_contigs.fa
+        mv contigs.fa ${prefix}_contigs.fa
 
         cat <<-END_VERSIONS > versions.yml
         "${task.process}":

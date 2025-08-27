@@ -9,7 +9,7 @@ process ASSEMBLY_STATS {
 
     output:
     path "*Denovo_assembly_Stats_QC_report.txt", emit: qc_stats_report
-    path  "versions.yml", emit: versions
+    path  "versions.yml"                       , emit: versions
 
     when:
     task.ext.when == null || task.ext.when

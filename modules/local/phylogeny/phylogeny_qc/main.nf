@@ -20,7 +20,11 @@ process PHYLOGENY_QC {
     script:
     """
     
-    phylogeny_qc.sh $align $tree $mono_nuc "$sample_list"
+    phylogeny_qc.sh \\
+        $align \\
+        $tree \\
+        $mono_nuc \\
+        "$sample_list"
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
