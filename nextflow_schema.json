@@ -34,7 +34,8 @@
                     "mimetype": "text/csv",
                     "pattern": "^\\S+\\.csv$",
                     "description": "Path to comma-separated file containing information about the control samples.",
-                    "fa_icon": "fas fa-file-csv"
+                    "fa_icon": "fas fa-file-csv",
+                    "hidden": true
                 },
                 "outdir": {
                     "type": "string",
@@ -72,8 +73,7 @@
                 "QC": {
                     "type": "boolean",
                     "description": "True if running control samples through as well",
-                    "fa_icon": "fas fa-copy",
-                    "hidden": true
+                    "fa_icon": "fas fa-copy"
                 }
             }
         },
