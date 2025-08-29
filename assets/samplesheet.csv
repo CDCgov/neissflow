@@ -1,0 +1,8 @@
+sample,fastq_1,fastq_2
+SRR11904202,assets/test_samples/SRR11904202_1.fastq.gz,assets/test_samples/SRR11904202_2.fastq.gz
+SRR11904206,assets/test_samples/SRR11904206_1.fastq.gz,assets/test_samples/SRR11904206_2.fastq.gz
+SRR11904216,assets/test_samples/SRR11904216_1.fastq.gz,assets/test_samples/SRR11904216_2.fastq.gz
+SRR9985899,assets/test_samples/SRR9985899_1.fastq.gz,assets/test_samples/SRR9985899_2.fastq.gz
+SRR9878333,assets/test_samples/SRR9878333_1.fastq.gz,assets/test_samples/SRR9878333_2.fastq.gz
+SRR11904361,assets/test_samples/SRR11904361_1.fastq.gz,assets/test_samples/SRR11904361_2.fastq.gz
+SRR9877719,assets/test_samples/SRR9877719_1.fastq.gz,assets/test_samples/SRR9877719_2.fastq.gz

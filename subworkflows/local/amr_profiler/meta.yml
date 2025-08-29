@@ -1,0 +1,183 @@
+name: "amr_profiler"
+description: |
+  AMR profiler subworkflow performs variant calling on plasmid and rRNA AMR genes,
+  depth of coverage checks on AMR genes, variant analysis of variants called to identify
+  known AMR markers, MLST, NG-MAST, NG-STAR, and allele calling and related summarization.
+keywords:
+  - variant
+  - depth
+  - mlst
+  - ngstar
+  - ngmast
+  - amr
+  - blast
+  - allele
+  - report
+components:
+  - snippy/amr
+  - depth
+  - variant_analysis
+  - mlst
+  - ngmaster
+  - blastn
+  - merge_single_amr
+  - merge_amr
+input:
+  - reads:
+      type: file
+      description: |
+        Channel of input sequencing reads for variant calling against plasmid AMR genes.
+        Structure: [ val(meta), path(reads) ]
+      pattern: "*.fastq.gz"
+  - contigs:
+      type: file
+      description: |
+        Channel of contigs to determine MLST, NG-STAR, NG-MAST on and allele call with.
+        Structure: [ val(meta), path(contigs) ]
+      pattern: "*.fasta"
+  - wg_bam:
+      type: file
+      description: |
+        Channel of BAM files produced by aligning sample reads to FA19.
+        Structure: [ val(meta), path(bam) ]
+      pattern: "*.bam"
+  - wg_tab:
+      type: file
+      description: |
+        Channel annotated TAB delimited VCF files produced by variant calling against FA19
+        Structure: [ val(meta), path(tab) ]
+      pattern: "*.tab"
+  - wg_bai:
+      type: file
+      description: |
+        Channel of BAI index files for the wg_bam BAM files.
+        Structure: [ val(meta), path(bai) ]
+      pattern: "*.bai"
+  - prefix:
+      type: string
+      description: |
+        Prefix for the QC report file generated as part of the custom assembly QC
+output:
+  - tab:
+      type: file
+      description: A simple tab-separated summary of all the variants
+      pattern: "*.tab"
+  - csv:
+      type: file
+      description: A comma-separated version of the .tab file
+      pattern: "*.csv"
+  - html:
+      type: file
+      description: A HTML version of the .tab file
+      pattern: "*.html"
+  - vcf:
+      type: file
+      description: The final annotated variants in VCF format
+      pattern: "*.vcf"
+  - bed:
+      type: file
+      description: The variants in BED format
+      pattern: "*.bed"
+  - gff:
+      type: file
+      description: The variants in GFF3 format
+      pattern: "*.gff"
+  - bam:
+      type: file
+      description: The alignments in BAM format. Includes unmapped, multimapping
+        reads. Excludes duplicates.
+      pattern: "*.bam"
+  - bai:
+      type: file
+      description: Index for the .bam file
+      pattern: "*.bam.bai"
+  - aligned_fa:
+      type: file
+      description: A version of the reference but with - at position with depth=0
+        and N for 0 < depth < --mincov (does not have variants)
+      pattern: "*.aligned.fa"
+  - consensus_fa:
+      type: file
+      description: A version of the reference genome with all variants instantiated
+      pattern: "*.consensus.fa"
+  - consensus_subs_fa:
+      type: file
+      description: A version of the reference genome with only substitution variants
+        instantiated
+      pattern: "*.consensus.subs.fa"
+  - raw_vcf:
+      type: file
+      description: The unfiltered variant calls from Freebayes
+      pattern: "*.raw.vcf"
+  - filt_vcf:
+      type: file
+      description: The filtered variant calls from Freebayes
+      pattern: "*.filt.vcf"
+  - vcf_gz:
+      type: file
+      description: Compressed .vcf file via BGZIP
+      pattern: "*.vcf.gz"
+  - vcf_csi:
+      type: file
+      description: Index for the .vcf.gz via bcftools index
+      pattern: "*.vcf.gz.csi"
+  - txt:
+      type: file
+      description: Tab-separated columnar list of statistics
+      pattern: "*.txt"
+  - avg_depth:
+      type: file
+      description: |
+        Channel of average depths of each AMR gene per sample
+      pattern: "*_amr_depth.tsv"
+  - report:
+      type: file
+      description: |
+        Channel with per sample variant analysis AMR reports
+      pattern: "*_variant_report.tsv"
+  - amr_vcf:
+      type: file
+      description: |
+        Channel of TAB delimited annotated VCF report containing all variants found in AMR genes per sample
+      pattern: "*_amr_vcf.tsv"
+  - mlst_report:
+      type: file
+      description: |
+        Channel of MLST sequence types per sample.
+      pattern: "*_mlst.tsv"
+  - ngmaster_report:
+      type: file
+      description: |
+        Channel with NG-MAST and NG-STAR sequence types and scheme allele calls per sample.
+      pattern: "*_ngmaster.tsv"
+  - blast_report:
+      type: file
+      description: |
+        Channel with penA and porB allele calls and mtrR mosaicism determination per sample.
+      pattern: "*_amr_blast.tsv"
+  - amr_report:
+      type: file
+      description: |
+        Channel with merged AMR reports per sample.
+  - all_amr:
+      type: file
+      description: |
+        File with merged AMR reports for all samples.
+      pattern: "neissflow_amr_report.tsv"
+  - all_depth:
+      type: file
+      description: |
+        File with merged average depth reports for all samples.
+      pattern: "neissflow_avg_depth_report.tsv"
+  - versions:
+      type: file
+      description: |
+        YAML file containing software/component versions used by the subworkflow.
+      pattern: "versions.yml"
+authors:
+  - "@xqc3"
+maintainers:
+  - "@xqc3"
+  - "@rqu4"
+  - "@lww9"
+  - "@yyr4"

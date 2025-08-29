@@ -1,0 +1,69 @@
+name: "assembly"
+description: |
+  Shovill-based assembly and assembly-quality subworkflow for Neisseria gonorrohoeae 
+  genomes. Performs de novo assembly with shovill when preprocessed are provided, runs
+  custom assembly QC, runs QUAST to generate assembly quality metrics and emits contigs 
+  and QC reports. The workflow can also accept pre-computed contigs/fasta input and will 
+  skip the shovill step in that case. The custom assembly QC may also be skipped.
+keywords:
+  - assembly
+  - shovill
+  - contigs
+  - quast
+  - cleanup
+  - denovo
+  - bacterial
+  - quality-control
+components:
+  - shovill
+  - qc
+  - quast
+input:
+  - reads:
+      type: file
+      description: |
+        Channel of input sequencing reads used for de novo assembly.
+        Structure: [ val(meta), path(reads) ]
+      pattern: "*.fastq.gz"
+  - ch_contigs:
+      type: file
+      description: |
+        Optional channel of pre-computed contigs. When provided the workflow
+        will skip Shovill and use these contigs for downstream QC steps.
+        Structure: [ val(meta), path(contigs) ]
+      pattern: "*.fasta"
+  - prefix:
+      type: string
+      description: |
+        Prefix for the QC report file generated as part of the custom assembly QC
+output:
+  - contigs:
+      type: file
+      description: |
+        Channel containing contigs produced by the workflow.
+        Structure: [ val(meta), path(contigs) ]
+      pattern: "*.fasta"
+  - qc_stats_report:
+      type: file
+      description: |
+        Optional tab-delimited assembly QC report produced by the assembly cleanup step.
+        Structure: [ val(meta), path(report.txt) ]
+      pattern: "*Denovo_assembly_Stats_QC_report.txt"
+  - quast_results:
+      type: file
+      description: |
+        QUAST results directory or summary produced when QUAST is run
+        against the assembly and reads/joined inputs.
+  - versions:
+      type: file
+      description: |
+        YAML file containing software/component versions used by the subworkflow.
+        Structure: [ path(versions.yml) ]
+      pattern: "versions.yml"
+authors:
+  - "@xqc3"
+maintainers:
+  - "@xqc3"
+  - "@rqu4"
+  - "@lww9"
+  - "@yyr4"
