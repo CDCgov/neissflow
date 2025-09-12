@@ -6,7 +6,7 @@ This document overviews the setup process for neissflow, depending on how you pl
 
 ## Dependencies
 
-1. [Nextflow](https://www.nextflow.io/docs/latest/install.html#install-page): this pipeline runs with version 23.10.0 and later
+1. [Nextflow](https://www.nextflow.io/docs/latest/install.html#install-page): this pipeline runs with version 24.10.5 and later
 2. [Singularity](https://docs.sylabs.io/guides/3.0/user-guide/installation.html)
 3. [wget](https://niagads.scrollhelp.site/support/wget-linux-file-downloader-user-guide)
 4. Local Mash sketch of RefSeq
