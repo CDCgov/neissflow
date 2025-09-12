@@ -1,7 +1,9 @@
-# ph-core/oamd-bio-workflow-neissflow: Documentation
+# neissflow: Documentation
 
-The ph-core/oamd-bio-workflow-neissflow documentation is split into the following pages:
+The neissflow documentation is split into the following pages:
 
+- [Installation](installation.md)
+  - A guide containing the dependencies and setup instructions for neissflow
 - [Usage](usage.md)
   - An overview of how the pipeline works, how to run it and a description of all of the different command-line flags.
 - [Output](output.md)
