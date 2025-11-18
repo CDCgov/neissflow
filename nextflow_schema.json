@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://raw.githubusercontent.com/CDCgov/neissflow/main/nextflow_schema.json",
+    "$id": "https://raw.githubusercontent.com/CDCgov/neissflow/task/24-update-nf-core/nextflow_schema.json",
     "title": "CDCgov/neissflow pipeline parameters",
     "description": "Nextflow pipeline for Neisseria gonorrhoeae (Ng) isolate genomic analysis",
     "type": "object",
@@ -42,7 +42,7 @@
                 },
                 "run_name": {
                     "type": "string",
-                    "description": "The name of the run",
+                    "description": "The name of the run, this will be in the final report filename.",
                     "default": "complete"
                 },
                 "multiqc_title": {
@@ -53,25 +53,28 @@
             }
         },
         "input_type": {
-            "title": "Input Type",
+            "title": "Input Type (REQUIRED)",
             "type": "object",
             "description": "Signify what filetypes are included in the samplesheet",
             "default": "",
             "properties": {
                 "only_fastq": {
                     "type": "boolean",
-                    "description": "True if only FASTQ input is provided (entire pipeline can run with just FASTQ input)",
-                    "fa_icon": "fas fa-copy"
+                    "description": "Use flag if only FASTQ input is provided (entire pipeline can run with just FASTQ input)",
+                    "fa_icon": "fas fa-copy",
+                    "default": false
                 },
                 "only_fasta": {
                     "type": "boolean",
-                    "description": "True if only FASTA contigs are provided (only snippy and the Phylogeny Subworkflow will run with this input)",
-                    "fa_icon": "fas fa-copy"
+                    "description": "Use flag if only FASTA contigs are provided (only snippy and the Phylogeny Subworkflow will run with this input)",
+                    "fa_icon": "fas fa-copy",
+                    "default": false
                 },
                 "fastq_w_fasta": {
                     "type": "boolean",
-                    "description": "True if FASTQ and FASTA input are provided (entire pipeline can run with this input)",
-                    "fa_icon": "fas fa-copy"
+                    "description": "Use flag if FASTQ and FASTA input are provided (entire pipeline can run with this input)",
+                    "fa_icon": "fas fa-copy",
+                    "default": false
                 },
                 "QC": {
                     "type": "boolean",
