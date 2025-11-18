@@ -2,9 +2,7 @@ process MASH {
     tag "$meta.id"
     label 'process_medium'
 
-    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/mash:2.3--he348c14_1':
-        'biocontainers/mash:2.3--he348c14_1' }"
+    container 'https://depot.galaxyproject.org/singularity/mash:2.3--he348c14_1'
 
     input:
     tuple val(meta), file(reads)
