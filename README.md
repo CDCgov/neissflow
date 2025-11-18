@@ -1,19 +1,18 @@
-# ph-core/oamd-bio-workflow-neissflow
+# CDCgov/neissflow
 
-[![GitHub Actions CI Status](https://github.com/ph-core/oamd-bio-workflow-neissflow/actions/workflows/nf-test.yml/badge.svg)](https://github.com/ph-core/oamd-bio-workflow-neissflow/actions/workflows/nf-test.yml)
-[![GitHub Actions Linting Status](https://github.com/ph-core/oamd-bio-workflow-neissflow/actions/workflows/linting.yml/badge.svg)](https://github.com/ph-core/oamd-bio-workflow-neissflow/actions/workflows/linting.yml)
+[![GitHub Actions CI Status](https://github.com/CDCgov/neissflow/actions/workflows/nf-test.yml/badge.svg)](https://github.com/CDCgov/neissflow/actions/workflows/nf-test.yml)
+[![GitHub Actions Linting Status](https://github.com/CDCgov/neissflow/actions/workflows/linting.yml/badge.svg)](https://github.com/CDCgov/neissflow/actions/workflows/linting.yml)
 [![nf-test](https://img.shields.io/badge/unit_tests-nf--test-337ab7.svg)](https://www.nf-test.com)
 
 [![Nextflow](https://img.shields.io/badge/version-%E2%89%A524.10.5-green?style=flat&logo=nextflow&logoColor=white&color=%230DC09D&link=https%3A%2F%2Fnextflow.io)](https://www.nextflow.io/)
 [![nf-core template version](https://img.shields.io/badge/nf--core_template-3.3.2-green?style=flat&logo=nfcore&logoColor=white&color=%2324B064&link=https%3A%2F%2Fnf-co.re)](https://github.com/nf-core/tools/releases/tag/3.3.2)
-[![run with conda](http://img.shields.io/badge/run%20with-conda-3EB049?labelColor=000000&logo=anaconda)](https://docs.conda.io/en/latest/)
 [![run with docker](https://img.shields.io/badge/run%20with-docker-0db7ed?labelColor=000000&logo=docker)](https://www.docker.com/)
 [![run with singularity](https://img.shields.io/badge/run%20with-singularity-1d355c.svg?labelColor=000000)](https://sylabs.io/docs/)
-[![Launch on Seqera Platform](https://img.shields.io/badge/Launch%20%F0%9F%9A%80-Seqera%20Platform-%234256e7)](https://cloud.seqera.io/launch?pipeline=https://github.com/ph-core/oamd-bio-workflow-neissflow)
+[![Launch on Seqera Platform](https://img.shields.io/badge/Launch%20%F0%9F%9A%80-Seqera%20Platform-%234256e7)](https://cloud.seqera.io/launch?pipeline=https://github.com/CDCgov/neissflow)
 
 ## Introduction
 
-**ph-core/oamd-bio-workflow-neissflow** is a bioinformatics pipeline for Neisseria gonorrhoeae (Ng) isolate genome analysis. The mission of neissflow is to consolidate commonly used bioinformatics tools for Ng analysis into a parallel and scalable pipeline. Having all your tools in one place allows you to rapidly generate data and respond quickly to public health demands! 
+**neissflow** is a bioinformatics pipeline for Neisseria gonorrhoeae (Ng) isolate genome analysis. The mission of neissflow is to consolidate commonly used bioinformatics tools for Ng analysis into a parallel and scalable pipeline. Having all your tools in one place allows you to rapidly generate data and respond quickly to public health demands! 
 
 <center><img src="docs/images/new_neissflow.png" height=1046 width=779/></center>
 
@@ -56,13 +55,14 @@ Each row represents a fastq file (single-end) or a pair of fastq files (paired e
 Now, you can run the pipeline using:
 
 ```bash
-nextflow run ph-core/oamd-bio-workflow-neissflow \
+nextflow run CDCgov/neissflow \
    -profile <docker/singularity/.../institute> \
    --input samplesheet.csv \
    --outdir <OUTDIR> \
    --mash_db RefSeqSketchesDefaults.msh \
    --pubmlst alleledb/mlst \
-   --blastdb alleledb/mlst_blastdb/ 
+   --blastdb alleledb/mlst_blastdb/ \
+   --only_fastq
 ```
 
 > [!WARNING]
@@ -121,8 +121,8 @@ The majority of the neissflow components can be run a la carte depending on your
   `--outdir`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The output directory where the results will be saved. You have to use absolute paths to storage on Cloud infrastructure. [string]  
    `--run_name`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The The name of the run, this will be in the final report filename. [default: complete] [string]
 
-**Input Type (required)**  
-  `--only_fastq`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use flag if only FASTQ input is provided (entire pipeline can run with just FASTQ input) [default: true] [boolean]  
+**Input Type (required & PIPELINE WILL FAIL WITHOUT)**  
+  `--only_fastq`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use flag if only FASTQ input is provided (entire pipeline can run with just FASTQ input) [boolean]  
   `--only_fasta`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use flag if only FASTA contigs are provided (only snippy and the Phylogeny Subworkflow will run with this input) [boolean]  
   `--fastq_w_fasta`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use flag if FASTQ and FASTA input are provided (entire pipeline can run with this input) [boolean] 
 
@@ -192,7 +192,7 @@ For a detailed summary of the neissflow output, checkout [`docs/output.md`](docs
 
 ## Credits
 
-ph-core/oamd-bio-workflow-neissflow was originally written by Kat Morin.
+CDCgov/neissflow was originally written by Kat Morin.
 
 We thank the following people for their extensive assistance in the development of this pipeline:
 

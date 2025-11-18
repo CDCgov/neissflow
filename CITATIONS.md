@@ -1,4 +1,4 @@
-# ph-core/oamd-bio-workflow-neissflow: Citations
+# CDCgov/neissflow: Citations
 
 ## [nf-core](https://pubmed.ncbi.nlm.nih.gov/32055031/)
 

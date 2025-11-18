@@ -1,9 +1,9 @@
 #!/usr/bin/env nextflow
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    ph-core/oamd-bio-workflow-neissflow
+    CDCgov/neissflow
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Github : https://github.com/ph-core/oamd-bio-workflow-neissflow
+    Github : https://github.com/CDCgov/neissflow
 ----------------------------------------------------------------------------------------
 */
 
@@ -13,10 +13,10 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-include { OAMD_BIO_WORKFLOW_NEISSFLOW  } from './workflows/oamd-bio-workflow-neissflow'
-include { QC                           } from './workflows/QC'
-include { PIPELINE_INITIALISATION      } from './subworkflows/local/utils_nfcore_oamd-bio-workflow-neissflow_pipeline'
-include { PIPELINE_COMPLETION          } from './subworkflows/local/utils_nfcore_oamd-bio-workflow-neissflow_pipeline'
+include { NEISSFLOW               } from './workflows/neissflow'
+include { QC                      } from './workflows/QC'
+include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_neissflow_pipeline'
+include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_neissflow_pipeline'
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     NAMED WORKFLOWS FOR PIPELINE
@@ -49,7 +49,7 @@ workflow NEISSFLOW_QC {
 //
 // WORKFLOW: Run main analysis pipeline depending on type of input
 //
-workflow PHCORE_OAMD_BIO_WORKFLOW_NEISSFLOW {
+workflow CDCGOV_NEISSFLOW {
 
     take:
     samplesheet // channel: samplesheet read in from --input
@@ -59,11 +59,11 @@ workflow PHCORE_OAMD_BIO_WORKFLOW_NEISSFLOW {
     //
     // WORKFLOW: Run pipeline
     //
-    OAMD_BIO_WORKFLOW_NEISSFLOW (
+    NEISSFLOW (
         samplesheet
     )
     emit:
-    multiqc_report = OAMD_BIO_WORKFLOW_NEISSFLOW.out.multiqc_report // channel: /path/to/multiqc_report.html
+    multiqc_report = NEISSFLOW.out.multiqc_report // channel: /path/to/multiqc_report.html
 }
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -110,7 +110,7 @@ workflow {
     //
     // WORKFLOW: Run main workflow
     //
-    PHCORE_OAMD_BIO_WORKFLOW_NEISSFLOW (
+    CDCGOV_NEISSFLOW (
         PIPELINE_INITIALISATION.out.samplesheet
     )
     //
@@ -119,7 +119,7 @@ workflow {
     PIPELINE_COMPLETION (
         params.outdir,
         params.monochrome_logs,
-        PHCORE_OAMD_BIO_WORKFLOW_NEISSFLOW.out.multiqc_report
+        CDCGOV_NEISSFLOW.out.multiqc_report
     )
 }
 

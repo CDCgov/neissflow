@@ -1,7 +1,7 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://raw.githubusercontent.com/ph-core/oamd-bio-workflow-neissflow/master/assets/schema_input.json",
-    "title": "ph-core/oamd-bio-workflow-neissflow pipeline - params.input schema",
+    "$id": "https://raw.githubusercontent.com/CDCgov/neissflow/main/assets/schema_input.json",
+    "title": "CDCgov/neissflow pipeline - params.input schema",
     "description": "Schema for the file provided with params.input",
     "type": "array",
     "items": {

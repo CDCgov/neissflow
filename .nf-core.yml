@@ -6,9 +6,9 @@ lint:
   files_unchanged:
     - .prettierignore
     - CODE_OF_CONDUCT.md
-    - assets/nf-core-oamd-bio-workflow-neissflow_logo_light.png
-    - docs/images/nf-core-oamd-bio-workflow-neissflow_logo_light.png
-    - docs/images/nf-core-oamd-bio-workflow-neissflow_logo_dark.png
+    - assets/neissflow_logo_light.png
+    - docs/images/nf-core-neissflow_logo_light.png
+    - docs/images/nf-core-neissflow_logo_dark.png
     - .github/ISSUE_TEMPLATE/bug_report.yml
     - .github/CONTRIBUTING.md
     - .github/PULL_REQUEST_TEMPLATE.md
@@ -45,9 +45,9 @@ lint:
     - assets/sendmail_template.txt
     - assets/email_template.txt
     - CODE_OF_CONDUCT.md
-    - assets/nf-core-oamd-bio-workflow-neissflow_logo_light.png
-    - docs/images/nf-core-oamd-bio-workflow-neissflow_logo_light.png
-    - docs/images/nf-core-oamd-bio-workflow-neissflow_logo_dark.png
+    - assets/nf-core-neissflow_logo_light.png
+    - docs/images/nf-core-neissflow_logo_light.png
+    - docs/images/nf-core-neissflow_logo_dark.png
     - .github/ISSUE_TEMPLATE/config.yml
     - .github/workflows/awstest.yml
     - .github/workflows/awsfulltest.yml
@@ -69,8 +69,8 @@ lint:
     - nextflow_badge
 
 template:
-  org: ph-core
-  name: oamd-bio-workflow-neissflow
+  org: CDCgov
+  name: neissflow
   description: Nextflow pipeline for Neisseria gonorrhoeae (Ng) isolate genomic analysis
   author: AMD Platform
   version: 2.1.0dev

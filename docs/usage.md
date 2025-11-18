@@ -1,4 +1,4 @@
-# ph-core/oamd-bio-workflow-neissflow: Usage
+# CDCgov/neissflow: Usage
 
 > _Documentation of pipeline parameters is generated automatically from the pipeline schema and can no longer be found in markdown files._
 
@@ -87,13 +87,14 @@ An [example samplesheet](../assets/samplesheet.csv) has been provided with the p
 The typical command for running the pipeline is as follows:
 
 ```bash
-nextflow run ph-core/oamd-bio-workflow-neissflow \
+nextflow run CDCgov/neissflow \
   --input ./samplesheet.csv \
   --outdir ./results  \
   -profile docker \
   --mash_db RefSeqSketchesDefaults.msh \
   --pubmlst alleledb/mlst \
-  --blastdb alleledb/mlst_blastdb/
+  --blastdb alleledb/mlst_blastdb/ \
+  --only_fastq
 ```
 
 This will launch the pipeline with the `docker` configuration profile. See below for more information about profiles.
@@ -117,7 +118,7 @@ Pipeline settings can be provided in a `yaml` or `json` file via `-params-file <
 The above pipeline run specified with a params file in yaml format:
 
 ```bash
-nextflow run ph-core/oamd-bio-workflow-neissflow -profile docker -params-file params.yaml
+nextflow run CDCgov/neissflow -profile docker -params-file params.yaml
 ```
 
 with:
@@ -128,6 +129,7 @@ outdir: './results/'
 mash_db: 'RefSeqSketchesDefaults.msh'
 pubmlst: 'alleledb/mlst'
 blastdb: 'alleledb/mlst_blastdb/'
+onlyfastq: true
 <...>
 ```
 
@@ -138,14 +140,14 @@ You can also generate such `YAML`/`JSON` files via [nf-core/launch](https://nf-c
 When you run the above command, Nextflow automatically pulls the pipeline code from GitHub and stores it as a cached version. When running the pipeline after this, it will always use the cached version if available - even if the pipeline has been updated since. To make sure that you're running the latest version of the pipeline, make sure that you regularly update the cached version of the pipeline:
 
 ```bash
-nextflow pull ph-core/oamd-bio-workflow-neissflow
+nextflow pull CDCgov/neissflow
 ```
 
 ### Reproducibility
 
 It is a good idea to specify the pipeline version when running the pipeline on your data. This ensures that a specific version of the pipeline code and software are used when you run your pipeline. If you keep using the same tag, you'll be running the same version of the pipeline, even if there have been changes to the code since.
 
-First, go to the [ph-core/oamd-bio-workflow-neissflow releases page](https://github.com/ph-core/oamd-bio-workflow-neissflow/releases) and find the latest pipeline version - numeric only (eg. `1.3.1`). Then specify this when running the pipeline with `-r` (one hyphen) - eg. `-r 1.3.1`. Of course, you can switch to another version by changing the number after the `-r` flag.
+First, go to the [CDCgov/neissflow releases page](https://github.com/CDCgov/neissflow/releases) and find the latest pipeline version - numeric only (eg. `1.3.1`). Then specify this when running the pipeline with `-r` (one hyphen) - eg. `-r 1.3.1`. Of course, you can switch to another version by changing the number after the `-r` flag.
 
 This version number will be logged in reports when you run the pipeline, so that you'll know what you used when you look back in the future. For example, at the bottom of the MultiQC reports.
 
