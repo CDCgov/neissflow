@@ -1,6 +1,6 @@
-# ph-core/oamd-bio-workflow-neissflow: Documentation
+# CDCgov/neissflow: Documentation
 
-The ph-core/oamd-bio-workflow-neissflow documentation is split into the following pages:
+The CDCgov/neissflow documentation is split into the following pages:
 
 - [Usage](usage.md)
   - An overview of how the pipeline works, how to run it and a description of all of the different command-line flags.

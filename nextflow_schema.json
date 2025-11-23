@@ -1,7 +1,7 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://raw.githubusercontent.com/ph-core/oamd-bio-workflow-neissflow/master/nextflow_schema.json",
-    "title": "ph-core/oamd-bio-workflow-neissflow pipeline parameters",
+    "$id": "https://raw.githubusercontent.com/CDCgov/neissflow/main/nextflow_schema.json",
+    "title": "CDCgov/neissflow pipeline parameters",
     "description": "Nextflow pipeline for Neisseria gonorrhoeae (Ng) isolate genomic analysis",
     "type": "object",
     "$defs": {

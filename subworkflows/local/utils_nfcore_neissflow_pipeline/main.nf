@@ -1,5 +1,5 @@
 //
-// Subworkflow with functionality specific to the ph-core/oamd-bio-workflow-neissflow pipeline
+// Subworkflow with functionality specific to the CDCgov/neissflow pipeline
 //
 
 /*

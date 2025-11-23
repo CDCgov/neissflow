@@ -1,6 +1,6 @@
 {
-    "name": "ph-core/oamd-bio-workflow-neissflow",
-    "homePage": "https://github.com/ph-core/oamd-bio-workflow-neissflow",
+    "name": "CDCgov/neissflow",
+    "homePage": "https://github.com/CDCgov/neissflow",
     "repos": {
         "https://github.com/nf-core/modules.git": {
             "modules": {

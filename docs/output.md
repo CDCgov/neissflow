@@ -1,4 +1,4 @@
-# ph-core/oamd-bio-workflow-neissflow: Output
+# CDCgov/neissflow: Output
 
 ## Introduction
 
