@@ -58,7 +58,7 @@ workflow SPECIES_CHECK {
     contams             = COMBINE_MASH_REPORTS.out.contams              // channel: contams
     plasmids            = COMBINE_MASH_REPORTS.out.plasmids             // channel: plasmids
 
-    stats_out           = STATS.out.stats_out                           // channel: [ stats_report ]
+    stats_out           = STATS.out.stats_out                           // channel: [ meta, stats_report ]
 
     cov                 = COVERAGE.out.cov                              // channel: [ meta, coverage ]
 

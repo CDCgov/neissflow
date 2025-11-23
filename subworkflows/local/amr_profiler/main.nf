@@ -25,7 +25,7 @@ workflow AMR_PROFILER {
     ch_versions = Channel.empty()
 
     //
-    // Variant calling for HGT genes with Snippy
+    // Variant calling for plasmid genes with Snippy
     //
     SNIPPY_AMR (
         reads,
@@ -127,7 +127,6 @@ workflow AMR_PROFILER {
     gff                = SNIPPY_AMR.out.gff                // channel: [ meta, [ gff ] ]
     bam                = SNIPPY_AMR.out.bam                // channel: [ meta, [ bam ] ]
     bai                = SNIPPY_AMR.out.bai                // channel: [ meta, [ bai ] ]    
-    //log                = SNIPPY_AMR.out.log              // channel: [ meta, [ log ] ]
     aligned_fa         = SNIPPY_AMR.out.aligned_fa         // channel: [ meta, [ aligned_fa ] ]
     consensus_fa       = SNIPPY_AMR.out.consensus_fa       // channel: [ meta, [ consensus_fa ] ]
     consensus_subs_fa  = SNIPPY_AMR.out.consensus_subs_fa  // channel: [ meta, [ consensus_subs_fa ] ]

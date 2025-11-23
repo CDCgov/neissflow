@@ -1,0 +1,65 @@
+name: "preprocessing"
+description: |
+  Preprocessing subworkflow: performs quality trimming/filtering and adapter trimming
+  using fastp, parses per-sample fastp JSON reports, and combines per-sample reports
+  into a single summary. Emits cleaned reads, combined report and fastp JSON outputs.
+  Determines which samples pass and fail QC check 1 based on fastp report.
+keywords:
+  - preprocessing
+  - fastp
+  - trimming
+  - quality-filtering
+  - qc
+  - reports
+components:
+  - fastp
+  - parse/fastp/reports
+  - combine/fastp/reports
+  - fastp/qc/check
+input:
+  - reads:
+      type: file
+      description: |
+        Channel of input sequencing reads to preprocess. Structure: [ id: meta, [ reads ] ]
+      pattern: "*.fastq.gz"
+  - prefix:
+      type: string
+      description: |
+        Prefix for the fastp combined report and QC reports
+output:
+  - fastp_report:
+      type: file
+      description: |
+        Combined fastp report summarising quality metrics across samples.
+      pattern: "*FASTQ_QC_report.tsv"
+  - fastp_json:
+      type: file
+      description: |
+        Per-sample fastp JSON reports produced by fastp.
+      pattern: "*.json"
+  - passed:
+      type: file
+      description: |
+        report of samples that passed QC check 1
+      pattern: "*_passed_qc1.tsv"
+  - failed:
+      type: file
+      description: |
+        report of samples that failed QC check 1
+      pattern: "*_failed_qc1.tsv"
+  - trimmed_fastq_paths:
+      type: file
+      description: |
+        Cleaned reads output from fastp, ready for downstream steps.
+  - versions:
+      type: file
+      description: |
+        YAML file containing software/component versions used by the subworkflow.
+      pattern: "versions.yml"
+authors:
+  - "@xqc3"
+maintainers:
+  - "@xqc3"
+  - "@rqu4"
+  - "@lww9"
+  - "@yyr4"

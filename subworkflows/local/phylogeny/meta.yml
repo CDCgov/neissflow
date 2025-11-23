@@ -1,0 +1,165 @@
+name: "phylogeny"
+description: |
+  The phylogeny subworkflow performs phylogenetic analysis of a sample set. 
+  This includes core SNP alignment, recombindation correction, 
+  calculating SNP distances, outbreak detection, maximum likelihood
+  tree generation, and tree image generation.
+keywords:
+  - SNP
+  - outbreak
+  - recombination
+  - tree
+  - phylogeny
+components:
+  - snippy/core
+  - snippy/clean
+  - remove/ref
+  - gubbins
+  - count/mono/nuc
+  - snpdists
+  - outbreak/detection
+  - cluster/coloring
+  - raxml
+  - reroot
+  - phylogeny/qc
+  - report
+input:
+  - vcf:
+      type: file
+      description: |
+        Channel of TAB delimited VCF files for each sample against a single reference.
+        Structure: [ path(vcf) ]
+      pattern: "*.tab"
+  - aligned_fa:
+      type: file
+      description: |
+        Channel of contigs to determine MLST, NG-STAR, NG-MAST on and allele call with.
+        Structure: [ path(aligned_fa) ]
+      pattern: "*.aligned.fa"
+  - samples:
+      type: list
+      description: |
+        Channel of sample names to check tree for.
+output:
+  - full_aln:
+      type: file
+      description: |
+        File containing the alignment of all the samples and reference
+      pattern: "core.full.aln"
+  - txt:
+      type: file
+      description: |
+        File containing alignment stats of all samples and reference
+      pattern: "core.txt"
+  - clean_full_aln:
+      type: file
+      description: |
+        File containing cleaned full alignment of all samples and reference
+      pattern: "core.clean.full.aln"
+  - fasta:
+      type: file
+      description: Filtered variant alignment in fasta format
+      pattern: "*.{fasta}"
+  - gff:
+      type: file
+      description: Recombination predictions in gff format
+      pattern: "*.{gff}"
+  - vcf:
+      type: file
+      description: SNP distribution
+      pattern: "*.{vcf}"
+  - csv:
+      type: file
+      description: Per branch statistics
+      pattern: "*.{csv}"
+  - phylip:
+      type: file
+      description: Filtered variant alignment in phylip format
+      pattern: "*.{phylip}"
+  - pred_embl:
+      type: file
+      description: Recombination predictions in embl format
+      pattern: "*.{recombination_predictions.embl}"
+  - base_recon_embl:
+      type: file
+      description: Branch base reconstruction
+      pattern: "*.{branch_base_reconstruction.embl}"
+  - tre:
+      type: file
+      description: Final tree
+      pattern: "*.{final_tree.tre}"
+  - node_tre:
+      type: file
+      description: Final tree with node labels
+      pattern: "*.{node_labelled.final_tree.tre}"
+  - monomorphic_nuc_vals:
+      type: file
+      description: |
+        File containing counts for each unambigious nucleotide from monomorphic sites
+  - snp_matrix:
+      type: file
+      description: |
+        File containing matrix of SNP distances between all samples 
+      pattern: "matrix.tsv"
+  - outbreaks:
+      type: file
+      description: |
+        Potential outbreak clusters indentified by determining connected components in graph constructed using SNP distances
+      pattern: "isolate_clusters.txt"
+  - best_tree:
+      type: file
+      description: |
+        Best tree found during RAxML maximum likelihood search
+      pattern: "RAxML_bestTree.core"
+  - bipart:
+      type: file
+      description: |
+        BS support values on the best tree found during the ML search
+      pattern: "RAxML_bipartitions.core"
+  - info:
+      type: file
+      description: |
+        Report with RAxML version and ML search bootstrapping 
+      pattern: "RAxML_info.core"
+  - bibranch:
+      type: file
+      description: |
+        BS support values as branch labels on the best tree found during the ML search
+      pattern: "RAxML_info.core"
+  - bootstrap:
+      type: file
+      description: |
+        All final bootstrapped trees
+      pattern: "RAxML.bootstrap.core"
+  - midpoint:
+      type: file
+      description: |
+        Midrooted best tree
+      pattern: "midpoint.bestTree.nw"
+  - qc_report:
+      type: file
+      description: |
+        QC report of phylogenetic analysis and resulting tree
+      pattern: "phylogeny_qc_report.tsv"
+  - png:
+      type: file
+      description: |
+        Image of best tree with potential outbreaks colorcoded 
+      pattern: "bestTree.png"
+  - report:
+      type: file
+      description: |
+        HTML with phylogenetic tree and potential outbreak clusters
+      pattern: "bestTree.png"
+  - versions:
+      type: file
+      description: |
+        YAML file containing software/component versions used by the subworkflow.
+      pattern: "versions.yml"
+authors:
+  - "@xqc3"
+maintainers:
+  - "@xqc3"
+  - "@rqu4"
+  - "@lww9"
+  - "@yyr4"

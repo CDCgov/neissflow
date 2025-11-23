@@ -35,7 +35,7 @@ workflow PHYLOGENY {
         SNIPPY_CORE (
             vcf,
             aligned_fa,
-            params.reference_genome
+            "${params.reference_genome}"
             )
     } else {
         SNIPPY_CORE (

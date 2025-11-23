@@ -1,0 +1,79 @@
+name: "species_check"
+description: |
+  Species identification subworkflow using Mash and samtools stats. 
+  Runs Mash screen on reads against a RefSeq sketch. Determines top-hits,
+  contaminants, and plasmids from the Mash output and generates combined 
+  TSV reports. Run samtools stats on BAM files produced by alignment to
+  sensitive reference FA19. Extracts percent of FA19 with at least 10x 
+  coverage from stats report.
+keywords:
+  - mash
+  - species
+  - identification
+  - screen
+  - refseq
+  - stats
+  - coverage
+components:
+  - mash
+  - combine/mash/reports
+  - stats
+  - coverage
+input:
+  - reads:
+      type: file
+      description: |
+        Channel of input sequencing reads to screen. Structure: [ id: meta, [ reads ] ]
+      pattern: "*.fastq.gz"
+  - ch_stats_input:
+      type: file
+      description: |
+        Channel of BAM files to check percent coverage. Structure: [ id: meta, bam, bai ]
+  - prefix:
+      type: string
+      description: |
+        Prefix for the Mash report files
+output:
+  - mash_reports:
+      type: file
+      description: |
+        Channel containing generated Mash screen results per sample.
+        Structure: [ val(meta), path(mash_report) ]
+  - top_hits:
+      type: file
+      description: |
+        File listing the top-hit for each sample.
+      pattern: "neissflow_Mash_top_hit_report.tsv"
+  - contams:
+      type: file
+      description: |
+        File listing the contaminants found in the samples.
+      pattern: "neissflow_Mash_contaminants.tsv"
+  - plasmids:
+      type: file
+      description: |
+        File listing the plasmids found the samples.
+      pattern: "neissflow_Mash_plasmids.tsv"
+  - stats:
+      type: file
+      description: |
+        Channel containing the samtools stats reports per sample.
+        Structure: [ val(meta), stats_out ]
+  - cov:
+      type: file
+      description: |
+        Channel containing the percent of FA19 with at least 10x coverage per sample.
+        Structure: [ val(meta), cov ]
+      pattern: "*.tsv"
+  - versions:
+      type: file
+      description: |
+        YAML file containing software/component versions used by the subworkflow.
+      pattern: "versions.yml"
+authors:
+  - "@xqc3"
+maintainers:
+  - "@xqc3"
+  - "@rqu4"
+  - "@lww9"
+  - "@yyr4"

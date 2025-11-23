@@ -1,8 +1,8 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema",
-    "$id": "https://raw.githubusercontent.com/nf-core/neissflow/master/assets/schema_input.json",
-    "title": "nf-core/neissflow pipeline - params.input schema",
-    "description": "Schema for the file provided with params.input",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/CDCgov/neissflow/main/assets/schema_controls.json",
+    "title": "CDCgov/neissflow pipeline - params.input schema",
+    "description": "Schema for the file provided with params.controls",
     "type": "array",
     "items": {
         "type": "object",
@@ -17,16 +17,17 @@
                 "type": "string",
                 "format": "file-path",
                 "exists": true,
-                "pattern": "^\\S+\\.f(ast)?q\\.gz$",
+                "pattern": "^([\\S\\s]*\\/)?[^\\s\\/]+\\.f(ast)?q\\.gz$",
                 "errorMessage": "FastQ file for reads 1 must be provided, cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
             },
             "fastq_2": {
                 "type": "string",
                 "format": "file-path",
                 "exists": true,
-                "pattern": "^\\S+\\.f(ast)?q\\.gz$",
+                "pattern": "^([\\S\\s]*\\/)?[^\\s\\/]+\\.f(ast)?q\\.gz$",
                 "errorMessage": "FastQ file for reads 2 cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
             }
-        }
+        },
+        "required": ["sample", "fastq_1", "fastq_2"]
     }
 }

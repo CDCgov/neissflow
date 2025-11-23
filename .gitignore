@@ -1,4 +1,3 @@
-
 .nextflow*
 work/
 data/
@@ -7,4 +6,4 @@ results/
 testing/
 testing*
 *.pyc
-bin/
+null/
