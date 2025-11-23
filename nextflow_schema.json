@@ -61,20 +61,17 @@
                 "only_fastq": {
                     "type": "boolean",
                     "description": "Use flag if only FASTQ input is provided (entire pipeline can run with just FASTQ input)",
-                    "fa_icon": "fas fa-copy",
-                    "default": false
+                    "fa_icon": "fas fa-copy"
                 },
                 "only_fasta": {
                     "type": "boolean",
                     "description": "Use flag if only FASTA contigs are provided (only snippy and the Phylogeny Subworkflow will run with this input)",
-                    "fa_icon": "fas fa-copy",
-                    "default": false
+                    "fa_icon": "fas fa-copy"
                 },
                 "fastq_w_fasta": {
                     "type": "boolean",
                     "description": "Use flag if FASTQ and FASTA input are provided (entire pipeline can run with this input)",
-                    "fa_icon": "fas fa-copy",
-                    "default": false
+                    "fa_icon": "fas fa-copy"
                 },
                 "QC": {
                     "type": "boolean",
@@ -314,7 +311,7 @@
                 "custom_config_version": {
                     "type": "string",
                     "description": "Git commit id for Institutional configs.",
-                    "default": "main",
+                    "default": "master",
                     "hidden": true,
                     "fa_icon": "fas fa-users-cog"
                 },
