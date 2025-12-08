@@ -119,3 +119,7 @@ done
 
 makeblastdb -in ${blast_dir}/mlst.fa -dbtype 'nucl' -out ${blast_dir}/mlst.fa
 
+
+#NG STAR https://rest.pubmlst.org/db/pubmlst_neisseria_seqdef/schemes/67
+#NG-MAST https://rest.pubmlst.org/db/pubmlst_neisseria_seqdef/schemes/71
+

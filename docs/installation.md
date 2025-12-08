@@ -75,6 +75,7 @@ This document overviews the setup process for neissflow, depending on how you pl
      nextflow run neissflow/main.nf -profile singularity --input samplesheet.csv --outdir out/ --pubmlst pubmlst/ --blastdb blastdb/ --only_fastq
      ```
      - Option 2: change the default paths for `pubmlst` and `blastdb` variables in [nextflow.config](../nextflow.config)
+   - If you are updating the database and not downloading it for the first time, ensure the pipeline runs and outputs the expected MLST types before deleting the old database files with the ".old" extension from both `pubmlst` and `blastdb` directories
 4. Use the RefSeq Mash sketch in neissflow
    - Option 1: pass the path to RefSeqSketchesDefaults.msh to the pipeline as a parameter each run with the `--mash_db` argument
    - Option 2: change the default path for the `mash_db` parameter in [nextflow.config](../nextflow.config) to the path to RefSeqSketchesDefaults.msh
