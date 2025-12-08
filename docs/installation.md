@@ -27,7 +27,7 @@ This document overviews the setup process for neissflow, depending on how you pl
    - Add the necessary configuration profile(s) to run the pipeline on your system to [conf/](../conf) and include these .config files in [nextflow.config](../nextflow.config)
    - Use the -c argument when running neissflow to include the configuration files ex:
      ```
-     $ nextflow run neissflow/main.nf -profile singularity,<your profile> -c <your config>.config --input samplesheet.csv --outdir out/ --only_fastq
+     nextflow run neissflow/main.nf -profile singularity,<your profile> -c <your config>.config --input samplesheet.csv --outdir out/ --only_fastq
      ```
 3. Use [BIGSdb_downloader](https://github.com/kjolley/BIGSdb_downloader) and [make_mlst_databases.sh](../assets/make_mlst_databases.sh) to download MLST alleles from PubMLST and make the neisseria mlst database.
    - Create or access your [PubMLST](https://pubmlst.org/bigsdb) account
@@ -72,7 +72,7 @@ This document overviews the setup process for neissflow, depending on how you pl
    - Using this database in neissflow:
      - Option 1: pass these paths to the pipeline as parameters each run with the arguments `--pubmlst` and `--blastdb`
      ```
-     nextflow run neissflow/main.nf -profile singularity --input samplesheet.csv --outdir neissflow_outdir/ --pubmlst pubmlst/ --blastdb blastdb/ --only_fastq
+     nextflow run neissflow/main.nf -profile singularity --input samplesheet.csv --outdir out/ --pubmlst pubmlst/ --blastdb blastdb/ --only_fastq
      ```
      - Option 2: change the default paths for `pubmlst` and `blastdb` variables in [nextflow.config](../nextflow.config)
 4. Use the RefSeq Mash sketch in neissflow
@@ -122,17 +122,19 @@ To incorporate control samples:
 2. Edit [QC.config](../conf/QC.config) such that the controls parameter is set to the path to your control samplesheet
 3. Include the QC profile when running neissflow ex:
    ```
-   $ nextflow run neissflow/main.nf -profile singularity,all,QC --input samplesheet.csv --outdir out/ --only_fastq
+   nextflow run neissflow/main.nf -profile singularity,QC --input samplesheet.csv --outdir out/ --only_fastq
    ```
 
 ## Updating the NGMASTER database
+
+REDO THESE INSTRUCTIONS  
 
 It is recommended that you update the NGMASTER database at a regular frequency as new alleles and STs are always being added to PubMLST for NG-MAST and NG-STAR
 
 1. Download NGMASTER to your environment or within a conda environment
 2. Update pubmlst NGMASTER database with:
    ```
-   $ ngmaster --db neissflow/assets/alleledb/ --updatedb --assumeyes
+   ngmaster --db neissflow/assets/alleledb/ --updatedb --assumeyes
    ```
    You can also move this database to another location in your system and use that path.
 3. Run [assets/mlst-make_blast_db](../assets/mlst-make_blast_db) with the following command:
@@ -142,7 +144,7 @@ It is recommended that you update the NGMASTER database at a regular frequency a
    Again, if you opt to move this database elsewhere, use those paths.
 4. Run neissflow using the test set
    ```
-   $ nextflow run neissflow/main.nf -profile singularity,all,test --outdir <OUTDIR> --name <RUN NAME>
+   nextflow run neissflow/main.nf -profile singularity,test --outdir out/
    ```
 
 ## Updating the mlst database
