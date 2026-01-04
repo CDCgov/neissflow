@@ -29,60 +29,13 @@ This document overviews the setup process for neissflow, depending on how you pl
      ```
      nextflow run neissflow/main.nf -profile singularity,<your profile> -c <your config>.config --input samplesheet.csv --outdir out/ --only_fastq
      ```
-3. Use [BIGSdb_downloader](https://github.com/kjolley/BIGSdb_downloader) and [make_mlst_databases.sh](../assets/make_mlst_databases.sh) to download MLST alleles from PubMLST and make the neisseria mlst database.
-   - Create or access your [PubMLST](https://pubmlst.org/bigsdb) account
-   - Create an API Key through My Account -> API Keys
-   - Clone the [BIGSdb_downloader](https://github.com/kjolley/BIGSdb_downloader) repository
-   ```
-   git clone https://github.com/kjolley/BIGSdb_downloader.git
-   ```
-   - Ensure you have [Python](https://www.python.org/) installed
-   - Install [rauth](https://rauth.readthedocs.io/en/latest/)
-   ```
-   pip install rauth
-   ```
-   - Set up connection to BIGSdb (this is only active for an hour and this step will need to be repeated for any downloads to occur beyond 1 hour)
-   ```
-   python3 ./BIGSdb_downloader/bigsdb_downloader.py --key_name "API KEY NAME" --site PubMLST --db pubmlst_neisseria_seqdef --token_dir <DIR TO SAVE KEYS AND TOKENS TO> --setup
-   ```
-   The script will prompt you to do the following: 
-   ``` 
-   Enter client id:
-   ```
-   and 
-   ```
-   Enter client secret:
-   ```
-   Copy over this information for the API key you created from PubMLST.  
-   Next it will prompt you with:
-   ```
-   Please log in using your user account at <LINK> using a web browser to obtain a verification code.
-   ```
-   Go to the provided link and authorize the use of your key, PubMLST will then provide you with the verification code. You will then be prompted to enter the verification code:
-   ```
-   Please enter verification code:
-   ```
-   Enter the code provided to you by PubMLST. This will allow for 1 hour of downloading from PubMLST (more than enough time to set up this database)
-   - Ensure you have [BLAST+](https://blast.ncbi.nlm.nih.gov/Blast.cgi) installed
-   - Run [make_mlst_databases.sh](../assets/make_mlst_databases.sh) (this script requires Python and rauth to run BIGSdb_downloader.py and BLAST+ to make the BLAST database)
-   ```
-   neissflow/assets/make_mlst_databases.sh -k "API KEY NAME" -r /home/kmorin/BIGSdb_downloader -p pubmlst/ -b blastdb/ -t <TOKEN DIR FROM SETUP>
-   ```
-   - Check that data has populated those directories & has read permissions
-   - Using this database in neissflow:
-     - Option 1: pass these paths to the pipeline as parameters each run with the arguments `--pubmlst` and `--blastdb`
-     ```
-     nextflow run neissflow/main.nf -profile singularity --input samplesheet.csv --outdir out/ --pubmlst pubmlst/ --blastdb blastdb/ --only_fastq
-     ```
-     - Option 2: change the default paths for `pubmlst` and `blastdb` variables in [nextflow.config](../nextflow.config)
-   - If you are updating the database and not downloading it for the first time, ensure the pipeline runs and outputs the expected MLST types before deleting the old database files with the ".old" extension from both `pubmlst` and `blastdb` directories
-4. Use the RefSeq Mash sketch in neissflow
+3. Use the RefSeq Mash sketch in neissflow
    - Option 1: pass the path to RefSeqSketchesDefaults.msh to the pipeline as a parameter each run with the `--mash_db` argument
    - Option 2: change the default path for the `mash_db` parameter in [nextflow.config](../nextflow.config) to the path to RefSeqSketchesDefaults.msh
-5. If you wish to test the pipeline with the test profile, you will need to change the paths of the test samples in [assets/samplesheet.csv](../assets/samplesheet.csv) to include the path to the repository on your system (ex: /repo path/assets/test_samples/sample_R1_001.fastq.gz)  
+4. If you wish to test the pipeline with the test profile, you will need to change the paths of the test samples in [assets/samplesheet.csv](../assets/samplesheet.csv) to include the path to the repository on your system (ex: /repo path/assets/test_samples/sample_R1_001.fastq.gz)  
    Some sample output generated with these samples can also be found in `assets/sample_final_report.tsv` and `assets/sample_phylogeny_qc_report.tsv` for validating your test
-6. Set the TMPDIR and TMP environment variables  
-   On HPC systems the tmp directories on nodes can easily run out of space so it is best practice to set your temporary files to go to scratch. Neissflow contains modules that are configured to use these variables, so they will need to be set regardless of the system you are running on. Set these in the local or institutional profile you will be using to run neissflow with like the following example:
+5. Set the TMPDIR and TMP environment variables  
+   On HPC systems the tmp directories on nodes can easily run out of space so it is best practice to set your temporary files to go to scratch. Neissflow contains modules that are configured to use these variables, so they will need to be set regardless of the system you are running on. Set these in a local or institutional profile you will be using to run neissflow with like the following example:
 
 ```
 local {
@@ -125,6 +78,60 @@ To incorporate control samples:
    ```
    nextflow run neissflow/main.nf -profile singularity,QC --input samplesheet.csv --outdir out/ --only_fastq
    ```
+
+## Updating the mlst database
+
+The mlst database should be updated regularly as we do not regularly update the database found in the repository. We recommend keeping a local copy of the database and updating it every 3 months. The neissflow copy of this database can be found [here](../assets/alleledb/mlst/).  
+
+Use [BIGSdb_downloader](https://github.com/kjolley/BIGSdb_downloader) and [make_mlst_databases.sh](../assets/make_mlst_databases.sh) to download MLST alleles from PubMLST and make or update the neisseria mlst database.
+   - Create or access your [PubMLST](https://pubmlst.org/bigsdb) account
+   - Register your account for access to the Neisseria typing (pubmlst_neisseria_seqdef) database through My Account -> Database registrations and register under Auto-registrations.
+   - Create an API Key through My Account -> API Keys
+   - Clone the [BIGSdb_downloader](https://github.com/kjolley/BIGSdb_downloader) repository
+   ```
+   git clone https://github.com/kjolley/BIGSdb_downloader.git
+   ```
+   - Ensure you have [Python](https://www.python.org/) installed
+   - Install [rauth](https://rauth.readthedocs.io/en/latest/)
+   ```
+   pip install rauth
+   ```
+   - Set up connection to BIGSdb (this is only active for an hour and this step will need to be repeated for any downloads to occur beyond 1 hour)
+   ```
+   python3 ./BIGSdb_downloader/bigsdb_downloader.py --key_name "API KEY NAME" --site PubMLST --db pubmlst_neisseria_seqdef --token_dir <DIR TO SAVE KEYS AND TOKENS TO> --setup
+   ```
+   The script will prompt you to do the following: 
+   ``` 
+   Enter client id:
+   ```
+   and 
+   ```
+   Enter client secret:
+   ```
+   Copy over this information for the API key you created from PubMLST.  
+   Next it will prompt you with:
+   ```
+   Please log in using your user account at <LINK> using a web browser to obtain a verification code.
+   ```
+   Go to the provided link and authorize the use of your key, PubMLST will then provide you with the verification code. You will then be prompted to enter the verification code:
+   ```
+   Please enter verification code:
+   ```
+   Enter the code provided to you by PubMLST. This will allow for 1 hour of downloading from PubMLST (more than enough time to set up this database)
+   - Ensure you have [BLAST+](https://blast.ncbi.nlm.nih.gov/Blast.cgi) installed
+   - Run [make_mlst_databases.sh](../assets/make_mlst_databases.sh) (this script requires Python and rauth to run BIGSdb_downloader.py and BLAST+ to make the BLAST database)
+   ```
+   neissflow/assets/make_mlst_databases.sh -k "<API KEY NAME>" -r /repo_path/BIGSdb_downloader -p pubmlst/ -b blastdb/ -t <TOKEN DIR FROM SETUP>
+   ```
+   - Check that data has populated those directories & has read permissions
+   - Test neissflow with the updated databases and check sample STs for expected results. If unexpected results are found (ST types are not being called, pipeline is failing) the database can be restored by removing any newly created files and renaming the old database files, removing the `.old` extension.
+   - Using this database in neissflow (if you have moved the database to a local directory):
+     - Option 1: pass these paths to the pipeline as parameters each run with the arguments `--pubmlst` and `--blastdb`
+     ```
+     nextflow run CDCgov/neissflow -profile singularity --input samplesheet.csv --outdir out/ --pubmlst pubmlst/ --blastdb blastdb/ --only_fastq
+     ```
+     - Option 2: change the default paths for `pubmlst` and `blastdb` variables in [nextflow.config](../nextflow.config)
+   - If you are updating the database and not downloading it for the first time, ensure the pipeline runs and outputs the expected MLST types before deleting the old database files with the ".old" extension from both `pubmlst` and `blastdb` directories
 
 ## Updating the NGMASTER database
 
