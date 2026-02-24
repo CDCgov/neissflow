@@ -18,6 +18,15 @@ process INITIAL_MERGE {
 
     script:
     """
+    initial_merge.sh $fa19_coverage $species $assembly $fastq_qc
+
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        bash: \$(bash --version 2>&1 | sed 's/GNU bash, version //; s/(.*//' | awk 'NR==1{ print \$0 }')
+    END_VERSIONS
+    """
+    stub:
+    """
 
     header1=\$(head -n 1 $fa19_coverage)
     header2=\$(cut -f 2- $species | head -n 1)
