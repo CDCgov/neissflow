@@ -27,7 +27,7 @@ process MERGE_REPORTS {
         $plasmids \\
         $passed_qc1 \\
         $initial_merge \\
-        "${params.version}" \\
+        "${manifest.version}" \\
         "${params.ngmasterdb_version}" \\
         "${params.run_name}" \\
         $passed_qc2 \\
@@ -42,7 +42,7 @@ process MERGE_REPORTS {
 
     """
     stub:
-        """
+    """
     tail -n +2 $contaminants | awk 'BEGIN{ OFS="\t" }{ if( \$1 in a ){ a[\$1]=a[\$1]","\$6 } else { a[\$1]=\$6  } }END{ for(i in a){ print i, a[i] } }' | sort -k 1b,1 > contams.tsv
     tail -n +2 $plasmids | awk 'BEGIN{ OFS="\t" }{ if( \$1 in a ){ a[\$1]=a[\$1]","\$6 } else { a[\$1]=\$6  } }END{ for(i in a){ print i, a[i] } }' | sort -k 1b,1 > plasmids.tsv
     awk 'BEGIN{ OFS="\t" }NR==FNR{ A[\$1];next }{ if( \$1 in A ){ print \$1,"pass" } else { print \$1,"fail" }}' $passed_qc1 $initial_merge > qc1.tsv
