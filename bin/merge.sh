@@ -8,8 +8,8 @@ ngmasterdb_version=$6
 run_name=$7
 passed_qc2=$8
 amr_report=$9
-depth_report=$10
-prefix=$11
+depth_report=${10}
+prefix=${11}
 
 tail -n +2 $contaminants | awk 'BEGIN{ OFS="\t" }{ if( $1 in a ){ a[$1]=a[$1]","$6 } else { a[$1]=$6  } }END{ for(i in a){ print i, a[i] } }' | sort -k 1b,1 > contams.tsv
 tail -n +2 $plasmids | awk 'BEGIN{ OFS="\t" }{ if( $1 in a ){ a[$1]=a[$1]","$6 } else { a[$1]=$6  } }END{ for(i in a){ print i, a[i] } }' | sort -k 1b,1 > plasmids.tsv

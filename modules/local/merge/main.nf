@@ -21,19 +21,20 @@ process MERGE_REPORTS {
     task.ext.when == null || task.ext.when
 
     script:
+    def args = task.ext.args   ?: ''
     """
     merge.sh \\
-        $contaminants \\
-        $plasmids \\
-        $passed_qc1 \\
-        $initial_merge \\
-        "${manifest.version}" \\
+        "${contaminants}" \\
+        "${plasmids}" \\
+        "${passed_qc1}" \\
+        "${initial_merge}" \\
+        "${args}" \\
         "${params.ngmasterdb_version}" \\
         "${params.run_name}" \\
-        $passed_qc2 \\
-        $amr_report \\
-        $depth_report \\
-        $prefix
+        "${passed_qc2}" \\
+        "${amr_report}" \\
+        "${depth_report}" \\
+        "${prefix}"
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
