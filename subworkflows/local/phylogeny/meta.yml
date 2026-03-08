@@ -19,7 +19,7 @@ components:
   - snpdists
   - outbreak/detection
   - cluster/coloring
-  - raxml
+  - raxmlng
   - reroot
   - phylogeny/qc
   - report
@@ -106,31 +106,6 @@ output:
       description: |
         Potential outbreak clusters indentified by determining connected components in graph constructed using SNP distances
       pattern: "isolate_clusters.txt"
-  - best_tree:
-      type: file
-      description: |
-        Best tree found during RAxML maximum likelihood search
-      pattern: "RAxML_bestTree.core"
-  - bipart:
-      type: file
-      description: |
-        BS support values on the best tree found during the ML search
-      pattern: "RAxML_bipartitions.core"
-  - info:
-      type: file
-      description: |
-        Report with RAxML version and ML search bootstrapping 
-      pattern: "RAxML_info.core"
-  - bibranch:
-      type: file
-      description: |
-        BS support values as branch labels on the best tree found during the ML search
-      pattern: "RAxML_info.core"
-  - bootstrap:
-      type: file
-      description: |
-        All final bootstrapped trees
-      pattern: "RAxML.bootstrap.core"
   - midpoint:
       type: file
       description: |
