@@ -10,8 +10,6 @@ include { OUTBREAK_DETECTION   } from '../../../modules/local/phylogeny/outbreak
 include { CLUSTER_COLORING     } from '../../../modules/local/phylogeny/cluster_coloring/main'
 include { GUBBINS              } from '../../../modules/local/phylogeny/gubbins/main'
 include { COUNT_MONO_NUC       } from '../../../modules/local/phylogeny/count_mono/main'
-//include { MAKE_PARTITION_GUIDE } from '../../../modules/local/phylogeny/make_guide/main'
-//include { RAXML                } from '../../../modules/local/phylogeny/raxml/main'
 include { RAXMLNG              } from '../../../modules/local/raxmlng/main'
 include { PHYLOGENY_QC         } from '../../../modules/local/phylogeny/phylogeny_qc/main'
 include { REROOT               } from '../../../modules/local/phylogeny/reroot/main'
@@ -111,26 +109,6 @@ workflow PHYLOGENY {
     )
     //ch_versions = ch_versions.mix(CLUSTER_COLORING.out.versions)
 
-    //
-    // Make partition guide for RAxML ascertainment correction
-    //
-    // MAKE_PARTITION_GUIDE (
-    //     GUBBINS.out.phylip,
-    //     COUNT_MONO_NUC.out.monomorphic_nuc_vals
-    // )
-    // ch_versions = ch_versions.mix(MAKE_PARTITION_GUIDE.out.versions)
-
-    // ch_core = GUBBINS.out.phylip
-    //             .map {
-    //                 phylip ->
-    //                 [ id:"raxmlng", phylip ]
-    //             }
-    
-    // ch_mono = COUNT_MONO_NUC.out.monomorphic_nuc_vals 
-    //             .map {
-    //                 mono ->
-    //                 [ "partition", mono ]
-    //             }
     //
     // Phylogenetic analysis with RAxML (output Newick tree)
     //
