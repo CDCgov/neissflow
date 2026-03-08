@@ -10,8 +10,9 @@ include { OUTBREAK_DETECTION   } from '../../../modules/local/phylogeny/outbreak
 include { CLUSTER_COLORING     } from '../../../modules/local/phylogeny/cluster_coloring/main'
 include { GUBBINS              } from '../../../modules/local/phylogeny/gubbins/main'
 include { COUNT_MONO_NUC       } from '../../../modules/local/phylogeny/count_mono/main'
-include { MAKE_PARTITION_GUIDE } from '../../../modules/local/phylogeny/make_guide/main'
-include { RAXML                } from '../../../modules/local/phylogeny/raxml/main'
+//include { MAKE_PARTITION_GUIDE } from '../../../modules/local/phylogeny/make_guide/main'
+//include { RAXML                } from '../../../modules/local/phylogeny/raxml/main'
+include { RAXMLNG              } from '../../../modules/local/raxmlng/main'
 include { PHYLOGENY_QC         } from '../../../modules/local/phylogeny/phylogeny_qc/main'
 include { REROOT               } from '../../../modules/local/phylogeny/reroot/main'
 include { GOTREE_PNG           } from '../../../modules/local/phylogeny/gotree/main'
@@ -113,26 +114,38 @@ workflow PHYLOGENY {
     //
     // Make partition guide for RAxML ascertainment correction
     //
-    MAKE_PARTITION_GUIDE (
-        GUBBINS.out.phylip,
-        COUNT_MONO_NUC.out.monomorphic_nuc_vals
-    )
-    ch_versions = ch_versions.mix(MAKE_PARTITION_GUIDE.out.versions)
+    // MAKE_PARTITION_GUIDE (
+    //     GUBBINS.out.phylip,
+    //     COUNT_MONO_NUC.out.monomorphic_nuc_vals
+    // )
+    // ch_versions = ch_versions.mix(MAKE_PARTITION_GUIDE.out.versions)
 
+    // ch_core = GUBBINS.out.phylip
+    //             .map {
+    //                 phylip ->
+    //                 [ id:"raxmlng", phylip ]
+    //             }
+    
+    // ch_mono = COUNT_MONO_NUC.out.monomorphic_nuc_vals 
+    //             .map {
+    //                 mono ->
+    //                 [ "partition", mono ]
+    //             }
     //
     // Phylogenetic analysis with RAxML (output Newick tree)
     //
-    RAXML (
+    RAXMLNG (
         GUBBINS.out.phylip,
-        MAKE_PARTITION_GUIDE.out.partition_guide
+        COUNT_MONO_NUC.out.monomorphic_nuc_vals,
+        'GTR+G+ASC_STAM'
     )
-    ch_versions = ch_versions.mix(RAXML.out.versions)
+    ch_versions = ch_versions.mix(RAXMLNG.out.versions)
 
     //
     // Midroot best tree with Gotree
     //
     REROOT (
-        RAXML.out.best_tree
+        RAXMLNG.out.support
     )
     ch_versions = ch_versions.mix(REROOT.out.versions)
 
@@ -182,15 +195,10 @@ workflow PHYLOGENY {
     monomorphic_nuc_vals = COUNT_MONO_NUC.out.monomorphic_nuc_vals // channel: [ monomorphic_nuc_vals ]
     snp_matrix           = SNPDISTS.out.snp_matrix                 // channel: [ snp_matrix ]
     outbreaks            = OUTBREAK_DETECTION.out.outbreaks        // channel: [ outbreaks ]
-    best_tree            = RAXML.out.best_tree                     // channel: [ best_tree ]
-    bipart               = RAXML.out.bipart                        // channel: [ bipart ]
-    info                 = RAXML.out.info                          // channel: [ info ]
-    bibranch             = RAXML.out.bibranch                      // channel: [ bibranch ]
-    bootstrap            = RAXML.out.bootstrap                     // channel: [ bootstrap ]
-    midpoint             = REROOT.out.midpoint                     // channel: [ midpoint ]
-    qc_report            = PHYLOGENY_QC.out.qc_report              // channel: [ qc_report ]
-    png                  = GOTREE_PNG.out.png                      // channel: [ png ]
-    report               = REPORT.out.report                       // channel: [ report ]
+    // midpoint             = REROOT.out.midpoint                     // channel: [ midpoint ]
+    // qc_report            = PHYLOGENY_QC.out.qc_report              // channel: [ qc_report ]
+    // png                  = GOTREE_PNG.out.png                      // channel: [ png ]
+    // report               = REPORT.out.report                       // channel: [ report ]
 
     versions             = ch_versions                             // channel: [ versions.yml ]
 }
