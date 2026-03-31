@@ -5,4 +5,4 @@ SRR11904216,assets/test_samples/SRR11904216_1.fastq.gz,assets/test_samples/SRR11
 SRR9985899,assets/test_samples/SRR9985899_1.fastq.gz,assets/test_samples/SRR9985899_2.fastq.gz
 SRR9878333,assets/test_samples/SRR9878333_1.fastq.gz,assets/test_samples/SRR9878333_2.fastq.gz
 SRR11904361,assets/test_samples/SRR11904361_1.fastq.gz,assets/test_samples/SRR11904361_2.fastq.gz
-SRR9877719,assets/test_samples/SRR9877719_1.fastq.gz,assets/test_samples/SRR9877719_2.fastq.gz
+SRR9877719,'https://raw.githubusercontent.com/CDCgov/neissflow/main/assets/test_samples/SRR9877719_1.fastq.gz','https://raw.githubusercontent.com/CDCgov/neissflow/main/assets/test_samples/SRR9877719_1.fastq.gz'
