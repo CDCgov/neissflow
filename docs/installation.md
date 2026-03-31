@@ -154,7 +154,7 @@ Steps 1-7 from "Updating the mlst database" also apply for updating the NGMASTER
 
 ## Updating the penA and porB BLAST databases
 
-It is recommended that you update the penA and porB allele databases, as new alleles are added regularly and we do not consistently update the allele databases in this repository. We recommend keeping a local copy of the databases and updating it every 3 months. The neissflow copy of this database can be found [here](../assets/alleledb/blastdb/).
+It is recommended that you update the penA and porB allele databases, as new alleles are added regularly and we do not consistently update the allele databases in this repository. We recommend keeping a local copy of the databases and updating it every 3 months. The neissflow copy of this database can be found [here](../assets/blastdb/).
 
 Steps 1-7 from "Updating the mlst database" also apply for updating the NGMASTER database.
 
