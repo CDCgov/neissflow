@@ -74,7 +74,8 @@ makedirs() {
         mkdir "$b_dir"
     elif [ -n "$(ls -A "${b_dir}" 2>/dev/null)" ]; then
         #Save off old DB files just in case
-        for file in ${b_dir}/*; do
+        files_array=("${b_dir}"/*)
+        for file in "${files_array[@]}"; do
             if [ -f "$file" ]; then
                 echo "renaming $file to ${file}.old"
                 mv "$file" "${file}.old"

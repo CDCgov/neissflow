@@ -31,7 +31,7 @@ Below is a list of the bioinformatics tools currently integrated into neissflow.
  10. [Samtools depth](https://www.htslib.org/doc/samtools-depth.html) - a tool for calculating the read depth at a given position from an alignment.
  11. [snp-dists](https://github.com/tseemann/snp-dists) - a tool for generating a SNP distance matrix from a FASTA core alignment
  12. [Gubbins](https://github.com/nickjcroucher/gubbins) - a tool for marking recombination regions and constructing a phylogeny based on mutations outside of those regions
- 13. [RAxML](https://cme.h-its.org/exelixis/resource/download/NewManual.pdf) - a tool for performing Maximum Likelihood based inference of large phylogenetic trees
+ 13. [RAxML-NG](https://github.com/amkozlov/raxml-ng) - a tool for performing Maximum Likelihood based inference of large phylogenetic trees
  14. [Gotree](https://github.com/evolbioinfo/gotree) - tool to manipulate phylogenetic trees and generate visualizations
  15. [MultiQC](https://pubmed.ncbi.nlm.nih.gov/27312411/) - tool for summarizing analysis results for multiple tools and samples in a single report  
 
@@ -60,8 +60,6 @@ nextflow run CDCgov/neissflow \
    --input samplesheet.csv \
    --outdir <OUTDIR> \
    --mash_db RefSeqSketchesDefaults.msh \
-   --pubmlst alleledb/mlst \
-   --blastdb alleledb/mlst_blastdb/ \
    --only_fastq
 ```
 
