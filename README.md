@@ -1,9 +1,5 @@
 # CDCgov/neissflow
 
-[![GitHub Actions CI Status](https://github.com/CDCgov/neissflow/actions/workflows/nf-test.yml/badge.svg)](https://github.com/CDCgov/neissflow/actions/workflows/nf-test.yml)
-[![GitHub Actions Linting Status](https://github.com/CDCgov/neissflow/actions/workflows/linting.yml/badge.svg)](https://github.com/CDCgov/neissflow/actions/workflows/linting.yml)
-[![nf-test](https://img.shields.io/badge/unit_tests-nf--test-337ab7.svg)](https://www.nf-test.com)
-
 [![Nextflow](https://img.shields.io/badge/version-%E2%89%A524.10.5-green?style=flat&logo=nextflow&logoColor=white&color=%230DC09D&link=https%3A%2F%2Fnextflow.io)](https://www.nextflow.io/)
 [![nf-core template version](https://img.shields.io/badge/nf--core_template-3.3.2-green?style=flat&logo=nfcore&logoColor=white&color=%2324B064&link=https%3A%2F%2Fnf-co.re)](https://github.com/nf-core/tools/releases/tag/3.3.2)
 [![run with docker](https://img.shields.io/badge/run%20with-docker-0db7ed?labelColor=000000&logo=docker)](https://www.docker.com/)
