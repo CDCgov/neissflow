@@ -38,10 +38,20 @@ Below is a list of the bioinformatics tools currently integrated into neissflow.
 ## Usage
 
 > [!NOTE]
-> If you are new to Nextflow and nf-core, please refer to [this page](https://nf-co.re/docs/usage/installation) on how to set-up Nextflow. Make sure to [test your setup](https://nf-co.re/docs/usage/introduction#how-to-run-a-pipeline) with `-profile test` before running the workflow on actual data.
+> If you are new to Nextflow and nf-core, please refer to [this page](https://nf-co.re/docs/usage/installation) on how to set-up Nextflow. Make sure to [test your setup](https://nf-co.re/docs/usage/introduction#how-to-run-a-pipeline) with `-profile test` before running the workflow on actual data.  
+  
+To run neissflow with the test profile, run
+```bash
+nextflow run CDCgov/neissflow \
+   -profile test,singularity \
+   --outdir <OUTDIR> \
+   --mash_db RefSeqSketchesDefaults.msh
+```
+The expected results from running with the test profile can be found [here](assets/expected_results/).  
 
+neissflow also contains test profiles to test the pipeline with input both FASTQ files & FASTA files (test_both), just FASTA files (test_fasta), and to test the full pipeline, including phylogeny (test_full).
 
-First, prepare a samplesheet with your input data that looks as follows:
+To use neissflow first prepare a samplesheet with your input data that looks as follows:
 
 `samplesheet.csv`:
 
