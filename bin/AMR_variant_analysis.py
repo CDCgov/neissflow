@@ -349,7 +349,7 @@ def get_depth(file, poi, gene_strands):
                     return True,float(l[2])
         f.close()
     else:
-        position = int(poi['AA Position'])*3
+        position = (int(poi['AA Position'])-1)*3
         depth = 0
         with open(file) as f:
             count = 0
@@ -359,11 +359,17 @@ def get_depth(file, poi, gene_strands):
                     l = line.split("\t")
                     if first:
                         start = int(l[1]) #need to use this to find correct nucleotide position
+                        if int(poi['AA Position']) == 39 and poi['Gene'] == 'mtrR':
+                            print("mtrR 39 " + str(start) + " " + str(position))
                         first = False
                     if int(l[1]) == start+position+count:
+                        if int(poi['AA Position']) == 39 and poi['Gene'] == 'mtrR':
+                            print(start+position+count,l[2])
                         depth += int(l[2])
                         count += 1 
                     if count == 3: #we got all the nucleotide positions for the AA of interest
+                        if int(poi['AA Position']) == 39 and poi['Gene'] == 'mtrR':
+                            print(depth,depth/3)
                         return True,depth/3    
             else:
                 lines = f.readlines()
@@ -372,11 +378,11 @@ def get_depth(file, poi, gene_strands):
                     if first:
                         start = int(l[1]) #need to use this to find correct nucleotide position
                         if int(poi['AA Position']) == 516 and poi['Gene'] == 'penA':
-                            print(start,position)
+                            print("penA 516 " + str(start) + " " + str(position))
                         first = False
                     if int(l[1]) == start-position-count:
                         if int(poi['AA Position']) == 516 and poi['Gene'] == 'penA':
-                            print(start+position+count,l[2])
+                            print(start-position-count,l[2])
                         depth += int(l[2])
                         count += 1 
                     if count == 3: #we got all the nucleotide positions for the AA of interest
@@ -442,13 +448,14 @@ def check_depths(files,results,WG_defaults,mtrR_promoter,strands):
     gene_strands = {}
     with open(strands) as f:
         for line in f:
-            l = line.split('\t')
+            l = line.strip().split('\t')
             if l[0] != "Gene":
                 gene_strands[l[0]] = l[1]
     f.close()
     for result in results:
         if result in WG_defaults and result != 'penA D345ins':
             if results[result] == WG_defaults[result]['Default']:
+                print(result,results[result],WG_defaults[result])
                 checked, depth = check_position(files,WG_defaults[result],gene_strands)
                 if depth <= 10 and checked:
                     results[result] = 'NF' #not enough depth of coverage at position, change to not found

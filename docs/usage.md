@@ -90,14 +90,12 @@ The typical command for running the pipeline is as follows:
 nextflow run CDCgov/neissflow \
   --input ./samplesheet.csv \
   --outdir ./results  \
-  -profile docker \
+  -profile singularity \
   --mash_db RefSeqSketchesDefaults.msh \
-  --pubmlst alleledb/mlst \
-  --blastdb alleledb/mlst_blastdb/ \
   --only_fastq
 ```
 
-This will launch the pipeline with the `docker` configuration profile. See below for more information about profiles.
+This will launch the pipeline with the `singularity` configuration profile. See below for more information about profiles.
 
 Note that the pipeline will create the following files in your working directory:
 
@@ -126,9 +124,7 @@ with:
 ```yaml title="params.yaml"
 input: './samplesheet.csv'
 outdir: './results/'
-mash_db: 'RefSeqSketchesDefaults.msh'
-pubmlst: 'alleledb/mlst'
-blastdb: 'alleledb/mlst_blastdb/'
+mash_db: RefSeqSketchesDefaults.msh
 onlyfastq: true
 <...>
 ```

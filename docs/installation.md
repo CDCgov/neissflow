@@ -8,15 +8,16 @@ This document overviews the setup process for neissflow, depending on how you pl
 
 1. [Nextflow](https://www.nextflow.io/docs/latest/install.html#install-page): this pipeline runs with version 24.10.5 and later
 2. [Singularity](https://docs.sylabs.io/guides/3.0/user-guide/installation.html)
-3. [wget](https://niagads.scrollhelp.site/support/wget-linux-file-downloader-user-guide)
-4. Local Mash sketch of RefSeq
+3. [Python](https://www.python.org/)
+4. [rauth](https://rauth.readthedocs.io/en/latest/)
+5. [BLAST+](https://blast.ncbi.nlm.nih.gov/Blast.cgi)
+6. Local Mash sketch of RefSeq
    - Download [RefSeqSketchesDefaults.msh.gz](https://mash.readthedocs.io/en/latest/data.html)
    - Move it to a directory where it can be accessed by the pipeline
    - Decompress the sketch with the following command
    ```
-   $ gunzip RefSeqSketchesDefaults.msh.gz
+   gunzip RefSeqSketchesDefaults.msh.gz
    ```
-5. Local MLST database (install after cloning the repository with step 3)
 
 ## Cluster/Cloud/Local Installation
 
@@ -25,30 +26,15 @@ This document overviews the setup process for neissflow, depending on how you pl
    - Add the necessary configuration profile(s) to run the pipeline on your system to [conf/](../conf) and include these .config files in [nextflow.config](../nextflow.config)
    - Use the -c argument when running neissflow to include the configuration files ex:
      ```
-     $ nextflow run neissflow/main.nf -profile singularity,<your profile> -c <your config>.config --input samplesheet.csv --outdir out/ --only_fastq
+     nextflow run neissflow/main.nf -profile singularity,<your profile> -c <your config>.config --input samplesheet.csv --outdir out/ --only_fastq
      ```
-3. Download the [mlst](https://github.com/tseemann/mlst) database locally
-   - run [assets/mlst-download_pub_mlst](../assets/mlst-download_pub_mlst) with the following command:
-   ```
-   $ ./mlst-download_pub_mlst -d /path_u_choose/pubmlst/
-   ```
-
-   - run [assets/mlst-make_blast_db](../assets/mlst-make_blast_db) with the following command:
-   ```
-   $ ./mlst-make_blast_db /path_u_choose/pubmlst/ /path_u_choose/blastdb/
-   ```
-
-   - check that data has populated those directories & has read permissions
-   - Using this database in neissflow:
-     - Option 1: change the default paths for `pubmlst` and `blastdb` variables in [nextflow.config](../nextflow.config)
-     - Option 2: pass these paths to the pipeline as parameters each run with the arguments `--pubmlst` and `--blastdb`
-4. Use the RefSeq Mash sketch in neissflow
-   - Option 1: change the default path for the `mash_db` parameter in [nextflow.config](../nextflow.config) to the path to RefSeqSketchesDefaults.msh
-   - Option 2: pass the path to RefSeqSketchesDefaults.msh to the pipeline as a parameter each run with the `--mash_db` argument
-5. If you wish to test the pipeline with the test profile, you will need to change the paths of the test samples in [assets/samplesheet.csv](../assets/samplesheet.csv) to include the path to the repository on your system (ex: /repo path/assets/test_samples/sample_R1_001.fastq.gz)  
+3. Use the RefSeq Mash sketch in neissflow
+   - Option 1: pass the path to RefSeqSketchesDefaults.msh to the pipeline as a parameter each run with the `--mash_db` argument
+   - Option 2: change the default path for the `mash_db` parameter in [nextflow.config](../nextflow.config) to the path to RefSeqSketchesDefaults.msh
+4. If you wish to test the pipeline with the test profile, you will need to change the paths of the test samples in [assets/samplesheet.csv](../assets/samplesheet.csv) to include the path to the repository on your system (ex: /repo path/assets/test_samples/sample_R1_001.fastq.gz)  
    Some sample output generated with these samples can also be found in `assets/sample_final_report.tsv` and `assets/sample_phylogeny_qc_report.tsv` for validating your test
-6. Set the TMPDIR and TMP environment variables  
-   On HPC systems the tmp directories on nodes can easily run out of space so it is best practice to set your temporary files to go to scratch. Neissflow contains modules that are configured to use these variables, so they will need to be set regardless of the system you are running on. Set these in the local or institutional profile you will be using to run neissflow with like the following example:
+5. Set the TMPDIR and TMP environment variables  
+   On HPC systems the tmp directories on nodes can easily run out of space so it is best practice to set your temporary files to go to scratch. Neissflow contains modules that are configured to use these variables, so they will need to be set regardless of the system you are running on. Set these in a local or institutional profile you will be using to run neissflow with like the following example:
 
 ```
 local {
@@ -89,29 +75,113 @@ To incorporate control samples:
 2. Edit [QC.config](../conf/QC.config) such that the controls parameter is set to the path to your control samplesheet
 3. Include the QC profile when running neissflow ex:
    ```
-   $ nextflow run neissflow/main.nf -profile singularity,all,QC --input samplesheet.csv --outdir out/ --only_fastq
-   ```
-
-## Updating the NGMASTER database
-
-It is recommended that you update the NGMASTER database at a regular frequency as new alleles and STs are always being added to PubMLST for NG-MAST and NG-STAR
-
-1. Download NGMASTER to your environment or within a conda environment
-2. Update pubmlst NGMASTER database with:
-   ```
-   $ ngmaster --db neissflow/assets/alleledb/ --updatedb --assumeyes
-   ```
-   You can also move this database to another location in your system and use that path.
-3. Run [assets/mlst-make_blast_db](../assets/mlst-make_blast_db) with the following command:
-   ```
-   $ ./mlst-make_blast_db neissflow/assets/alleledb/publmlst/ neissflow/assets/alleledb/blastdb/
-   ```
-   Again, if you opt to move this database elsewhere, use those paths.
-4. Run neissflow using the test set
-   ```
-   $ nextflow run neissflow/main.nf -profile singularity,all,test --outdir <OUTDIR> --name <RUN NAME>
+   nextflow run neissflow/main.nf -profile singularity,QC --input samplesheet.csv --outdir out/ --only_fastq
    ```
 
 ## Updating the mlst database
 
-It is also recommended that you update the MLST database at a regular frequency. To do this follow the same steps as are outlined to download the database in step 3 of "Cluster/Cloud/Local installation"
+The mlst database should be updated regularly as we do not regularly update the database found in the repository. We recommend keeping a local copy of the database and updating it every 3 months. The neissflow copy of this database can be found [here](../assets/alleledb/mlst/).  
+
+Use [BIGSdb_downloader](https://github.com/kjolley/BIGSdb_downloader) and [make_databases.sh](../assets/make_databases.sh) to download MLST alleles from PubMLST and make or update the neisseria mlst database.
+   1. Create or access your [PubMLST](https://pubmlst.org/bigsdb) account
+   2. Register your account for access to the Neisseria typing (pubmlst_neisseria_seqdef) database through My Account -> Database registrations and register under Auto-registrations.
+      - Create an API Key through My Account -> API Keys
+   3. Clone the [BIGSdb_downloader](https://github.com/kjolley/BIGSdb_downloader) repository
+   ```
+   git clone https://github.com/kjolley/BIGSdb_downloader.git
+   ```
+   4. Ensure you have [Python](https://www.python.org/) installed
+   5. Install [rauth](https://rauth.readthedocs.io/en/latest/)
+   ```
+   pip install rauth
+   ```
+   6. Set up connection to BIGSdb (this is only active for an hour and this step will need to be repeated for any downloads to occur beyond 1 hour)
+   ```
+   python3 ./BIGSdb_downloader/bigsdb_downloader.py --key_name "API KEY NAME" --site PubMLST --db pubmlst_neisseria_seqdef --token_dir <DIR TO SAVE KEYS AND TOKENS TO> --setup
+   ```
+   The script will prompt you to do the following: 
+   ``` 
+   Enter client id:
+   ```
+   and 
+   ```
+   Enter client secret:
+   ```
+   Copy over this information for the API key you created from PubMLST.  
+   Next it will prompt you with:
+   ```
+   Please log in using your user account at <LINK> using a web browser to obtain a verification code.
+   ```
+   Go to the provided link and authorize the use of your key, PubMLST will then provide you with the verification code. You will then be prompted to enter the verification code:
+   ```
+   Please enter verification code:
+   ```
+   Enter the code provided to you by PubMLST. This will allow for 1 hour of downloading from PubMLST (more than enough time to set up this database)
+   7. Ensure you have [BLAST+](https://blast.ncbi.nlm.nih.gov/Blast.cgi) installed
+   8. Run [make_databases.sh](../assets/make_databases.sh) (this script requires Python and rauth to run BIGSdb_downloader.py and BLAST+ to make the BLAST database)
+   ```
+   neissflow/assets/make_databases.sh -d "mlst" -k "<API KEY NAME>" -r /repo_path/BIGSdb_downloader -p mlst/pubmlst/ -b mlst/blastdb/ -t <TOKEN DIR FROM SETUP>
+   ```
+   9. Check that data has populated those directories & has read permissions
+   10. Using this database in neissflow (if you have moved the database to a local directory):
+     - Option 1: pass these paths to the pipeline as parameters each run with the arguments `--pubmlst` and `--blastdb`
+     ```
+     nextflow run CDCgov/neissflow -profile singularity --input samplesheet.csv --outdir out/ --pubmlst mlst/pubmlst/ --blastdb mlst/blastdb/ --only_fastq
+     ```  
+     These can also be added to a params.yml file, and included using the `-params-file` parameter
+     - Option 2: change the default paths for `pubmlst` and `blastdb` variables in [nextflow.config](../nextflow.config)
+   11. Test neissflow with the updated databases and check sample STs for expected results. If unexpected results are found (ST types are not being called, pipeline is failing) the database can be restored by removing any newly created files and renaming the old database files, removing the `.old` extension.
+
+## Updating the NGMASTER database
+
+It is recommended that you update the NGMASTER database at a regular frequency as new alleles and STs are always being added to PubMLST for NG-MAST and NG-STAR, and we do not regularly update the database in the repository. We recommend keeping a local copy of the database and updating it every 3 months. The neissflow copy of this database can be found [here](../assets/alleledb/ngmaster/).
+  
+Steps 1-7 from "Updating the mlst database" also apply for updating the NGMASTER database.
+
+8. Run [make_databases.sh](../assets/make_databases.sh) (this script requires Python and rauth to run BIGSdb_downloader.py and BLAST+ to make the BLAST database)
+   ```
+   neissflow/assets/make_databases.sh -d "ngmaster" -k "<API KEY NAME>" -r /repo_path/BIGSdb_downloader -p ngmaster/pubmlst/ -b ngmaster/blastdb/ -t <TOKEN DIR FROM SETUP>
+   ```
+9. Check that data has populated those directories & has read permissions
+10. Using this database in neissflow (if you have moved the database to a local directory):
+   - Option 1: pass these paths to the pipeline as parameters each run with the arguments `--ngmasterdb`, `--ngstar`, and `--ngmast`
+   ```
+   nextflow run CDCgov/neissflow -profile singularity --input samplesheet.csv --outdir out/ --ngmasterdb ngmaster/ --ngstar ngmaster/pubmlst/ngstar/ngstar.txt --ngmast ngmaster/pubmlst/ngmast/ngmast.txt --only_fastq
+   ```  
+   These can also be added to a params.yml file, and included using the `-params-file` parameter
+   - Option 2: change the default paths for `ngmasterdb`, `ngstar`, and `ngmast` variables in [nextflow.config](../nextflow.config)
+11. Test neissflow with the updated databases and check sample NG-STAR & NG-MAST types for expected results. If unexpected results are found (types are not being called, pipeline is failing) the database can be restored by removing any newly created files and renaming the old database files, removing the `.old` extension.
+
+## Updating the penA and porB BLAST databases
+
+It is recommended that you update the penA and porB allele databases, as new alleles are added regularly and we do not consistently update the allele databases in this repository. We recommend keeping a local copy of the databases and updating it every 3 months. The neissflow copy of this database can be found [here](../assets/blastdb/).
+
+Steps 1-7 from "Updating the mlst database" also apply for updating the NGMASTER database.
+
+8. Run [make_databases.sh](../assets/make_databases.sh) (this script requires Python and rauth to run BIGSdb_downloader.py and BLAST+ to make the BLAST database)
+   ```
+   neissflow/assets/make_databases.sh -d "penAporB" -k "<API KEY NAME>" -r /repo_path/BIGSdb_downloader -p blastdb/ -b blastdb/ -t <TOKEN DIR FROM SETUP>
+   ```
+9. Check that data has populated those directories & has read permissions
+10. Using this database in neissflow (if you have moved the database to a local directory):
+   - Option 1: pass the database path to the pipeline each run with the argument `--a_blastdb`
+   ```
+   nextflow run CDCgov/neissflow -profile singularity --input samplesheet.csv --outdir out/ --a_blastdb allele_blastdb/ --only_fastq
+   ```  
+   This can also be added to a params.yml file, and included using the `-params-file` parameter
+   - Option 2: change the default path for the `a_blastdb` variable in [nextflow.config](../nextflow.config)
+11. Test neissflow with the updated databases and check sample penA & porB allele calls for expected results. If unexpected results are found (types are not being called, pipeline is failing) the database can be restored by removing any newly created files and renaming the old database files, removing the `.old` extension.
+
+## Sample params.yml
+
+If you choose to keep and update all of the databases locally, the easiest way to pass them to the pipeline is with the `-params-file` flag.  
+  
+```yaml title="params.yaml"
+mash_db: RefSeqSketchesDefaults.msh
+pubmlst: mlst/pubmlst/ 
+blastdb: mlst/blastdb/
+a_blastdb: allele_blastdb/ 
+ngmasterdb: ngmaster/
+ngstar: ngmaster/pubmlst/ngstar/ngstar.txt 
+ngmast: ngmaster/pubmlst/ngmast/ngmast.txt
+```

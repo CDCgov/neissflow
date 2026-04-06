@@ -172,7 +172,7 @@ def toolCitationText() {
             "BLAST (Altschul et al. 1990)",
             "snp-dists (Seemann)",
             "Gubbins (Croucher et al. 2014)",
-            "RAxML 8.0 (Stamatakis 2014)",
+            "RAxML-NG (Kozlov et al. 2019)",
             "GoTree (Guozheng et al. 2020)",
             "MultiQC (Ewels et al. 2016)"
         ].join(' ').trim()
@@ -195,7 +195,7 @@ def toolBibliographyText() {
             "<li>Altschul SF, Gish W, Miller W, Myers EW, Lipman DJ. Basic local alignment search tool. J Mol Biol. 1990 Oct 5;215(3):403-10. doi: 10.1016/S0022-2836(05)80360-2. PMID: 2231712.</li>",
             "<li>Seemann T, snp-dists Github https://github.com/tseemann/snp-dists</li>",
             "<li>Croucher N. J., Page A. J., Connor T. R., Delaney A. J., Keane J. A., Bentley S. D., Parkhill J., Harris S.R. 'Rapid phylogenetic analysis of large samples of recombinant bacterial whole genome sequences using Gubbins'. doi:10.1093/nar/gku1196, Nucleic Acids Research, 2014.</li>",
-            "<li>A. Stamatakis: 'RAxML Version 8: A tool for Phylogenetic Analysis and Post-Analysis of Large Phylogenies'. In Bioinformatics, 2014</li>",
+            "<li>Kozlov, A. M., Darriba, D., Flouri, T., Morel, B., & Stamatakis, A. (2019). RAxML-NG: a fast, scalable and user-friendly tool for maximum likelihood phylogenetic inference. Bioinformatics, 35(21), 4453-445.</li>",
             "<li>Guozheng Li, Min Tian, Qinmei Xu, Michael J. McGuffin, and Xiaoru Yuan. 2020. GoTree: A Grammar of Tree Visualizations. In Proceedings of the 2020 CHI Conference on Human Factors in Computing Systems (CHI '20). Association for Computing Machinery, New York, NY, USA, 1–13. https://doi.org/10.1145/3313831.3376297</li>",
             "<li>Ewels, P., Magnusson, M., Lundin, S., & Käller, M. (2016). MultiQC: summarize analysis results for multiple tools and samples in a single report. Bioinformatics , 32(19), 3047–3048. doi: /10.1093/bioinformatics/btw354</li>"
         ].join(' ').trim()

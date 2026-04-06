@@ -25,6 +25,7 @@
         -H 6000 \\
         -w 3000 \\
         --annotation-file $annotation\\
+        --with-branch-support \\
         -o bestTree.png
 
     cat <<-END_VERSIONS > versions.yml

@@ -24,7 +24,7 @@ process COUNT_MONO_NUC {
 
     datamash -W transpose <realign_fasta.txt > transpose.txt
 
-    awk -vFS=" " -vOFS=" " '
+    awk -vFS=" " -vOFS="/" '
     {
         yes=0
         one=\$1

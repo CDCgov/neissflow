@@ -54,9 +54,9 @@
 
   > Croucher N. J., Page A. J., Connor T. R., Delaney A. J., Keane J. A., Bentley S. D., Parkhill J., Harris S.R. 'Rapid phylogenetic analysis of large samples of recombinant bacterial whole genome sequences using Gubbins'. doi:10.1093/nar/gku1196, Nucleic Acids Research, 2014.
 
-- [RAxML](https://cme.h-its.org/exelixis/resource/download/NewManual.pdf)  
+- [RAxML](https://github.com/amkozlov/raxml-ng)  
 
-  > A. Stamatakis: 'RAxML Version 8: A tool for Phylogenetic Analysis and Post-Analysis of Large Phylogenies'. In Bioinformatics, 2014
+  > Kozlov, A. M., Darriba, D., Flouri, T., Morel, B., & Stamatakis, A. (2019). RAxML-NG: a fast, scalable and user-friendly tool for maximum likelihood phylogenetic inference. Bioinformatics, 35(21), 4453-445.
 
 - [GoTree](https://github.com/evolbioinfo/gotree) 
 

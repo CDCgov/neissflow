@@ -1,0 +1,160 @@
+name: raxmlng
+description: RAxML-NG is a phylogenetic tree inference tool which uses maximum-likelihood
+  (ML) optimality criterion.
+keywords:
+  - phylogeny
+  - newick
+  - maximum likelihood
+tools:
+  - raxmlng:
+      description: RAxML-NG is a phylogenetic tree inference tool which uses maximum-likelihood
+        (ML) optimality criterion.
+      homepage: https://github.com/amkozlov/raxml-ng
+      documentation: https://github.com/amkozlov/raxml-ng/wiki
+      tool_dev_url: https://github.com/amkozlov/raxml-ng
+      doi: 10.1093/bioinformatics/btz305
+      license: ["GPL v2-or-later"]
+      identifier: ""
+input:
+  - - meta:
+        type: map
+        description: Groovy Map containing sample information (e.g. [ id:'sample1' ])
+    - alignment:
+        type: file
+        description: A FASTA format multiple sequence alignment file
+        pattern: "*.{fasta,fas,fa,mfa}"
+        ontologies: []
+  - - meta2:
+        type: map
+        description: Groovy Map containing sample information (e.g. [ id:'sample1' ])
+    - mono_sites:
+        type: file
+        description: A text file containing the partition guide / monomorphic nucleotide sites
+        pattern: "*.txt"
+        ontologies: []
+  - model:
+        type: string
+        description: The substitution model to use for the phylogenetic inference
+
+output:
+  bestModel:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. [ id:'test', single_end:false ]
+      - "*.bestModel":
+          type: file
+          description: Optimized model parameters for the best-scoring ML tree
+          pattern: "*.bestModel"
+          ontologies: []
+  bestTree:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. [ id:'test', single_end:false ]
+      - "*.bestTree":
+          type: file
+          description: Best-scoring ML tree (strictly bifurcating)
+          pattern: "*.bestTree"
+          ontologies: 
+            - edam: http://edamontology.org/format_1910 # NEWICK
+  bestTreeCollapsed:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. [ id:'test', single_end:false ]
+      - "*.bestTreeCollapsed":
+          type: file
+          description: Multifurcating version of the best-scoring ML tree. As of v1.0.0, only near-zero branches (<= blmin) are collapsed.
+          pattern: "*.bestTreeCollapsed"
+          ontologies: 
+            - edam: http://edamontology.org/format_1910 # NEWICK
+  bootstraps:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. [ id:'test', single_end:false ]
+      - "*.bootstraps":
+          type: file
+          description: Trees inferred for each bootstrap replicate
+          pattern: "*.bootstraps"
+          ontologies: 
+            - edam: http://edamontology.org/format_1910 # NEWICK
+  log:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. [ id:'test', single_end:false ]
+      - "*.log":
+          type: file
+          description: Trees inferred for each bootstrap replicate
+          pattern: "*.log"
+          ontologies: 
+            - edam: http://edamontology.org/format_2330 # TXT
+  mlTrees:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. [ id:'test', single_end:false ]
+      - "*.mlTrees":
+          type: file
+          description: ML trees for each starting tree
+          pattern: "*.mlTrees"
+          ontologies: 
+            - edam: http://edamontology.org/format_1910 # NEWICK
+  rba:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. [ id:'test', single_end:false ]
+      - "*.rba":
+          type: file
+          description: Compressed MSA in binary format (RAxML Binary Alignment)
+          pattern: "*.rba"
+          ontologies: []
+  startTree:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. [ id:'test', single_end:false ]
+      - "*.startTree":
+          type: file
+          description: Starting tree(s) used for ML inference
+          pattern: "*.startTree"
+          ontologies: 
+            - edam: http://edamontology.org/format_1910 # NEWICK
+  support:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. [ id:'test', single_end:false ]
+      - "*.support":
+          type: file
+          description: Best-scoring ML tree with bootstrap support values
+          pattern: "*.support"
+          ontologies: 
+            - edam: http://edamontology.org/format_1910 # NEWICK
+  versions:
+    - versions.yml:
+        type: file
+        description: File containing software versions
+        pattern: "versions.yml"
+        ontologies:
+          - edam: http://edamontology.org/format_3750 # YAML
+authors:
+  - "@avantonder"
+  - "@aunderwo"
+  - "@kitkatm16"
+maintainers:
+  - "@avantonder"
+  - "@aunderwo"
+  - "@kitkatm16"

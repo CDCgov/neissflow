@@ -1,9 +1,5 @@
 # CDCgov/neissflow
 
-[![GitHub Actions CI Status](https://github.com/CDCgov/neissflow/actions/workflows/nf-test.yml/badge.svg)](https://github.com/CDCgov/neissflow/actions/workflows/nf-test.yml)
-[![GitHub Actions Linting Status](https://github.com/CDCgov/neissflow/actions/workflows/linting.yml/badge.svg)](https://github.com/CDCgov/neissflow/actions/workflows/linting.yml)
-[![nf-test](https://img.shields.io/badge/unit_tests-nf--test-337ab7.svg)](https://www.nf-test.com)
-
 [![Nextflow](https://img.shields.io/badge/version-%E2%89%A524.10.5-green?style=flat&logo=nextflow&logoColor=white&color=%230DC09D&link=https%3A%2F%2Fnextflow.io)](https://www.nextflow.io/)
 [![nf-core template version](https://img.shields.io/badge/nf--core_template-3.3.2-green?style=flat&logo=nfcore&logoColor=white&color=%2324B064&link=https%3A%2F%2Fnf-co.re)](https://github.com/nf-core/tools/releases/tag/3.3.2)
 [![run with docker](https://img.shields.io/badge/run%20with-docker-0db7ed?labelColor=000000&logo=docker)](https://www.docker.com/)
@@ -31,17 +27,27 @@ Below is a list of the bioinformatics tools currently integrated into neissflow.
  10. [Samtools depth](https://www.htslib.org/doc/samtools-depth.html) - a tool for calculating the read depth at a given position from an alignment.
  11. [snp-dists](https://github.com/tseemann/snp-dists) - a tool for generating a SNP distance matrix from a FASTA core alignment
  12. [Gubbins](https://github.com/nickjcroucher/gubbins) - a tool for marking recombination regions and constructing a phylogeny based on mutations outside of those regions
- 13. [RAxML](https://cme.h-its.org/exelixis/resource/download/NewManual.pdf) - a tool for performing Maximum Likelihood based inference of large phylogenetic trees
+ 13. [RAxML-NG](https://github.com/amkozlov/raxml-ng) - a tool for performing Maximum Likelihood based inference of large phylogenetic trees
  14. [Gotree](https://github.com/evolbioinfo/gotree) - tool to manipulate phylogenetic trees and generate visualizations
  15. [MultiQC](https://pubmed.ncbi.nlm.nih.gov/27312411/) - tool for summarizing analysis results for multiple tools and samples in a single report  
 
 ## Usage
 
 > [!NOTE]
-> If you are new to Nextflow and nf-core, please refer to [this page](https://nf-co.re/docs/usage/installation) on how to set-up Nextflow. Make sure to [test your setup](https://nf-co.re/docs/usage/introduction#how-to-run-a-pipeline) with `-profile test` before running the workflow on actual data.
+> If you are new to Nextflow and nf-core, please refer to [this page](https://nf-co.re/docs/usage/installation) on how to set-up Nextflow. Make sure to [test your setup](https://nf-co.re/docs/usage/introduction#how-to-run-a-pipeline) with `-profile test` before running the workflow on actual data.  
+  
+To run neissflow with the test profile, run
+```bash
+nextflow run CDCgov/neissflow \
+   -profile test,singularity \
+   --outdir <OUTDIR> \
+   --mash_db RefSeqSketchesDefaults.msh
+```
+The expected results from running with the test profile can be found [here](assets/expected_results/).  
 
+neissflow also contains test profiles to test the pipeline with input both FASTQ files & FASTA files (test_both), just FASTA files (test_fasta), and to test the full pipeline, including phylogeny (test_full).
 
-First, prepare a samplesheet with your input data that looks as follows:
+To use neissflow first prepare a samplesheet with your input data that looks as follows:
 
 `samplesheet.csv`:
 
@@ -60,8 +66,6 @@ nextflow run CDCgov/neissflow \
    --input samplesheet.csv \
    --outdir <OUTDIR> \
    --mash_db RefSeqSketchesDefaults.msh \
-   --pubmlst alleledb/mlst \
-   --blastdb alleledb/mlst_blastdb/ \
    --only_fastq
 ```
 
