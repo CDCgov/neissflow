@@ -212,7 +212,7 @@ CDCgov/neissflow was originally written by Kat Morin.
 We thank the following people for their extensive assistance in the development of this pipeline:
 
 ### Authors / Contributors
-- Kat Morin
+- Kathryn Morin
 - Ethan Hetrick
 - Apurva Shrivastava
 - Eric Tran
@@ -244,3 +244,11 @@ This pipeline uses code and infrastructure developed and maintained by the [nf-c
 > Philip Ewels, Alexander Peltzer, Sven Fillinger, Harshil Patel, Johannes Alneberg, Andreas Wilm, Maxime Ulysse Garcia, Paolo Di Tommaso & Sven Nahnsen.
 >
 > _Nat Biotechnol._ 2020 Feb 13. doi: [10.1038/s41587-020-0439-x](https://dx.doi.org/10.1038/s41587-020-0439-x).
+
+## SHARE IT Act Compliance
+```
+Organization: NCHHSTP
+contact email: shareit@cdc.gov
+exemption status: NA
+exemption justification: NA
+description fields: Nextflow workflow for the analysis of Neisseria gonorrhoeae 
