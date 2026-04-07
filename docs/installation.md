@@ -32,14 +32,12 @@ This document overviews the setup process for neissflow, depending on how you pl
    - Add the necessary configuration profile(s) to run the pipeline on your system to [conf/](../conf) and include these .config files in [nextflow.config](../nextflow.config)
    - Use the -c argument when running neissflow to include the configuration files ex:
      ```
-     nextflow run neissflow/main.nf -profile singularity,<your profile> -c <your config>.config --input samplesheet.csv --outdir out/ --only_fastq
+     nextflow run CDCgov/neissflow -profile singularity,<your profile> -c <your config>.config --input samplesheet.csv --outdir out/ --only_fastq
      ```
 3. Use the RefSeq Mash sketch in neissflow
    - Option 1: pass the path to RefSeqSketchesDefaults.msh to the pipeline as a parameter each run with the `--mash_db` argument
    - Option 2: change the default path for the `mash_db` parameter in [nextflow.config](../nextflow.config) to the path to RefSeqSketchesDefaults.msh
-4. If you wish to test the pipeline with the test profile, you will need to change the paths of the test samples in [assets/samplesheet.csv](../assets/samplesheet.csv) to include the path to the repository on your system (ex: /repo path/assets/test_samples/sample_R1_001.fastq.gz)  
-   Some sample output generated with these samples can also be found in `assets/sample_final_report.tsv` and `assets/sample_phylogeny_qc_report.tsv` for validating your test
-5. Set the TMPDIR and TMP environment variables  
+4. Set the TMPDIR and TMP environment variables  
    On HPC systems the tmp directories on nodes can easily run out of space so it is best practice to set your temporary files to go to scratch. Neissflow contains modules that are configured to use these variables, so they will need to be set regardless of the system you are running on. Set these in a local or institutional profile you will be using to run neissflow with like the following example:
 
 ```
