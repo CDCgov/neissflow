@@ -8,3 +8,5 @@ testing/
 testing*
 *.pyc
 bin/
+adaptivecard.json
+slackreport.json

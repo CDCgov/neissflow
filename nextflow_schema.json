@@ -131,7 +131,7 @@
             "properties": {
                 "mash_db": {
                     "type": "string",
-                    "default":  "RefSeqSketchesDefaults.msh",
+                    "default": "RefSeqSketchesDefaults.msh",
                     "description": "Path to Mash sketch used",
                     "fa_icon": "fas fa-database",
                     "format": "file-path",
@@ -140,7 +140,7 @@
                 },
                 "FA19_ref": {
                     "type": "string",
-                    "default":  "assets/FA19.gb",
+                    "default": "https://raw.githubusercontent.com/CDCgov/neissflow/main/assets/FA19.gb",
                     "description": "Path to Genbank FA19 reference",
                     "hidden": true
                 }
@@ -164,7 +164,7 @@
                 },
                 "FA19cg": {
                     "type": "string",
-                    "default":  "assets/FA19cg.fa",
+                    "default": "https://raw.githubusercontent.com/CDCgov/neissflow/main/assets/FA19cg.fa",
                     "description": "path to FA19 FASTA file for QUAST ref",
                     "hidden": true
                 }
@@ -178,99 +178,94 @@
             "properties": {
                 "amr_ref": {
                     "type": "string",
-                    "default":  "assets/amr_genes.gbk",
+                    "default": "https://raw.githubusercontent.com/CDCgov/neissflow/main/assets/amr_genes.gbk",
                     "description": "Path to Genbank reference for AMR genes not found in FA19",
                     "hidden": true
                 },
                 "loci": {
                     "type": "string",
-                    "default":  "assets/FA19_loci.tsv",
+                    "default": "https://raw.githubusercontent.com/CDCgov/neissflow/main/assets/FA19_loci.tsv",
                     "description": "Path to file containing loci of AMR genes in FA19",
                     "hidden": true
                 },
                 "default_amr": {
                     "type": "string",
-                    "default":  "assets/AMR_defaults.tsv",
+                    "default": "https://raw.githubusercontent.com/CDCgov/neissflow/main/assets/AMR_defaults.tsv",
                     "description": "Path to list of AMR markers and their defaults",
                     "hidden": true
                 },
                 "columns": {
                     "type": "string",
-                    "default":  "assets/amr_columns.txt",
+                    "default": "https://raw.githubusercontent.com/CDCgov/neissflow/main/assets/amr_columns.txt",
                     "description": "Path to file containing the column order for the AMR report",
                     "hidden": true
                 },
                 "strands": {
                     "type": "string",
-                    "default":  "assets/gene_columns.tsv",
+                    "default": "https://raw.githubusercontent.com/CDCgov/neissflow/main/assets/gene_strands.tsv",
                     "description": "Path to file containing the strandedness of AMR genes in FA19",
                     "hidden": true
                 },
                 "mtrR_mosaic_ref": {
                     "type": "string",
-                    "default":  "assets/gene_refs/mosaic-mtrR.fasta",
+                    "default": "https://raw.githubusercontent.com/CDCgov/neissflow/main/assets/gene_refs/mosaic-mtrR.fasta",
                     "description": "Path to FASTA mtrR mosaic reference",
                     "hidden": true
                 },
                 "a_blastdb": {
                     "type": "string",
-                    "default":  "assets/blastdb",
-                    "description": "Allele BLAST database",
-                    "hidden": true
+                    "default": "assets/blastdb",
+                    "description": "Allele BLAST database"
                 },
                 "penAdb": {
                     "type": "string",
-                    "default":  "penAdb",
+                    "default": "penAdb",
                     "description": "Prefix for penA BLAST db",
                     "hidden": true
                 },
                 "porBdb": {
                     "type": "string",
-                    "default":  "porBdb",
+                    "default": "porBdb",
                     "description": "Prefix for porB BLAST db",
                     "hidden": true
                 },
                 "pubmlst": {
                     "type": "string",
-                    "default":  "mlst/pubmlst/",
+                    "default": "mlst/pubmlst/",
                     "description": "path to local pubmlst database for mlst",
                     "hidden": false
                 },
                 "blastdb": {
                     "type": "string",
-                    "default":  "mlst/blastdb",
+                    "default": "mlst/blastdb",
                     "description": "path to local blast database for mlst",
                     "hidden": false
                 },
                 "dbname": {
                     "type": "string",
-                    "default":  "mlst.fa",
+                    "default": "mlst.fa",
                     "description": "prefix local blast database for mlst",
                     "hidden": false
                 },
                 "ngmasterdb": {
                     "type": "string",
-                    "default":  "assets/alleledb/ngmaster/",
-                    "description": "path to NGMASTER database",
-                    "hidden": true
+                    "default": "assets/alleledb/ngmaster/",
+                    "description": "path to NGMASTER database"
                 },
                 "ngstar": {
                     "type": "string",
-                    "default":  "assets/alleledb/ngmaster/pubmlst/ngstar/ngstar.txt",
-                    "description": "path to file with ngstar schemes",
-                    "hidden": true
+                    "default": "https://raw.githubusercontent.com/CDCgov/neissflow/main/assets/alleledb/ngmaster/pubmlst/ngstar/ngstar.txt",
+                    "description": "path to file with ngstar schemes"
                 },
                 "ngmast": {
                     "type": "string",
-                    "default": "assets/alleledb/ngmaster/pubmlst/ngmast/ngmast.txt",
-                    "description": "path to file with ngmast schemes",
-                    "hidden": true
+                    "default": "https://raw.githubusercontent.com/CDCgov/neissflow/main/assets/alleledb/ngmaster/pubmlst/ngmast/ngmast.txt",
+                    "description": "path to file with ngmast schemes"
                 },
                 "ngmasterdb_version": {
                     "type": "string",
-                    "default": "01/2025",
-                    "description": "latest download of NGMASTER database used for run",
-                    "hidden": true
+                    "default": "03/2025",
+                    "description": "latest download of NGMASTER database used for run"
                 }
             }
         },
