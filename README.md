@@ -31,13 +31,14 @@ Below is a list of the bioinformatics tools currently integrated into neissflow.
  14. [Gotree](https://github.com/evolbioinfo/gotree) - tool to manipulate phylogenetic trees and generate visualizations
  15. [MultiQC](https://pubmed.ncbi.nlm.nih.gov/27312411/) - tool for summarizing analysis results for multiple tools and samples in a single report  
 
+## Installation
+
+Please refer to the installation instructions in [docs/installation.md](docs/installation.md) before running neissflow
+
 ## Usage
 
 > [!NOTE]
 > If you are new to Nextflow and nf-core, please refer to [this page](https://nf-co.re/docs/usage/installation) on how to set-up Nextflow. Make sure to [test your setup](https://nf-co.re/docs/usage/introduction#how-to-run-a-pipeline) with `-profile test` before running the workflow on actual data.  
-
-> [!NOTE]
-> Please refer to the installation instructions in [docs/installation.md](docs/installation.md) before running neissflow
   
 To run neissflow with the test profile:
 ```bash
