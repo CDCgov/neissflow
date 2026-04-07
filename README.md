@@ -207,7 +207,7 @@ For a detailed summary of the neissflow output, checkout [`docs/output.md`](docs
 
 ## Credits
 
-CDCgov/neissflow was originally written by Kat Morin.
+CDCgov/neissflow was originally written by Kathryn Morin.
 
 We thank the following people for their extensive assistance in the development of this pipeline:
 
