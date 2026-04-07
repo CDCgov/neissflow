@@ -1,33 +1,26 @@
 /*
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    VALIDATE INPUTS
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-*/
-
-//if (params.input)      { ch_input      = file(params.input)      } else { exit 1, 'Sample sheet was not specified!' }
-
-/*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     IMPORT MODULES / SUBWORKFLOWS / FUNCTIONS
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
-include { CHECK_FASTQS           } from '../modules/local/check_fastqs'
-include { SNIPPY                 } from '../modules/local/snippy'
-include { SNIPPY as ALT_SNIPPY   } from '../modules/local/snippy'
-include { INITIAL_MERGE          } from '../modules/local/qc_check/initial_merge'
-include { QC_CHECK               } from '../modules/local/qc_check/qc_check'
-include { MERGE_REPORTS          } from '../modules/local/merge/merge'
+include { CHECK_FASTQS           } from '../modules/local/check_fastqs/main'
+include { SNIPPY                 } from '../modules/local/snippy/main'
+include { SNIPPY as ALT_SNIPPY   } from '../modules/local/snippy/main'
+include { INITIAL_MERGE          } from '../modules/local/qc_check2/initial_merge/main'
+include { QC_CHECK               } from '../modules/local/qc_check2/qc_check/main'
+include { MERGE_REPORTS          } from '../modules/local/merge/main'
 include { MULTIQC                } from '../modules/nf-core/multiqc/main'
-include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pipeline'
-include { paramsSummaryMap       } from 'plugin/nf-validation'
+include { paramsSummaryMap       } from 'plugin/nf-schema'
 include { paramsSummaryMultiqc   } from '../subworkflows/nf-core/utils_nfcore_pipeline'
+include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_neissflow_pipeline'
 
-include { PREPROCESSING } from '../subworkflows/local/preprocessing'
-include { ASSEMBLY      } from '../subworkflows/local/assembly'
-include { SPECIES_CHECK } from '../subworkflows/local/species_check'
-include { AMR_PROFILER  } from '../subworkflows/local/amr_profiler'
-include { PHYLOGENY     } from '../subworkflows/local/phylogeny'
+
+include { PREPROCESSING } from '../subworkflows/local/preprocessing/main'
+include { ASSEMBLY      } from '../subworkflows/local/assembly/main'
+include { SPECIES_CHECK } from '../subworkflows/local/species_check/main'
+include { AMR_PROFILER  } from '../subworkflows/local/amr_profiler/main'
+include { PHYLOGENY     } from '../subworkflows/local/phylogeny/main'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -38,8 +31,7 @@ include { PHYLOGENY     } from '../subworkflows/local/phylogeny'
 workflow NEISSFLOW {
 
     take:
-    ch_samplesheet
-
+    ch_samplesheet // channel: samplesheet read in from --input
     main:
 
     ch_versions = Channel.empty()
@@ -108,11 +100,11 @@ workflow NEISSFLOW {
             // Species ID is also based on coverage of FA19
             ALT_SNIPPY (
                 ch_input,
-                params.reference_genome
+                "${params.reference_genome}"
             )
             SNIPPY (
                 ch_input,
-                params.FA19_ref
+                "${params.FA19_ref}"
             )
             ch_multiqc_files = ch_multiqc_files.mix(ALT_SNIPPY.out.txt.collect{it[1]})
             ch_vcf = ALT_SNIPPY.out.vcf
@@ -121,14 +113,14 @@ workflow NEISSFLOW {
         else if (params.reference_genome && params.skip_amr && params.skip_species_id) {
             SNIPPY (
                 ch_input,
-                params.reference_genome
+                "${params.reference_genome}"
             )
             ch_vcf = SNIPPY.out.vcf
             ch_aligned_fa = SNIPPY.out.aligned_fa
         } else {
             SNIPPY (
                 ch_input,
-                params.FA19_ref
+                "${params.FA19_ref}"
             )
             ch_vcf = SNIPPY.out.vcf
             ch_aligned_fa = SNIPPY.out.aligned_fa
@@ -140,11 +132,11 @@ workflow NEISSFLOW {
             // Species ID is also based on coverage of FA19
             ALT_SNIPPY (
                 ch_contigs,
-                params.reference_genome
+                "${params.reference_genome}"
             )
             SNIPPY (
                 ch_contigs,
-                params.FA19_ref
+                "${params.FA19_ref}"
             )
             ch_multiqc_files = ch_multiqc_files.mix(ALT_SNIPPY.out.txt.collect{it[1]})
             ch_vcf = ALT_SNIPPY.out.vcf
@@ -153,14 +145,14 @@ workflow NEISSFLOW {
         else if (params.reference_genome && params.skip_amr && params.skip_species_id) {
             SNIPPY (
                 ch_contigs,
-                params.reference_genome
+                "${params.reference_genome}"
             )
             ch_vcf = SNIPPY.out.vcf
             ch_aligned_fa = SNIPPY.out.aligned_fa
         } else {
             SNIPPY (
                 ch_contigs,
-                params.FA19_ref
+                "${params.FA19_ref}"
             )
             ch_vcf = SNIPPY.out.vcf
             ch_aligned_fa = SNIPPY.out.aligned_fa
@@ -244,16 +236,52 @@ workflow NEISSFLOW {
                     }
             
             ch_passed_vcf = Channel.empty()
-            ch_passed_vcf = ch_vcf.join(ch_qc)
+            ch_passed_vcf = ch_vcf
+                            .map {
+                                meta, vcf ->
+                                [ meta.id, vcf ]
+                            }
+                            .join(ch_qc)
+                            .map {
+                                meta, vcf ->
+                                [ [ id:meta ], vcf ]
+                            }
 
             ch_passed_aligned_fa = Channel.empty()
-            ch_passed_aligned_fa = ch_aligned_fa.join(ch_qc)
+            ch_passed_aligned_fa = ch_aligned_fa
+                                    .map {
+                                        meta, aligned_fa ->
+                                        [ meta.id, aligned_fa ]
+                                    }
+                                    .join(ch_qc)
+                                    .map {
+                                        meta, aligned_fa ->
+                                        [ [ id:meta ], aligned_fa ]
+                                    }
 
             ch_passed_fq = Channel.empty()
-            ch_passed_fq = ch_input.join(ch_qc)
+            ch_passed_fq = ch_input
+                            .map {
+                                meta, fq ->
+                                [ meta.id, fq ]
+                            }
+                            .join(ch_qc)
+                            .map {
+                                meta, fq ->
+                                [ [ id:meta ], fq ]
+                            }
 
             ch_passed_fa = Channel.empty()
-            ch_passed_fa = ch_contigs.join(ch_qc)
+            ch_passed_fa = ch_contigs
+                            .map {
+                                meta, fa ->
+                                [ meta.id, fa ]
+                            }
+                            .join(ch_qc)
+                            .map {
+                                meta, fa ->
+                                [ [ id:meta ], fa ]
+                            }
 
             ch_input = ch_passed_fq
             ch_contigs = ch_passed_fa
@@ -291,7 +319,7 @@ workflow NEISSFLOW {
             SPECIES_CHECK.out.plasmids,
             PREPROCESSING.out.passed,
             QC_CHECK.out.passed,
-            "${params.name}"
+            "${params.run_name}"
         )
         //ch_versions = ch_versions.mix(MERGE_REPORTS.out.versions)
     }
@@ -331,10 +359,11 @@ workflow NEISSFLOW {
     softwareVersionsToYAML(ch_versions)
         .collectFile(
             storeDir: "${params.outdir}/pipeline_info",
-            name: 'nf_core_pipeline_software_mqc_versions.yml',
+            name:  'neissflow_software_'  + 'mqc_'  + 'versions.yml',
             sort: true,
             newLine: true
         ).set { ch_collated_versions }
+
 
     //
     // MODULE: MultiQC
@@ -351,15 +380,14 @@ workflow NEISSFLOW {
     summary_params      = paramsSummaryMap(
         workflow, parameters_schema: "nextflow_schema.json")
     ch_workflow_summary = Channel.value(paramsSummaryMultiqc(summary_params))
-
+    ch_multiqc_files = ch_multiqc_files.mix(
+        ch_workflow_summary.collectFile(name: 'workflow_summary_mqc.yaml'))
     ch_multiqc_custom_methods_description = params.multiqc_methods_description ?
         file(params.multiqc_methods_description, checkIfExists: true) :
         file("$projectDir/assets/methods_description_template.yml", checkIfExists: true)
     ch_methods_description                = Channel.value(
         methodsDescriptionText(ch_multiqc_custom_methods_description))
 
-    ch_multiqc_files = ch_multiqc_files.mix(
-        ch_workflow_summary.collectFile(name: 'workflow_summary_mqc.yaml'))
     ch_multiqc_files = ch_multiqc_files.mix(ch_collated_versions)
     ch_multiqc_files = ch_multiqc_files.mix(
         ch_methods_description.collectFile(
@@ -372,11 +400,18 @@ workflow NEISSFLOW {
         ch_multiqc_files.collect(),
         ch_multiqc_config.toList(),
         ch_multiqc_custom_config.toList(),
-        ch_multiqc_logo.toList()
+        ch_multiqc_logo.toList(),
+        [],
+        []
     )
 
-
-    emit:
-    multiqc_report = MULTIQC.out.report.toList() // channel: /path/to/multiqc_report.html
+    emit:multiqc_report = MULTIQC.out.report.toList() // channel: /path/to/multiqc_report.html
     versions       = ch_versions                 // channel: [ path(versions.yml) ]
+
 }
+
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    THE END
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/

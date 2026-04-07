@@ -1,15 +1,11 @@
 #!/usr/bin/env nextflow
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    nf-core/neissflow
+    CDCgov/neissflow
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Github : https://github.com/nf-core/neissflow
-    Website: https://nf-co.re/neissflow
-    Slack  : https://nfcore.slack.com/channels/neissflow
+    Github : https://github.com/CDCgov/neissflow
 ----------------------------------------------------------------------------------------
 */
-
-nextflow.enable.dsl = 2
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -17,12 +13,10 @@ nextflow.enable.dsl = 2
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-include { NEISSFLOW  } from './workflows/neissflow'
-include { QC  } from './workflows/QC'
+include { NEISSFLOW               } from './workflows/neissflow'
+include { QC                      } from './workflows/QC'
 include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_neissflow_pipeline'
-include { fromSamplesheet         } from 'plugin/nf-validation'
 include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_neissflow_pipeline'
-
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     NAMED WORKFLOWS FOR PIPELINE
@@ -55,11 +49,10 @@ workflow NEISSFLOW_QC {
 //
 // WORKFLOW: Run main analysis pipeline depending on type of input
 //
-workflow NFCORE_NEISSFLOW {
+workflow CDCGOV_NEISSFLOW {
 
     take:
-    samplesheet // channel: samplesheet read in from --input 
-    
+    samplesheet // channel: samplesheet read in from --input
 
     main:
 
@@ -69,10 +62,8 @@ workflow NFCORE_NEISSFLOW {
     NEISSFLOW (
         samplesheet
     )
-
     emit:
-    multiqc_report = NEISSFLOW.out.multiqc_report
-
+    multiqc_report = NEISSFLOW.out.multiqc_report // channel: /path/to/multiqc_report.html
 }
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -83,13 +74,11 @@ workflow NFCORE_NEISSFLOW {
 workflow {
 
     main:
-
     //
     // SUBWORKFLOW: Run initialisation tasks
     //
     PIPELINE_INITIALISATION (
         params.version,
-        params.help,
         params.validate_params,
         params.monochrome_logs,
         args,
@@ -97,16 +86,15 @@ workflow {
         params.input
     )
 
-
     if (params.QC && !params.only_fasta){
         //
         // Create channel from control samples file provided through QC profile (params.controls)
         //
         Channel
-            .fromSamplesheet("controls")
+            .fromList(samplesheetToList(params.controls, "${projectDir}/assets/schema_controls.json"))
             .map {
                 meta, fastq_1, fastq_2 ->
-                    [ meta.id, [ fastq_1, fastq_2 ] ]
+                    [ meta, [ fastq_1, fastq_2 ] ]
             }
             .set { ch_control_samplesheet }
         
@@ -122,21 +110,16 @@ workflow {
     //
     // WORKFLOW: Run main workflow
     //
-    NFCORE_NEISSFLOW (
+    CDCGOV_NEISSFLOW (
         PIPELINE_INITIALISATION.out.samplesheet
     )
-
     //
     // SUBWORKFLOW: Run completion tasks
     //
     PIPELINE_COMPLETION (
-        params.email,
-        params.email_on_fail,
-        params.plaintext_email,
         params.outdir,
         params.monochrome_logs,
-        params.hook_url,
-        NFCORE_NEISSFLOW.out.multiqc_report
+        CDCGOV_NEISSFLOW.out.multiqc_report
     )
 }
 

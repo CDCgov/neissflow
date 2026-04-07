@@ -1,0 +1,7 @@
+QC Parameter	Accepted Value	Actual Value	Pass/Fail
+Num_Samples_Aligned	7	7	pass
+Match_Ref_Length	true	true	pass
+Num_Lines_w_Invalid_Nuc	0	0	pass
+All_Present_in_Tree	true	true	pass
+Num_Outliers	-	0	NA
+Core_Mono_Nuc_bp_Count	-	1809896	NA
