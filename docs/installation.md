@@ -5,19 +5,21 @@
 This document overviews the setup process for neissflow, depending on how you plan to run the pipeline.
 
 ## Dependencies
-
+### Required
 1. [Nextflow](https://www.nextflow.io/docs/latest/install.html#install-page): this pipeline runs with version 24.10.5 and later
 2. [Singularity](https://docs.sylabs.io/guides/3.0/user-guide/installation.html)
-3. [Python](https://www.python.org/)
-4. [rauth](https://rauth.readthedocs.io/en/latest/)
-5. [BLAST+](https://blast.ncbi.nlm.nih.gov/Blast.cgi)
-6. Local Mash sketch of RefSeq
-   - Download [RefSeqSketchesDefaults.msh.gz](https://mash.readthedocs.io/en/latest/data.html)
+3. Local Mash sketch of RefSeq
+   - Download [RefSeqSketchesDefaults.msh.gz](https://gembox.cbcb.umd.edu/mash/RefSeqSketchesDefaults.msh.gz) (this can be downloaded with curl or wget as well as in your browser)
    - Move it to a directory where it can be accessed by the pipeline
    - Decompress the sketch with the following command
    ```
    gunzip RefSeqSketchesDefaults.msh.gz
    ```
+
+### Optional
+1. [Python](https://www.python.org/)
+2. [rauth](https://rauth.readthedocs.io/en/latest/)
+3. [BLAST+](https://blast.ncbi.nlm.nih.gov/Blast.cgi)
 
 ## Cluster/Cloud/Local Installation
 
