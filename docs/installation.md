@@ -15,6 +15,10 @@ This document overviews the setup process for neissflow, depending on how you pl
    ```
    gunzip RefSeqSketchesDefaults.msh.gz
    ```
+   - Ensure it has sufficient permissions, the following command will set sufficient permissions
+   ```
+   chmod 755 RefSeqSketchesDefaults.msh
+   ```
 
 ### Optional
 1. [Python](https://www.python.org/)
