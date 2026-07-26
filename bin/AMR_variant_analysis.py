@@ -170,7 +170,9 @@ def get_FA19_calls(WG_defaults,file,AA):
                     result = variant[10].split(' ')[-1].split(WG_defaults[field]["AA Position"]) #parse resulting AA from "EFFECT" column
                     if len(result) == 2 and len(result[1]) == 3:
                         aa = result[1]
-                        results[field] = AA[aa]
+                        if aa == 'dup': #check if it's a duplicate
+                            results[field] = WG_defaults[field]["Default"] + "dup"
+                        else: results[field] = AA[aa]
                     elif len(result) == 2 and len(result[1]) > 3: #deal with complex mutations that START at the AA position of interest (takes the first AA change in the complex mutation)
                         aa = ''.join(list(result[1])[0:3])
                         results[field] = AA[aa]

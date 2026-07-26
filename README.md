@@ -235,6 +235,8 @@ If you would like to contribute to this pipeline, please see the [contributing g
 
 ## Citations
 
+If you use CDCgov/neissflow for your analysis, please cite it using the following doi: [10.64898/2026.07.22.740120](https://doi.org/10.64898/2026.07.22.740120)
+
 An extensive list of references for the tools used by the pipeline can be found in the [`CITATIONS.md`](CITATIONS.md) file.
 
 This pipeline uses code and infrastructure developed and maintained by the [nf-core](https://nf-co.re) community, reused here under the [MIT license](https://github.com/nf-core/tools/blob/main/LICENSE).
