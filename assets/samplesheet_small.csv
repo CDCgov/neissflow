@@ -1,0 +1,4 @@
+sample,fastq_1,fastq_2
+SRR11904202,"https://raw.githubusercontent.com/CDCgov/neissflow/main/assets/test_samples/SRR11904202_1.fastq.gz","https://raw.githubusercontent.com/CDCgov/neissflow/main/assets/test_samples/SRR11904202_2.fastq.gz"
+SRR11904206,"https://raw.githubusercontent.com/CDCgov/neissflow/main/assets/test_samples/SRR11904206_1.fastq.gz","https://raw.githubusercontent.com/CDCgov/neissflow/main/assets/test_samples/SRR11904206_2.fastq.gz"
+SRR11904216,"https://raw.githubusercontent.com/CDCgov/neissflow/main/assets/test_samples/SRR11904216_1.fastq.gz","https://raw.githubusercontent.com/CDCgov/neissflow/main/assets/test_samples/SRR11904216_2.fastq.gz"
